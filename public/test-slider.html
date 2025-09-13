@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hero crossfade test</title>
+  <style>
+    /* basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Segoe UI Emoji";background:#fff;color:#111}
+
+    /* header */
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:blur(6px);border-bottom:1px solid #eee}
+    .nav-container{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px}
+    .logo img{height:64px;display:block}
+
+    .main-nav{display:flex;gap:14px;align-items:center}
+    .nav-link{padding:8px 10px;border-radius:8px;color:#334155;font-weight:600;text-decoration:none}
+    .nav-link:hover{background:#f3f4f6;color:#0f172a}
+
+    .nav-cta{padding:10px 16px;border-radius:10px;background:linear-gradient(135deg,#e63946,#d62839);color:#fff;font-weight:800;text-decoration:none}
+
+    /* hero */
+    .hero{position:relative;height:78vh;min-height:420px;display:grid;place-items:center;overflow:hidden}
+    .hero .bg{position:absolute;inset:0;background-size:cover;background-position:center center;transition:opacity 1.0s ease-in-out;opacity:0;z-index:0}
+    .hero .bg.visible{opacity:1}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));z-index:1}
+    .hero-content{position:relative;z-index:2;text-align:center;color:#fff;padding:0 18px}
+    .hero h1{font-size:2.4rem;margin-bottom:8px;line-height:1.05}
+    .hero p{font-size:1.05rem;margin-bottom:14px;color:#ffd966}
+    .hero .hero-btn{display:inline-block;padding:12px 22px;border-radius:10px;background:#ffcc00;color:#111;font-weight:700;text-decoration:none}
+
+    /* small screens */
+    @media (max-width:720px){
+      .logo img{height:48px}
+      .hero{height:60vh}
+      .hero h1{font-size:1.6rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=200&q=60" alt="logo"></a>
+      <nav class="main-nav">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/About.html">About</a>
+        <a class="nav-link" href="/Services.html">Services</a>
+        <a class="nav-link" href="/gallery.html">Gallery</a>
+        <a class="nav-link nav-cta" href="/register.html">Get in Touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <!-- two background layers that will crossfade -->
+    <div class="bg bg-a"></div>
+    <div class="bg bg-b"></div>
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+      <h1 id="hero-title">India's Fastest Growing Workforce Enablement Company</h1>
+      <p id="hero-sub">Recruitment | Training | Development</p>
+      <a class="hero-btn" href="/Services.html">Explore Our Services</a>
+    </div>
+  </section>
+
+  <script>
+  // Wait until DOMReady
+  window.addEventListener('DOMContentLoaded', () => {
+    // images to show (replace with your local paths if you want)
+    const images = [
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600&q=80', // slide 1
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&q=80', // slide 2
+      'https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=1600&q=80'  // slide 3
+      // If you want to use your local images, put paths like 'img/services1.jpg'
+    ];
+
+    const bgA = document.querySelector('.hero .bg-a');
+    const bgB = document.querySelector('.hero .bg-b');
+
+    if (!bgA || !bgB) {
+      console.error('Hero bg layers not found (missing .bg-a/.bg-b)');
+      return;
+    }
+
+    // Preload images for smooth crossfade
+    const preloaded = [];
+    images.forEach(src => {
+      const im = new Image();
+      im.src = src;
+      preloaded.push(im);
+    });
+
+    // initialize
+    let index = 0;
+    let showingA = true;
+
+    bgA.style.backgroundImage = `url('${images[0]}')`;
+    bgA.classList.add('visible');
+
+    // crossfade function
+    function crossfade() {
+      const nextIndex = (index + 1) % images.length;
+
+      if (showingA) {
+        bgB.style.backgroundImage = `url('${images[nextIndex]}')`;
+        bgB.classList.add('visible');
+        bgA.classList.remove('visible');
+      } else {
+        bgA.style.backgroundImage = `url('${images[nextIndex]}')`;
+        bgA.classList.add('visible');
+        bgB.classList.remove('visible');
+      }
+
+      showingA = !showingA;
+      index = nextIndex;
+    }
+
+    // start autoplay
+    const intervalMs = 4500;
+    let sliderTimer = setInterval(crossfade, intervalMs);
+
+    // pause on hover (optional)
+    const heroSection = document.getElementById('hero');
+    heroSection.addEventListener('mouseenter', () => clearInterval(sliderTimer));
+    heroSection.addEventListener('mouseleave', () => {
+      sliderTimer = setInterval(crossfade, intervalMs);
+    });
+
+    // Debug lines for console
+    console.log('Hero slider initialized with', images.length, 'images.');
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+/* Responsive styles for mobile devices */
+
+@media only screen and (max-width: 768px) {
+  body, html {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  /* Hero section adjustments */
+  .hero-content {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-content h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Navigation adjustments */
+  .main-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .main-nav .nav-link {
+    padding: 8px 10px;
+    font-size: 16px;
+  }
+
+  .logo img {
+    max-height: 60px;
+  }
+
+  .site-header {
+    padding: 10px 0;
+  }
+
+  /* Tables responsive */
+  table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th, td {
+    padding: 8px 4px;
+    font-size: 12px;
+  }
+
+  /* Admin dashboard adjustments */
+  .section {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  /* Adjust form inputs and buttons */
+  input, select, button {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  /* Adjust footer */
+  footer {
+    font-size: 14px;
+    padding: 12px 0;
+  }
+
+  /* Bootstrap navbar adjustments */
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 5px 0;
+  }
+
+  .btn-red {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.2rem;
+  }
+
+  .hero-content h3 {
+    font-size: 1rem;
+  }
+
+  th, td {
+    padding: 6px 2px;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vendor Registration - Siddhi Infonet</title>
+  <link rel="stylesheet" href="body.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #fdf2f2; 
+      margin: 0; 
+      padding: 0; 
+    }
+    .container { 
+      max-width: 500px; 
+      margin: 80px auto; 
+      background: #fff; 
+      padding: 30px; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    }
+    h1 { 
+      text-align: center; 
+      color: #ff6f61; 
+      margin-bottom: 25px; 
+    }
+    label { 
+      font-weight: bold; 
+      display: block; 
+      margin-top: 15px; 
+    }
+    input { 
+      width: 100%; 
+      padding: 12px; 
+      border: 1px solid #ccc; 
+      border-radius: 8px; 
+      margin-top: 8px; 
+      transition: border-color 0.3s; 
+    }
+    input:focus { 
+      border-color: #ff6f61; 
+      outline: none; 
+      box-shadow: 0 0 5px rgba(255,111,97,0.3); 
+    }
+    button { 
+      margin-top: 20px; 
+      padding: 12px 20px; 
+      background: #ff6f61; 
+      border: none; 
+      color: #fff; 
+      font-weight: 600; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: background 0.3s; 
+      width: 100%; 
+    }
+    button:hover { 
+      background: #e35347; 
+    }
+    .note { 
+      text-align: center; 
+      margin-top: 20px; 
+      font-size: 14px; 
+      color: #666; 
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Vendor Registration</h1>
+
+    <form action="/save/vendor" method="post" >
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" placeholder="Enter your full name" autocomplete="name" required>
+      
+      <label for="phone">Contact Number</label>
+      <input id="phone" name="phone" type="tel" placeholder="Enter your contact number" autocomplete="tel" required>
+      
+      <label for="date">Event Date</label>
+      <input id="date" name="date" type="date" required>
+      
+      <label for="location">Location</label>
+      <input id="location" name="location" type="text" placeholder="Enter event location" autocomplete="address-line1" required>
+      
+      <button type="submit">Save</button>
+    </form>
+    <p class="note">Please ensure all details are correct before submitting.</p>
+
+  </div>
+</body>
+</html>

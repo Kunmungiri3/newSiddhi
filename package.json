@@ -1,0 +1,39 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "cloudinary": "^2.7.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.18.1",
+    "mongoose-timestamps": "^0.0.1",
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.4",
+    "streamifier": "^0.1.1"
+  },
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HemantG-17/siddhi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HemantG-17/siddhi/issues"
+  },
+  "homepage": "https://github.com/HemantG-17/siddhi#readme"
+}

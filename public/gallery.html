@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Siddhi Infonet</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+
+<!-- Header (same as home page) -->
+<header class="site-header">
+  <div class="logo">
+    <img src="images/logo.jpg" alt="Siddhi Logo">
+  </div>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.ejs">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.ejs">Contact</a></li>
+    </ul>
+  </nav>
+  <a href="contact.html" class="btn-header">Get in Touch</a>
+</header>
+
+<!-- Page Heading -->
+<section class="gallery-header">
+  <h1>Our Gallery</h1>
+</section>
+
+<!-- Filter Buttons -->
+<div class="filter-buttons">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="jobfair">Job Fairs</button>
+  <button class="filter-btn" data-filter="hr">HR Conclave</button>
+  <button class="filter-btn" data-filter="training">Trainings</button>
+  <button class="filter-btn" data-filter="workshop">Workshops</button>
+  <button class="filter-btn" data-filter="events">Other Events</button>
+</div>
+
+<!-- Gallery Grid -->
+<div class="gallery">
+  <!-- Job Fair Images -->
+  <div class="gallery-item jobfair">
+    <img src="images/prayagrajnews.jpg" alt="Job Fair Prayagraj">
+    <div class="caption">Job Fair 2025 - SDGI Delhi</div>
+  </div>
+  <div class="gallery-item jobfair">
+    <img src="images/barrely-job.jpg" alt="Job Fair Uttar Pradesh">
+    <div class="caption">Job Fair 2025 - Bareilly</div>
+  </div>
+
+  <!-- HR Conclave Images -->
+  <div class="gallery-item hr">
+    <img src="images/hr-convlace-grp.jpg" alt="HR Conclave Delhi">
+    <div class="caption">HR Conclave 2025 - Delhi</div>
+  </div>
+
+  <!-- Training Images -->
+  <div class="gallery-item training">
+    <img src="images/training1.jpg" alt="Training Session">
+    <div class="caption">Corporate Training 2025</div>
+  </div>
+  <div class="gallery-item training">
+    <img src="images/trainingoffice.jpg" alt="Training Session">
+    <div class="caption">Corporate Training 2025</div>
+  </div>
+
+  <!-- Workshop Images -->
+  <div class="gallery-item workshop">
+    <img src="images/workshop-ncc.jpg" alt="Workshop Noida">
+    <div class="caption">Workshop 2025 - Noida</div>
+  </div>
+  <div class="gallery-item workshop">
+    <img src="images/sessionncc.jpg" alt="Workshop Noida">
+    <div class="caption">Workshop 2025 - Noida</div>
+  </div>
+</div>
+
+<!-- Slideshow for All -->
+<div class="slideshow-container" id="slideshow">
+  <div class="slide fade" data-filter="jobfair">
+    <img src="images/sessionncc.jpg" alt="Job Fair Prayagraj">
+    <div class="slide-caption">Job Fair 2025 - SDGI Delhi</div>
+  </div>
+  <div class="slide fade" data-filter="jobfair">
+    <img src="images/barrely-job.jpg" alt="Job Fair Uttar Pradesh">
+    <div class="slide-caption">Job Fair 2025 - Bareilly</div>
+  </div>
+  <div class="slide fade" data-filter="hr">
+    <img src="images/hr-convlace-grp.jpg" alt="HR Conclave Delhi">
+    <div class="slide-caption">HR Conclave 2025 - Delhi</div>
+  </div>
+  <div class="slide fade" data-filter="training">
+    <img src="images/training1.jpg" alt="Training Session">
+    <div class="slide-caption">Corporate Training 2025</div>
+  </div>
+  <div class="slide fade" data-filter="training">
+    <img src="images/trainingoffice.jpg" alt="Training Session">
+    <div class="slide-caption">Corporate Training 2025</div>
+  </div>
+  <div class="slide fade" data-filter="workshop">
+    <img src="images/workshop-ncc.jpg" alt="Workshop Noida">
+    <div class="slide-caption">Workshop 2025 - Noida</div>
+  </div>
+  <div class="slide fade" data-filter="workshop">
+    <img src="images/sessionncc.jpg" alt="Workshop Noida">
+    <div class="slide-caption">Workshop 2025 - Noida</div>
+  </div>
+
+  <!-- Navigation arrows -->
+  <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+  <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+  <!-- Dots -->
+  <div class="dots" id="dots-container">
+    <!-- Dots will be generated dynamically -->
+  </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+  <div id="lightbox-caption"></div>
+</div>
+
+<script src="gallery.js"></script>
+</body>
+</html>

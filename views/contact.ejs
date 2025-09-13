@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Siddhi Infonet</title>
+
+  <!-- Font Awesome for social icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    /* Reset */
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --accent:#1a6fc4;      /* primary blue */
+      --accent-dark:#144f8c; /* darker hover blue */
+      --soft:#f2f8ff;        /* soft light-blue panel bg */
+      --ink:#222;
+      --muted:#555;
+    }
+    body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+
+    /* Hero (smaller with animated blue gradient) */
+    .hero{
+      height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;
+      text-align:center;color:#fff;position:relative;overflow:hidden;
+      background:linear-gradient(-45deg,#1a6fc4,#3c8ce7,#5596ff,#2a62b5);
+      background-size:400% 400%;animation:move 12s ease infinite;
+    }
+    .hero h1{font-size:40px;font-weight:800;letter-spacing:.2px}
+    .hero p{opacity:.95;margin-top:6px}
+    @keyframes move{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* Info cards */
+    .contact-info{
+      max-width:1100px;margin:36px auto;display:grid;gap:18px;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:0 20px;
+    }
+    .card{
+      background:var(--soft);border-radius:14px;padding:20px;text-align:center;
+      box-shadow:0 8px 16px rgba(0,0,0,.06);transition:.25s;
+    }
+    .card:hover{transform:translateY(-4px)}
+    .card h3{color:var(--accent);margin-bottom:6px}
+
+    /* Social section */
+    .social{
+      max-width:1000px;margin:0 auto 12px;padding:0 20px;text-align:center;
+    }
+    .social h2{font-size:22px;margin-bottom:10px;color:var(--accent)}
+    .icon-row{
+      display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+    }
+    .icon-row a{
+      width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      background:#fff;border:2px solid var(--soft);box-shadow:0 6px 12px rgba(0,0,0,.06);
+      color:var(--accent);font-size:20px;transition:.2s;
+    }
+    .icon-row a:hover{transform:translateY(-3px) scale(1.04);background:var(--accent);color:#fff}
+
+    /* Contact form */
+    .contact-form{
+      max-width:720px;margin:26px auto;background:var(--soft);padding:26px 22px;border-radius:14px;
+      box-shadow:0 10px 20px rgba(0,0,0,.08);
+    }
+    .contact-form h2{text-align:center;margin-bottom:10px;color:var(--accent)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .grid .full{grid-column:1/-1}
+    input,textarea{
+      width:100%;padding:12px 14px;border:1px solid #d6e6f7;border-radius:10px;font-size:16px;outline:none;
+      background:#fff;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .contact-form button{
+      margin-top:6px;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:12px 18px;
+      font-size:16px;cursor:pointer;transition:.2s;width:100%;
+    }
+    .contact-form button:hover{background:var(--accent-dark)}
+
+    /* Vendor section */
+    .vendor{
+      max-width:1000px;margin:34px auto;padding:26px 20px;text-align:center;background:var(--soft);
+      border-radius:14px;box-shadow:0 8px 16px rgba(0,0,0,.06);
+    }
+    .vendor h2{color:var(--accent);margin-bottom:8px}
+    .vendor p{color:var(--muted);margin-bottom:14px}
+    .vendor .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .vendor .btn{
+      text-decoration:none;background:var(--accent);color:#fff;padding:12px 20px;border-radius:10px;
+      transition:.2s;display:inline-flex;align-items:center;gap:8px;font-weight:600;
+    }
+    .vendor .btn:hover{background:var(--accent-dark)}
+
+    /* Map */
+    .map{max-width:1000px;margin:30px auto;border-radius:14px;overflow:hidden;box-shadow:0 8px 18px rgba(0,0,0,.08)}
+    .map iframe{width:100%;height:420px;border:0}
+
+    footer{margin:28px 0 22px;text-align:center;color:#666;font-size:14px}
+
+    /* Floating quick social (desktop) */
+    @media (min-width:900px){
+      .float-social{
+        position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:10;
+      }
+      .float-social a{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+        background:#fff;border:2px solid var(--soft);box-shadow:0 8px 16px rgba(0,0,0,.08);color:var(--accent)}
+      .float-social a:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
+    }
+
+    @media (max-width:640px){
+      .hero{height:200px}
+      .hero h1{font-size:32px}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1>Contact Us</h1>
+    <p>We’re here to support you – reach out or partner with Siddhi Infonet</p>
+  </header>
+
+  <!-- Contact info cards -->
+  <section class="contact-info">
+    <div class="card">
+      <h3><i class="fa-solid fa-location-dot"></i> Address</h3>
+      <p>958, Gaur City Mall, Greater Noida West,<br/>Gautam Buddha Nagar, 201306</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+      <p>+91 85120 22481</p>
+      <p>8218583020</p>
+      <p>+01205112427</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-envelope"></i> Email</h3>
+      <p>hr@siddhiinfonet.com</p>
+    </div>
+  </section>
+
+  <!-- Social icons row -->
+  <section class="social" aria-label="Connect with us">
+    <h2>Connect with us</h2>
+    <div class="icon-row">
+      <a href="https://www.facebook.com/share/176hJB5UC6/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://x.com/siddhiinfonet" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/company/siddhi-infonet-india-pvt-ltd/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://www.instagram.com/siddhi_infonet_india_pvt_ltd?igsh=MTlyeGlzc2V4MzUzbg==" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://m.youtube.com/@Grow_with_Siddhi_Infonet" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+  </section>
+
+  <!-- Contact form -->
+  <section class="contact-form" aria-label="Send a message">
+    <h2>Send Us a Message</h2>
+    <form action="savemessage" method="post">
+      <div class="grid">
+        <div><input type="text" name="name" placeholder="Your Name" required></div>
+        <div><input type="email" name="email" placeholder="Your Email" required></div>
+        <div><input type="tel" name="phone" placeholder="Phone (optional)"></div>
+        <div><input type="text" name="subject" placeholder="Subject"></div>
+        <div class="full"><textarea name="message" placeholder="Your Message" required></textarea></div>
+      </div>
+      <button type="submit"><i class="fa-regular fa-paper-plane"></i> Send Message</button>
+    </form>
+  </section>
+
+  <!-- Vendor -->
+  <section class="vendor" aria-label="Vendor services">
+    <h2>Vendor Services</h2>
+    <p>We value our vendors and partners. Register with us or access your portal below.</p>
+    <div class="actions">
+      <a class="btn" href="/vendor-registration"><i class="fa-solid fa-user-plus"></i> Vendor Registration/Freelancing</a>
+  
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="map" aria-label="Map">
+    <iframe
+      src="https://www.google.com/maps?q=Gaur%20City%20Mall,%20Greater%20Noida%20West,%20201306&output=embed"
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </section>
+
+  <!-- Floating quick social (desktop) -->
+  <div class="float-social" aria-hidden="true">
+    <a href="https://www.facebook.com/share/176hJB5UC6/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://x.com/siddhiinfonet" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/company/siddhi-infonet-india-pvt-ltd/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+  </div>
+
+  <footer>&copy; <span id="y"></span> Siddhi Infonet. All Rights Reserved.</footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

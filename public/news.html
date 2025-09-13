@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>News - Siddhi Infonet</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #004080;
+      margin-top: 30px;
+    }
+
+    /* News Section */
+    .news-section {
+      width: 80%;
+      margin: 20px auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0px 6px 12px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .news-item { display: none; animation: slideIn 1s ease-in-out; }
+    .news-item.active { display: block; }
+
+    .news-title { font-size: 20px; font-weight: bold; color: #004080; margin-bottom: 8px; }
+    .news-date { font-size: 14px; font-weight: bold; color: #c0392b; margin-bottom: 8px; }
+    .news-desc { font-size: 16px; color: #333; margin-bottom: 10px; }
+    .news-location { font-size: 14px; color: #555; font-style: italic; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 22px; font-weight: bold;
+      color: #004080; background: #fff;
+      border: none; cursor: pointer;
+      padding: 10px; border-radius: 50%;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+    .nav-btn:hover { background: #004080; color: #fff; }
+    .prev-btn { left: 10px; } .next-btn { right: 10px; }
+
+    /* Upcoming Events Grid */
+    .events-section {
+      width: 85%;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .event-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .event-card:hover { transform: translateY(-5px); }
+    .event-title { font-size: 18px; font-weight: bold; color: #004080; }
+    .event-date { font-size: 14px; color: #c0392b; margin: 6px 0; }
+    .event-desc { font-size: 15px; color: #333; margin-bottom: 10px; }
+    .event-btn {
+      display: inline-block; padding: 8px 14px;
+      background: #004080; color: #fff;
+      text-decoration: none; border-radius: 6px;
+      font-size: 14px; transition: 0.3s;
+    }
+    .event-btn:hover { background: #c0392b; }
+
+    /* Stats Section */
+    .stats {
+      display: flex; justify-content: space-around; flex-wrap: wrap;
+      background: #004080; color: #fff;
+      padding: 40px 0; margin-top: 40px;
+    }
+    .stat-box {
+      text-align: center;
+      margin: 15px;
+    }
+    .stat-number {
+      font-size: 32px; font-weight: bold;
+      animation: countUp 2s ease-in-out;
+    }
+    .stat-label { font-size: 16px; }
+
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CTA Section */
+    .cta {
+      text-align: center;
+      padding: 50px 20px;
+      background: #fff;
+      margin: 40px 0;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .cta h2 { margin-bottom: 15px; }
+    .cta p { margin-bottom: 20px; color: #333; }
+    .cta-btn {
+      background: #c0392b; color: #fff;
+      padding: 12px 20px; font-size: 16px;
+      border: none; border-radius: 6px;
+      cursor: pointer; transition: 0.3s;
+    }
+    .cta-btn:hover { background: #004080; }
+  </style>
+</head>
+<body>
+
+  <h1>Latest News & Events - Siddhi Infonet</h1>
+
+  <!-- Rotating News Section -->
+  <div class="news-section">
+    <div class="news-item active">
+      <div class="news-title">Upcoming HR Conclave</div>
+      <div class="news-date">22nd August 2025</div>
+      <div class="news-desc">
+        Siddhi Infonet is proud to announce its HR Conclave in Greater Noida, bringing together industry leaders, HR professionals, and young talent.
+      </div>
+      <div class="news-location">📍 Greater Noida, Uttar Pradesh</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-title">Mega Job Fair 2025</div>
+      <div class="news-date">October 2025</div>
+      <div class="news-desc">
+        A large-scale job fair connecting 200+ companies with aspiring candidates across multiple industries.
+      </div>
+      <div class="news-location">📍 Lucknow, Uttar Pradesh</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-title">Skill Development Drive</div>
+      <div class="news-date">January 2026</div>
+      <div class="news-desc">
+        Launching advanced training programs focusing on Digital Skills, IoT, and Artificial Intelligence.
+      </div>
+      <div class="news-location">📍 Online Nationwide</div>
+    </div>
+
+    <button class="nav-btn prev-btn">&#10094;</button>
+    <button class="nav-btn next-btn">&#10095;</button>
+  </div>
+
+  <!-- Upcoming Events Grid -->
+  <h2>Upcoming Events</h2>
+  <div class="events-section">
+    <div class="event-card">
+      <div class="event-title">Women Empowerment Workshop</div>
+      <div class="event-date">March 2026</div>
+      <div class="event-desc">Special workshop focused on empowering women with leadership and entrepreneurship skills.</div>
+      <a href="#" class="event-btn">Register</a>
+    </div>
+    <div class="event-card">
+      <div class="event-title">Startup Hiring Meet</div>
+      <div class="event-date">May 2026</div>
+      <div class="event-desc">Connecting startups with fresh talent and innovative thinkers.</div>
+      <a href="#" class="event-btn">Learn More</a>
+    </div>
+    <div class="event-card">
+      <div class="event-title">Technology Career Fair</div>
+      <div class="event-date">July 2026</div>
+      <div class="event-desc">Focused fair for IT, IoT, and AI professionals with leading companies.</div>
+      <a href="#" class="event-btn">Join Now</a>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+<div class="stats" id="stats">
+  <div class="stat-box">
+    <div class="stat-number" data-target="10000">0</div>
+    <div class="stat-label">Candidates Placed</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-number" data-target="200">0</div>
+    <div class="stat-label">Companies Connected</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-number" data-target="15">0</div>
+    <div class="stat-label">States Reached</div>
+  </div>
+</div>
+
+<script>
+  const counters = document.querySelectorAll('.stat-number');
+  let started = false; // to make sure it runs only once
+
+  function startCounter() {
+    counters.forEach(counter => {
+      counter.innerText = '0';
+      const updateCounter = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText.replace('+','').replace(',','');
+        const increment = target / 100; // speed factor
+
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCounter, 30);
+        } else {
+          counter.innerText = target.toLocaleString() + "+"; // add comma + plus sign
+        }
+      };
+      updateCounter();
+    });
+  }
+
+  // Run counter only when stats section is visible
+  window.addEventListener('scroll', () => {
+    const statsSection = document.getElementById('stats');
+    const sectionTop = statsSection.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if (!started && sectionTop < screenHeight) {
+      startCounter();
+      started = true;
+    }
+  });
+</script>
+
+
+<script>
+  const counters = document.querySelectorAll('.stat-number');
+  let started = false; // to make sure it runs only once
+
+  function startCounter() {
+    counters.forEach(counter => {
+      counter.innerText = '0';
+      const updateCounter = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / 100; // speed factor
+
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCounter, 30);
+        } else {
+          counter.innerText = target.toLocaleString(); // add commas
+        }
+      };
+      updateCounter();
+    });
+  }
+
+  // Run counter only when stats section is visible
+  window.addEventListener('scroll', () => {
+    const statsSection = document.getElementById('stats');
+    const sectionTop = statsSection.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if (!started && sectionTop < screenHeight) {
+      startCounter();
+      started = true;
+    }
+  });
+</script>
+
+
+  <!-- CTA Section -->
+  <div class="cta">
+  <h2>Be a Part of Our Journey</h2>
+  <p>Join Siddhi Infonet in empowering youth, creating opportunities, and shaping the future workforce.</p>
+  <a href="register.html" class="cta-btn">Register Now</a>
+</div>
+
+
+  <script>
+    let index = 0;
+    const items = document.querySelectorAll(".news-item");
+    const total = items.length;
+
+    function showNews(i) {
+      items.forEach((item, idx) => {
+        item.classList.remove("active");
+        if (idx === i) item.classList.add("active");
+      });
+    }
+
+    function nextNews() {
+      index = (index + 1) % total;
+      showNews(index);
+    }
+
+    function prevNews() {
+      index = (index - 1 + total) % total;
+      showNews(index);
+    }
+
+    document.querySelector(".next-btn").addEventListener("click", nextNews);
+    document.querySelector(".prev-btn").addEventListener("click", prevNews);
+
+    setInterval(nextNews, 5000); // auto-slide every 5s
+  </script>
+
+</body>
+</html>

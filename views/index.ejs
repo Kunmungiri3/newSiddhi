@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Siddhi Infonet</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/responsive.css">
+
+  <style>
+    /* Fix header shadow */
+    .navbar {
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Hero overlay */
+    .carousel-item::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 1;
+    }
+
+    /* Hero text */
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .hero-content h1 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    /* Buttons */
+    .btn-red {
+      background: #e60000;
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+    .btn-red:hover {
+      background: #b30000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #f8f9fa;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg bg-white fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/logo.jpg" alt="Siddhi Infonet Logo" height="60">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/About.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/Services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="/gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="/news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+
+            <a class="btn btn-red ms-lg-3" href="/register">Get in Touch</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Bootstrap Carousel -->
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="position: relative;">
+        <img src="/mangalayantangrp.jpg" class="d-block w-100" alt="Empowering communities">
+        <div class="hero-content container">
+          <h3>Empowering Communities</h3>
+          <h1>India's Fastest Growing Workforce Enablement Company</h1>
+          <p>Recruitment | Training | Development</p>
+          <a class="btn btn-red mt-3" href="/Services.html">Explore Our Services</a>
+        </div>
+      </div>
+      <div class="carousel-item" style="position: relative;">
+        <img src="/services1.jpg" class="d-block w-100" alt="Our Services">
+      </div>
+      <div class="carousel-item" style="position: relative;">
+        <img src="/about5.jpg" class="d-block w-100" alt="About Us">
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Siddhi Infonet India Pvt. Ltd. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

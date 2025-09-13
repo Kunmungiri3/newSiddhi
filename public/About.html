@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About – Siddhi Infonet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <style>
+    :root {
+      /* 🔴 Theme switched to red */
+      --primary: #d91c1c;   /* Primary Red */
+      --accent: #e63946;    /* Accent Red */
+      --bg-light: #f5f7fb;
+      --text-dark: #222;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --ring: #e6ebf3;
+      --success: #16a34a;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin:0; font-family: Inter, "Segoe UI", Arial, sans-serif; color: var(--text-dark); background:#fff;
+      line-height: 1.6;
+    }
+
+    /* ======= Top Utility Bar (theme to red) ======= */
+    .topbar { background: #7f1111; color:#ffe2e2; font-size: 13px; }
+    .topbar .wrap { max-width: 1240px; margin: 0 auto; display:flex; align-items:center; justify-content:space-between; padding:8px 16px; }
+    .topbar a { color:#ffe2e2; text-decoration:none; margin-left:12px; }
+    .topbar i { margin-right:6px; }
+
+    /* ======= Header / Breadcrumb ======= */
+    header.nav {
+      position: sticky; top:0; z-index: 1000; background:#ffffffd9; backdrop-filter: saturate(180%) blur(10px);
+      border-bottom:1px solid var(--ring);
+    }
+    .nav .wrap { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:14px 16px; }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .brand img { width:38px; height:38px; object-fit:contain; }
+    .brand span { font-weight:800; color:var(--primary); letter-spacing:0.2px; }
+    .nav ul { list-style:none; display:flex; gap:18px; padding:0; margin:0; }
+    .nav a { color:#1f2937; text-decoration:none; font-weight:600; font-size:14px; padding:8px 10px; border-radius:10px; }
+    .nav a:hover { background:var(--bg-light); }
+    .breadcrumb { max-width:1240px; margin:0 auto; padding:8px 16px 14px; font-size:13px; color:var(--muted); }
+    .breadcrumb a { color: var(--primary); text-decoration: none; }
+
+    /* ======= Hero Banner ======= */
+    .hero {
+      background: url('/siddhi-hd.jpg') center/cover no-repeat; height: 420px; display:flex; align-items:center; justify-content:center; position: relative; color:#fff; text-align:center; overflow:hidden;
+    }
+    .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.55)); }
+    .hero .inner { position:relative; z-index:2; padding:0 16px; }
+    .hero h1 { font-size: clamp(32px, 4vw, 56px); font-weight:800; line-height:1.15; margin:0 0 10px; }
+    .hero p { margin:0; font-size: clamp(14px, 1.6vw, 18px); opacity:.95; }
+
+    /* ======= Social Media Sidebar ======= */
+.social-sidebar { 
+  position: fixed; 
+  top: 40%; 
+  left: 20px; 
+  z-index: 1000; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; /* also reduced slightly for balance */
+}
+
+.social-sidebar a { 
+  color: white; 
+  font-size: 16px;   /* reduced from 20px */
+  width: 34px;       /* reduced from 40px */
+  height: 34px;      /* reduced from 40px */
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: var(--primary); 
+  transition: 0.3s; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+}
+
+.social-sidebar a:hover { 
+  background: var(--accent); 
+  transform: translateY(-2px) scale(1.06); 
+}
+
+    /* ======= About Section ======= */
+    section.about { display:flex; gap: 50px; max-width: 1200px; margin: 80px auto; padding: 0 20px; align-items: center; flex-wrap: wrap; }
+    .about-text { flex:1; min-width:320px; }
+    .about-text h2 { font-size: 30px; font-weight: 700; color: var(--primary); margin-bottom: 15px; position: relative; }
+    .about-text h2::after { content:""; width:60px; height:4px; background: var(--accent); position:absolute; bottom:-8px; left:0; border-radius:2px; }
+    .about-text p { line-height:1.8; margin:18px 0; text-align:justify; font-size: 16.5px; color:#111827; }
+    .about-image { flex:1; min-width:300px; }
+    .about-image img { width:100%; border-radius:14px; box-shadow:0 16px 36px rgba(0,0,0,0.18); transition: transform 0.35s; }
+    .about-image img:hover { transform: scale(1.03); }
+
+    /* ======= Quick CTA chips ======= */
+    .chips { display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+    .chip { display:inline-flex; align-items:center; gap:8px; background:var(--bg-light); border:1px solid var(--ring); color:#0f172a; padding:8px 12px; border-radius:999px; font-size:13px; font-weight:600; }
+    .chip i { color:var(--accent); }
+
+    /* ======= Stats ======= */
+    .stats { display:flex; justify-content:space-around; gap:25px; max-width: 1100px; margin: 40px auto 10px; flex-wrap:wrap; padding:0 16px; }
+    .stat { background:var(--card); padding:28px 20px; border-radius:14px; text-align:center; flex:1; min-width:220px; box-shadow:0 4px 14px rgba(2, 6, 23, 0.06); transition:0.25s; border:1px solid var(--ring); }
+    .stat:hover { transform:translateY(-5px); box-shadow:0 16px 30px rgba(2, 6, 23, 0.10); }
+    .stat h3 { font-size:34px; margin:0; color:var(--primary); letter-spacing:0.4px; }
+    .stat p { margin-top:8px; font-size:14px; color:var(--muted); }
+
+    /* ======= What We Do (feature grid) ======= */
+    .features { max-width:1240px; margin:70px auto; padding:0 16px; }
+    .features h2 { text-align:center; font-size:32px; color:var(--primary); margin:0 0 18px; }
+    .features .sub { text-align:center; color:var(--muted); margin-bottom:28px; }
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+    .card { background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:22px; box-shadow:0 8px 24px rgba(2,6,23,0.06); transition:.25s; }
+    .card:hover { transform: translateY(-6px); box-shadow:0 18px 38px rgba(2,6,23,0.12); }
+    .card i { font-size:22px; color:var(--accent); background:#fee2e2; width:42px; height:42px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; margin-bottom:10px; }
+    .card h3 { margin:6px 0 6px; font-size:18px; color:#0f172a; }
+    .card p { margin:0; color:#334155; font-size:14.5px; }
+
+    /* ======= Impact Banner (theme to red gradient) ======= */
+    .impact { background:linear-gradient(120deg, #7f1111 0%, #d91c1c 100%); color:white; margin: 70px 0; padding: 56px 16px; }
+    .impact .wrap { max-width:1240px; margin:0 auto; display:grid; grid-template-columns: 2fr 1fr; gap:30px; align-items:center; }
+    .impact .cta { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.2); color:white; text-decoration:none; font-weight:700; }
+    .btn.primary { background:var(--accent); border-color:var(--accent); }
+    .btn:hover { transform: translateY(-2px); }
+
+    /* ======= Footprint Section ======= */
+    .footprint { background: var(--primary); color: white; padding: 60px 20px; text-align: center; }
+    .footprint h2 { font-size: 32px; margin-bottom: 25px; }
+    .footprint-grid { display: flex; justify-content:center; gap:40px; flex-wrap: wrap; max-width:1000px; margin:0 auto; }
+    .footprint-item { flex:1; min-width:220px; }
+    .footprint-item h3 { font-size: 30px; margin: 0; color: #fff; }
+    .footprint-item p { margin-top:10px; font-size:16px; opacity:.9; }
+
+    /* ======= Leadership (Swiper slider) ======= */
+    .leader { max-width:1240px; margin:70px auto; padding:0 16px; }
+    .leader h2 { text-align:center; font-size:32px; color:var(--primary); margin-bottom:22px; }
+    .leader .swiper { padding: 10px 10px 40px; }
+    .leader-card { background:#fff; border:1px solid var(--ring); border-radius:16px; padding:18px; text-align:center; box-shadow:0 8px 24px rgba(2,6,23,.06); }
+    .leader-card img { width:110px; height:110px; border-radius:50%; object-fit:cover; margin:12px auto; display:block; }
+    .leader-card h3 { margin:6px 0 0; font-size:18px; }
+    .leader-card p { margin:2px 0 0; color:var(--muted); font-size:14px; }
+
+  /* ======= Clients Marquee ======= */
+.clients {
+  background: var(--bg-light);
+  border-top: 1px solid var(--ring);
+  border-bottom: 1px solid var(--ring);
+}
+
+.clients .wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 26px 16px;
+}
+
+.marquee {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  gap: 48px;
+  width: max-content; /* Allows full logo row */
+  animation: scroll 20s linear infinite;
+}
+
+.track img {
+  height: 38px;
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+  object-fit: contain;
+}
+
+.track img:hover {
+  opacity: 1;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+    /* ======= Values (icon list) ======= */
+    .values { max-width:1240px; margin:70px auto; padding:0 16px; display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; }
+    .value { background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:18px; display:flex; gap:12px; align-items:flex-start; }
+    .value i { color:var(--success); font-size:18px; margin-top:4px; }
+    .value h4 { margin:0; }
+    .value p { margin:4px 0 0; font-size:14px; color:#334155; }
+
+    /* ======= Testimonials (Swiper) ======= */
+    .testimonials { max-width:1240px; margin:70px auto; padding:0 16px; }
+    .testimonial-card { background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:20px; box-shadow:0 8px 24px rgba(2,6,23,.06); }
+    .stars { color:#f59e0b; margin-bottom:8px; }
+
+    /* ======= FAQ (accordion) ======= */
+    .faq { max-width:900px; margin:70px auto; padding:0 16px; }
+    .accordion { border:1px solid var(--ring); border-radius:16px; overflow:hidden; }
+    .acc-item + .acc-item { border-top:1px solid var(--ring); }
+    .acc-head { display:flex; justify-content:space-between; align-items:center; padding:16px; cursor:pointer; background:#fff; }
+    .acc-title { font-weight:700; }
+    .acc-body { display:none; padding:0 16px 16px; color:#334155; }
+
+    /* ======= CTA ======= */
+    .cta { background: radial-gradient(1200px 600px at 80% -20%, #ffe2e2 10%, transparent 60%), #fff; border-top:1px solid var(--ring); border-bottom:1px solid var(--ring); }
+    .cta .wrap { max-width:1240px; margin:0 auto; padding:40px 16px; display:grid; grid-template-columns: 3fr 1fr; gap:18px; align-items:center; }
+
+    /* ======= Footer (theme to red) ======= */
+    footer { background:#7f1111; color:#ffe2e2; margin-top:60px; }
+    footer .wrap { max-width:1240px; margin:0 auto; padding:28px 16px; display:grid; grid-template-columns: 2fr 1fr 1fr; gap:20px; }
+    footer a { color:#ffe2e2; text-decoration:none; }
+    .copy { border-top:1px solid rgba(255,255,255,.18); text-align:center; padding:12px 16px; font-size:13px; color:#ffd6d6; }
+
+    /* ======= Responsive ======= */
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .impact .wrap { grid-template-columns: 1fr; text-align:center; }
+      .cta .wrap { grid-template-columns: 1fr; }
+      .values { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+      .values { grid-template-columns: 1fr; }
+      .social-sidebar { display:none; }
+    }
+    /* ======= Timeline ======= */
+.timeline {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding-left: 100px; /* shifts timeline text to the right */
+  padding-right: 20px;
+}
+
+.timeline .t-item {
+  margin-bottom: 28px;
+}
+
+.timeline h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 8px;
+}
+
+.timeline p {
+  margin: 0;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+  </style>
+</head>
+<body>
+  <!-- ======= Topbar ======= -->
+  <div class="topbar">
+    <div class="wrap">
+      <div><i class="fa-solid fa-location-dot"></i> Gautam Buddha Nagar, India</div>
+      <div>
+        <i class="fa-regular fa-envelope"></i> <a href="mailto:hr@siddhiinfonet.com">hr@siddhiinfonet.com</a>
+        <a href="tel:+9185120 22481"><i class="fa-solid fa-phone"></i> +91 85120 22481</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Sticky Nav ======= -->
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <!-- 🔴 Updated logo source -->
+        <img src="/image.png" alt="Siddhi Infonet Logo" style="max-height:80px; width:auto;">
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">What We Do</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a class="btn" style="padding:8px 12px; border-radius:8px; background:var(--accent); color:#fff" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="breadcrumb"> <a href="/">Home</a> › About Us</div>
+  </header>
+
+  <!-- ======= Social Media Sidebar ======= -->
+  <div class="social-sidebar">
+    <a href="https://www.facebook.com/share/176hJB5UC6/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/siddhi_infonet_india_pvt_ltd?igsh=MTlyeGlzc2V4MzUzbg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/company/siddhi-infonet-india-pvt-ltd/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://x.com/siddhiinfonet" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+  </div>
+
+  <!-- ======= Hero ======= -->
+ <div class="hero" data-aos="zoom-in" data-aos-duration="800" 
+     style="background: url('images/about3.jpg') no-repeat center center/cover; height: 400px;">
+  <div class="inner">
+    <h1>About Siddhi Infonet<br/>Empowering Employment & Growth</h1>
+    <p>Recruitment • Skill Development • Government Project Execution • Workforce Enablement</p>
+  </div>
+</div>
+
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="about-text" data-aos="fade-right">
+      <h2>Who We Are</h2>
+      <p><strong>Siddhi Infonet India Pvt. Ltd.</strong> is a trusted partner in enabling employment and building sustainable livelihoods. We specialize in recruitment, skill development, government project execution, and workforce enablement across India.</p>
+      <p>Founded in 2016 and headquartered in Gautam Buddha Nagar, we operate nationwide with a dedicated team of professionals delivering innovation and excellence.</p>
+      <div class="chips">
+        <div class="chip"><i class="fa-solid fa-shield"></i> ISO-Compliant Processes</div>
+        <div class="chip"><i class="fa-solid fa-medal"></i> 100+ Successful Projects</div>
+        <div class="chip"><i class="fa-solid fa-people-group"></i> PAN-India Network</div>
+      </div>
+    </div>
+    <div class="about-image" data-aos="fade-left">
+      <img src="images/siddhi2.jpg" alt="Siddhi Infonet Team" />
+    </div>
+  </section>
+
+  <!-- ======= Stats ======= -->
+  <div class="stats" data-aos="fade-up">
+    <div class="stat"><h3 class="counter" data-target="2016">0</h3><p>Established</p></div>
+    <div class="stat"><h3 class="counter" data-target="200">0</h3><p>Employees</p></div>
+    <div class="stat"><h3>National</h3><p>PAN-India Reach</p></div>
+    <div class="stat"><h3 class="counter" data-target="100">0+</h3><p>Projects Delivered</p></div>
+  </div>
+
+  <!-- ======= What We Do ======= -->
+  <section id="features" class="features">
+    <h2 data-aos="fade-up">What We Do</h2>
+    <p class="sub" data-aos="fade-up" data-aos-delay="80">End-to-end workforce & skilling solutions for enterprises and government programs.</p>
+    <div class="grid">
+      <div class="card" data-aos="fade-up">
+        <i class="fa-solid fa-user-check"></i>
+        <h3>Recruitment & Staffing</h3>
+        <p>Volume hiring, campus drives, RPO and temp staffing across roles & regions with strong SLAs.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="60">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <h3>Skill Development</h3>
+        <p>Industry-aligned skilling, assessments, certification & job linkage for youth and upskilling for employees.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="120">
+        <i class="fa-solid fa-building-columns"></i>
+        <h3>Govt. Project Execution</h3>
+        <p>Turnkey execution for state & central schemes with compliance, analytics and transparent reporting.</p>
+      </div>
+      <div class="card" data-aos="fade-up">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Managed Services</h3>
+        <p>On-ground operations, payroll, onboarding, HRMS setup and vendor management as a service.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="60">
+        <i class="fa-solid fa-handshake-angle"></i>
+        <h3>Employer Partnerships</h3>
+        <p>Curated talent pipelines, job fairs and last-mile placement support for corporate partners.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="120">
+        <i class="fa-solid fa-laptop-file"></i>
+        <h3>Digital Enablement</h3>
+        <p>Tech-driven MIS, dashboards and e-learning to track outreach, training outcomes & impact.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Impact / CTA Banner ======= -->
+  <section class="impact" aria-label="Impact">
+    <div class="wrap">
+      <div>
+        <h2 style="margin:0 0 10px">Creating measurable livelihood impact</h2>
+        <p style="margin:0 0 16px; opacity:.95">5000+ candidates placed | 100+ corporate clients | 10+ government projects delivered with quality & compliance.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact Sales</a>
+          <a class="btn" href="#case-studies"><i class="fa-solid fa-book-open"></i> View Case Studies</a>
+        </div>
+      </div>
+      <div>
+        <ul style="list-style:none; margin:0; padding:0">
+          <li><i class="fa-solid fa-check" style="color:#22c55e"></i> SLA-driven hiring at scale</li>
+          <li><i class="fa-solid fa-check" style="color:#22c55e"></i> Compliance-first operations</li>
+          <li><i class="fa-solid fa-check" style="color:#22c55e"></i> Real-time dashboards</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footprint ======= -->
+  <section class="footprint">
+    <h2>Our Footprint</h2>
+    <div class="footprint-grid">
+      <div class="footprint-item"><h3 class="counter" data-target="15">0+</h3><p>States Covered</p></div>
+      <div class="footprint-item"><h3 class="counter" data-target="5000">0+</h3><p>Candidates Placed</p></div>
+      <div class="footprint-item"><h3 class="counter" data-target="100">0+</h3><p>Corporate Clients</p></div>
+      <div class="footprint-item"><h3 class="counter" data-target="10">0+</h3><p>Government Projects</p></div>
+    </div>
+  </section>
+
+  <!-- ======= Leadership ======= -->
+  <section id="leadership" class="leader" aria-label="Leadership">
+    <h2>Leadership</h2>
+    <div class="swiper leader-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="leader-card">
+            <img src="/riteshf.jpg" alt="Leader 1" />
+            <h3>Ritesh Goyal</h3>
+            <p>Founder</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="leader-card">
+            <img src="/cfo.jpg" alt="Leader 2" />
+            <h3>Nikhil Goel</h3>
+            <p>Director</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="leader-card">
+            <img src="/rahul.jpg" alt="Leader 3" />
+            <h3>Rahul Gupta</h3>
+            <p>Business Head</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="leader-card">
+            <img src="/hr.jpg" alt="Leader 4" />
+            <h3>Rupmani Kumari</h3>
+            <p>Hr Recruiter</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- ======= Clients (logos marquee) ======= -->
+  <!-- ======= Clients (logos marquee) ======= -->
+<section id="clients" class="clients" aria-label="Clients">
+  <div class="wrap">
+    <div class="marquee">
+      <div class="track">
+        <!-- 1st Set -->
+        <img src="/quess.png" alt="quess"/>
+        <img src="/iimt.png" alt="iimt"/>
+        <img src="paytm1.png" alt="paytm1"/>
+        <img src="/hrit.png" alt="hrit"/>
+        <img src="/ebixcash.png" alt="ebixcash"/>
+        <img src="/hierank.png" alt="hierank"/>
+        <img src="/iengineer.jpg" alt="iengineer"/>
+        <img src="/justdial.png" alt="justdial"/>         
+        <img src="/franklinn.png" alt="franklinn"/>
+        <img src="/Sam.jpeg" alt="sam"/>
+        <img src="/trisual.jpg" alt="trisual"/>
+        <img src="/ct.jpeg" alt="ct"/>
+        <img src="/axisbank.png" alt="axisbank"/>
+        <img src="/mymoneymantra.png" alt="mymoneymantra"/>
+        <img src="/nirman.png" alt="nirman"/>
+        <img src="/vig.jpg" alt="vig"/>
+        <img src="/nielit.jpg" alt="nielit"/>
+        <img src="/pk.jpg" alt="pk"/>
+        <img src="/gn.jpg" alt="gn"/>
+        <img src="/nirman.png" alt="nirman"/>
+
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ======= Timeline ======= -->
+  <section class="timeline" aria-label="Company timeline">
+    <div class="t-item" data-aos="fade-up">
+      <h4>2016 – Incorporated</h4>
+      <p>Siddhi Infonet India Pvt. Ltd. founded with a mission to enable livelihoods at scale.</p>
+    </div>
+    <div class="t-item" data-aos="fade-up" data-aos-delay="60">
+      <h4>2018 – PAN-India Operations</h4>
+      <p>Expanded presence across multiple states with strong employer partnerships.</p>
+    </div>
+    <div class="t-item" data-aos="fade-up" data-aos-delay="120">
+      <h4>2021 – Digital Transformation</h4>
+      <p>Launched analytics-driven MIS & e-learning for training and placements.</p>
+    </div>
+    <div class="t-item" data-aos="fade-up" data-aos-delay="180">
+      <h4>2024 – 100+ Projects Delivered</h4>
+      <p>Crossed a century of projects with consistent quality & compliance.</p>
+    </div>
+  </section>
+
+  <!-- ======= Values ======= -->
+  <section class="values" aria-label="Values">
+    <div class="value" data-aos="fade-up"><i class="fa-solid fa-circle-check"></i><div><h4>Integrity</h4><p>Compliance-first delivery with transparent reporting.</p></div></div>
+    <div class="value" data-aos="fade-up" data-aos-delay="40"><i class="fa-solid fa-bolt"></i><div><h4>Agility</h4><p>Fast mobilization and scale-up for hiring & skilling.</p></div></div>
+    <div class="value" data-aos="fade-up" data-aos-delay="80"><i class="fa-solid fa-earth-asia"></i><div><h4>Impact</h4><p>Measurable outcomes that transform communities.</p></div></div>
+    <div class="value" data-aos="fade-up" data-aos-delay="120"><i class="fa-solid fa-users"></i><div><h4>Partnership</h4><p>Long-term collaboration with clients & stakeholders.</p></div></div>
+  </section>
+
+  <!-- ======= Testimonials ======= -->
+  <section class="testimonials" aria-label="Testimonials">
+    <h2 style="text-align:center; color:var(--primary); margin-bottom:22px">What Partners Say</h2>
+    <div class="swiper t-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+            "Siddhi Infonet mobilized quality candidates in record time for our expansion."
+            <div style="margin-top:10px; font-weight:700">HR Head, Retail Client</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            "Their compliance and reporting standards make governance easy for our projects."
+            <div style="margin-top:10px; font-weight:700">Program Manager, Govt. Project</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            "Great partner for end-to-end skilling with strong placement outcomes."
+            <div style="margin-top:10px; font-weight:700">CSR Lead, Manufacturing</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- ======= FAQ ======= -->
+  <section id="faq" class="faq" aria-label="FAQ">
+    <h2 style="text-align:center; color:var(--primary); margin-bottom:18px">Frequently Asked Questions</h2>
+    <div class="accordion" id="accordion">
+      <div class="acc-item">
+        <div class="acc-head"><span class="acc-title">Which sectors do you hire for?</span><i class="fa-solid fa-chevron-down"></i></div>
+        <div class="acc-body">We support BFSI, Retail, Logistics, Manufacturing, Telecom, and Services across entry to mid-level roles.</div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><span class="acc-title">Do you execute government skilling programs?</span><i class="fa-solid fa-chevron-down"></i></div>
+        <div class="acc-body">Yes, we manage outreach, training, assessment, and placement with full compliance and MIS reporting.</div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><span class="acc-title">Can you deliver PAN-India projects?</span><i class="fa-solid fa-chevron-down"></i></div>
+        <div class="acc-body">Absolutely. Our field teams and partner network enable execution across multiple states with speed.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Contact CTA ======= -->
+  <section id="contact" class="cta" aria-label="Contact">
+    <div class="wrap">
+      <div>
+        <h2 style="margin:0">Let’s build your workforce advantage</h2>
+        <p style="margin:6px 0 0; color:#475569">Tell us your hiring or skilling goals. Our team will get back within 1 business day.</p>
+      </div>
+      <div style="text-align:right">
+        <a class="btn primary" href="mailto:hr@siddhiinfonet.com"><i class="fa-solid fa-envelope"></i> Email Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer>
+    <div class="wrap">
+      <div>
+        <div style="font-weight:800; font-size:18px; margin-bottom:6px">Siddhi Infonet India Pvt. Ltd.</div>
+        <div>Gautam Buddha Nagar, Uttar Pradesh</div>
+        <div><a href="mailto:hr@siddhiinfonet.com">hr@siddhiinfonet.com</a> • <a href="tel:+918512022481">+918512022481</a></div>
+      </div>
+      <div>
+        <div style="font-weight:700; margin-bottom:8px">Quick Links</div>
+        <div><a href="#features">What We Do</a></div>
+        <div><a href="#leadership">Leadership</a></div>
+        <div><a href="#clients">Clients</a></div>
+      </div>
+      <div>
+        <div style="font-weight:700; margin-bottom:8px">Follow</div>
+        <div><a href="https://www.linkedin.com/company/siddhi-infonet-india-pvt-ltd/" target="_blank">LinkedIn</a></div>
+        <div><a href="https://x.com/siddhiinfonet" target="_blank">X (Twitter)</a></div>
+        <div><a href="https://www.instagram.com/siddhi_infonet_india_pvt_ltd?igsh=MTlyeGlzc2V4MzUzbg==" target="_blank">Instagram</a></div>
+      </div>
+    </div>
+    <div class="copy">© <span id="y"></span> Siddhi Infonet India Pvt. Ltd. All rights reserved.</div>
+  </footer>
+
+  <!-- ======= Scripts ======= -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+  // AOS (scroll animations)
+  AOS.init({ once: true, offset: 80 });
+
+  // Year in footer
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Simple smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Counter animation
+  const counters = document.querySelectorAll('.counter');
+  const speed = 150;
+  const runCounter = (counter) => {
+    const target = +counter.getAttribute('data-target');
+    const count = +counter.innerText;
+    const inc = target / speed;
+    if (count < target) {
+      counter.innerText = Math.ceil(count + inc);
+      setTimeout(() => runCounter(counter), 30);
+    } else {
+      counter.innerText = target;
+    }
+  };
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        runCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  // Swiper (Leadership & Testimonials)
+  new Swiper('.leader-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 }
+    }
+  });
+  new Swiper('.t-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    autoplay: { delay: 5000 }
+  });
+
+  // FAQ Accordion
+  document.querySelectorAll('.acc-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const item = head.parentElement;
+      item.querySelector('.acc-body').style.display =
+        item.querySelector('.acc-body').style.display === 'block' ? 'none' : 'block';
+      head.querySelector('i').classList.toggle('fa-chevron-down');
+      head.querySelector('i').classList.toggle('fa-chevron-up');
+    });
+  });
+  </script>
+ 
+
+
+</body>
+</html>

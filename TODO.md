@@ -1,0 +1,10 @@
+- [x] Fix typo in models/admin.js: Change 'typr' to 'type'
+- [x] Fix syntax errors in controller/adminController.js: Correct object creation syntax
+- [x] Fix middleware error in routes/admin.js: Add missing router definition and export
+- [x] Resolve port conflict: Kill existing node processes before starting server
+- [x] Create admin section to view all vendor and jobseeker registrations
+  - [x] Update adminController.js with functions to fetch vendors and jobseekers
+  - [x] Update routes/admin.js with dashboard and API routes
+  - [x] Create admin.ejs view to display the data
+  - [x] Test all endpoints and dashboard functionality
+- [x] Fix duplicate "Contact" button in navigation panel - changed second contact link to "Login"
