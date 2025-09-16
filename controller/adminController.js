@@ -48,7 +48,30 @@ async function doLogin(req, res) {
         console.log(err)
     }
 }
+async function listVendors(req, res) {
+    try {
+        let vendors = await Vendor.find({})
+        res.render('listvendor', { vendors: vendors })
+    }       
+catch (err) {   
+        console.log(err)
+}
+}
+async function listJobseekers(req,res) {
+    try {
+        let jobseekers = await Jobseeker.find({})
+        res.render('listjobseekers', { jobseekers: jobseekers })
+
+     }
+     catch (err) {
+        console.log(err)
+    }   
+    
+}
+
 module.exports = {
     makeAdmin,
+    listVendors,
+    listJobseekers,
     doLogin,
 }

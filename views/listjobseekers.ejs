@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobseeker List</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #f4f4f4;
+    }
+    .action-btn {
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .edit-btn {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .delete-btn {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="section" id="jobseekers">
+    <h2>Jobseekers</h2>
+    <% if (jobseekers && jobseekers.length > 0) { %>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Father's Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>DOB</th>
+              <th>Qualification</th>
+              <th>Address</th>
+              <th>Aadhar</th>
+              <th>Created At</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% jobseekers.forEach(jobseeker => { %>
+              <tr>
+                <td><%= jobseeker.name %></td>
+                <td><%= jobseeker.father %></td>
+                <td><%= jobseeker.phone %></td>
+                <td><%= jobseeker.email %></td>
+                <td><%= jobseeker.dob %></td>
+                <td><%= jobseeker.qualification %></td>
+                <td><%= jobseeker.address %></td>
+                <td><%= jobseeker.aadhar %></td>
+                <td><%= jobseeker.createdAt ? new Date(jobseeker.createdAt).toLocaleDateString() : 'N/A' %></td>
+                <td>
+                  <a href="/jobseekers/edit/<%= jobseeker._id %>">
+                    <button class="action-btn edit-btn">Edit</button>
+                  </a>
+                  <form action="/jobseekers/delete/<%= jobseeker._id %>" method="POST" style="display:inline;">
+                    <button type="submit" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this jobseeker?');">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <p class="no-data">No jobseekers registered yet.</p>
+    <% } %>
+  </div>
+</body>
+</html>
