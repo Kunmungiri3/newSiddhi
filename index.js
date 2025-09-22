@@ -38,3 +38,18 @@ app.use(express.static(path.join(__dirname, "public")));
   })
   connect();
   makeAdmin.makeAdmin();
+  // Home
+app.get("/", (req, res) => {
+  res.render("index");   // renders views/index.ejs
+});
+
+// Gallery
+app.get("/gallery", (req, res) => {
+  res.render("gallery"); // renders views/gallery.ejs
+});
+
+// Contact
+app.get("/contact", (req, res) => {
+  res.render("contact"); // renders views/contact.ejs
+});
+

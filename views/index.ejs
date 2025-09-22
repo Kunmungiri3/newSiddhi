@@ -1,65 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Siddhi Infonet - Empowering communities with workforce enablement, training, and development services in India." />
   <title>Siddhi Infonet</title>
+
+  <!-- Open Graph / Social Media Meta -->
+  <meta property="og:title" content="Siddhi Infonet - Empowering Communities">
+  <meta property="og:description" content="India's fastest growing workforce enablement company. Recruitment, Training & Development.">
+  <meta property="og:image" content="/mangalayantangrp.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Preload Key Images -->
+  <link rel="preload" as="image" href="/mangalayantangrp.jpg">
+  <link rel="preload" as="image" href="/newlogo.png">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/responsive.css">
 
   <style>
-    /* Fix header shadow */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfdfd;
+      padding-top: 90px; /* Space for navbar */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
     .navbar {
+      background-color: #fff;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    /* Hero overlay */
-    .carousel-item::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      z-index: 1;
-    }
-
-    /* Hero text */
-    .hero-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      text-align: center;
-      z-index: 2;
-    }
-
-    .hero-content h1 {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    /* Buttons */
-    .btn-red {
-      background: #e60000;
-      color: #fff;
-      border: none;
-      font-weight: 600;
-      padding: 10px 22px;
-      border-radius: 6px;
       transition: all 0.3s ease;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-    }
-    .btn-red:hover {
-      background: #b30000;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
     }
 
+    .navbar.shrink {
+      padding: 8px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .navbar-brand img {
+      height: 60px;
+    }
+
+    .navbar-nav .nav-link {
+      color: #333;
+      font-weight: 500;
+      margin-left: 10px;
+      transition: color 0.3s ease, background 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    .navbar-nav .nav-link:hover {
+      background: rgba(230, 0, 0, 0.1);
+      color: #e60000;
+    }
+
+    .navbar-nav .nav-link.active {
+      background: linear-gradient(45deg,#e60000,#b30000);
+      color: #fff !important;
+      font-weight: 600;
+    }
+
+    .btn-red {
+      background: linear-gradient(45deg,#e60000,#b30000);
+      color:#fff;
+      border:none;
+      border-radius:6px;
+      padding:10px 22px;
+      font-weight:600;
+      box-shadow:0 3px 6px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+
+    .btn-red:hover {
+      transform: translateY(-2px);
+      box-shadow:0 6px 10px rgba(0,0,0,0.25);
+      background: linear-gradient(45deg,#b30000,#e60000);
+    }
+
+    .btn-red.active {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(255,0,0,0.3);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 60px 0;
+      background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+    }
+
+    .hero-container {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* Fade-in animation */
+    .hero-text, .hero-image {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero-text { animation-delay: 0.1s; }
+    .hero-text h1 { animation-delay: 0.2s; animation-fill-mode: both; }
+    .hero-text h2 { animation-delay: 0.4s; animation-fill-mode: both; }
+    .hero-text p { animation-delay: 0.6s; animation-fill-mode: both; }
+    .hero-text a { animation-delay: 0.8s; animation-fill-mode: both; }
+    .hero-image { animation-delay: 1s; }
+
+    .hero-text {
+      flex: 1 1 500px;
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .hero-text h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #e60000;
+      margin-bottom: 12px;
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .hero-image {
+      flex: 1 1 400px;
+      max-width: 600px;
+    }
+
+    .carousel-item img {
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .carousel-indicators [data-bs-target] {
+      background-color: #e60000;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Tablet Layout */
+    @media (min-width: 768px) and (max-width: 992px) {
+      .hero-container {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+      }
+
+      .hero-text {
+        padding-right: 20px;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Mobile Layout */
+    @media (max-width: 576px) {
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text {
+        padding: 20px 10px;
+      }
+
+      .hero-text h1 {
+        font-size: 1.6rem;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+    }
+
+    /* Desktop Layout */
+    @media (min-width: 993px) {
+      .hero-container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .hero-text h1 {
+        font-size: 3rem;
+      }
+    }
+
+    /* Footer */
     footer {
       text-align: center;
-      padding: 15px;
+      padding: 20px;
       background: #f8f9fa;
       margin-top: 40px;
     }
@@ -67,67 +225,103 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <nav class="navbar navbar-expand-lg bg-white fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <img src="/logo.jpg" alt="Siddhi Infonet Logo" height="60">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/About.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="/Services.html">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="/gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="/news.html">News</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-
-            <a class="btn btn-red ms-lg-3" href="/register">Get in Touch</a>
-          </li>
-        </ul>
-      </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-light">
+  <div class="container">
+    <a class="navbar-brand" href="/"><img src="/newlogo.png" alt="Siddhi Infonet Logo" loading="lazy"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/About.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/Services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="/gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="/news.html">News</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+        <li class="nav-item"><a class="btn btn-red ms-lg-3" href="/register">Get in Touch</a></li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Hero Section with Bootstrap Carousel -->
-  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active" style="position: relative;">
-        <img src="/mangalayantangrp.jpg" class="d-block w-100" alt="Empowering communities">
-        <div class="hero-content container">
-          <h3>Empowering Communities</h3>
-          <h1>India's Fastest Growing Workforce Enablement Company</h1>
-          <p>Recruitment | Training | Development</p>
-          <a class="btn btn-red mt-3" href="/Services.html">Explore Our Services</a>
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-container container">
+    <!-- Text -->
+    <div class="hero-text">
+      <h1>Empowering Communities</h1>
+      <h2>India's Fastest Growing Workforce Enablement Company</h2>
+      <p>Recruitment | Training | Development</p>
+      <a class="btn btn-red mt-3" href="/Services.html">Explore Our Services</a>
+    </div>
+
+    <!-- Slideshow -->
+    <div class="hero-image">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="mangalayantangrp.jpg" class="d-block w-100" alt="Workforce training session" loading="lazy">
+          </div>
+          <div class="carousel-item">
+            <img src="siddhi1.jpg" class="d-block w-100" alt="Team collaboration" loading="lazy">
+          </div>
+          <div class="carousel-item">
+            <img src="about3.jpg" class="d-block w-100" alt="Skill development program" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
       </div>
-      <div class="carousel-item" style="position: relative;">
-        <img src="/services1.jpg" class="d-block w-100" alt="Our Services">
-      </div>
-      <div class="carousel-item" style="position: relative;">
-        <img src="/about5.jpg" class="d-block w-100" alt="About Us">
-      </div>
     </div>
-
-    <!-- Controls -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
   </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Siddhi Infonet India Pvt. Ltd. All rights reserved.</p>
-  </footer>
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Siddhi Infonet India Pvt. Ltd. All rights reserved.</p>
+</footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JS: Highlight active nav link, Navbar shrink, Carousel auto -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .btn-red');
+
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('shrink');
+    } else {
+      navbar.classList.remove('shrink');
+    }
+  });
+
+  // Auto-change hero carousel
+  const heroCarousel = document.querySelector('#heroCarousel');
+  if (heroCarousel) {
+    new bootstrap.Carousel(heroCarousel, {
+      interval: 4000, // 4 seconds
+      ride: 'carousel'
+    });
+  }
+</script>
 </body>
 </html>

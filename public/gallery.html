@@ -2,137 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery - Siddhi Infonet</title>
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/hero.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/gallery.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/siddhi/css/gallery.css">
 </head>
 <body>
 
-<!-- Header (same as home page) -->
-<header class="site-header">
-  <div class="logo">
-    <img src="images/logo.jpg" alt="Siddhi Logo">
-  </div>
-  <nav class="navbar">
-    <ul>
-      <li><a href="index.ejs">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="gallery.html" class="active">Gallery</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="contact.ejs">Contact</a></li>
-    </ul>
-  </nav>
-  <a href="contact.html" class="btn-header">Get in Touch</a>
-</header>
+  <!-- ========== HEADER / NAVBAR ========== -->
+  <header class="site-header shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container">
+        <a class="navbar-brand" href="index.ejs">
+          <img src="/newlogo.png" alt="Siddhi Infonet Logo" height="100">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-<!-- Page Heading -->
-<section class="gallery-header">
-  <h1>Our Gallery</h1>
-</section>
-
-<!-- Filter Buttons -->
-<div class="filter-buttons">
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="jobfair">Job Fairs</button>
-  <button class="filter-btn" data-filter="hr">HR Conclave</button>
-  <button class="filter-btn" data-filter="training">Trainings</button>
-  <button class="filter-btn" data-filter="workshop">Workshops</button>
-  <button class="filter-btn" data-filter="events">Other Events</button>
-</div>
-
-<!-- Gallery Grid -->
-<div class="gallery">
-  <!-- Job Fair Images -->
-  <div class="gallery-item jobfair">
-    <img src="images/prayagrajnews.jpg" alt="Job Fair Prayagraj">
-    <div class="caption">Job Fair 2025 - SDGI Delhi</div>
-  </div>
-  <div class="gallery-item jobfair">
-    <img src="images/barrely-job.jpg" alt="Job Fair Uttar Pradesh">
-    <div class="caption">Job Fair 2025 - Bareilly</div>
+  <!-- ========== FILTER BUTTONS ========== -->
+  <div class="filter-buttons text-center my-4">
+    <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+    <button class="filter-btn" onclick="filterGallery('events', this)">Events</button>
+    <button class="filter-btn" onclick="filterGallery('office', this)">Office</button>
+    <button class="filter-btn" onclick="filterGallery('team', this)">Team</button>
   </div>
 
-  <!-- HR Conclave Images -->
-  <div class="gallery-item hr">
-    <img src="images/hr-convlace-grp.jpg" alt="HR Conclave Delhi">
-    <div class="caption">HR Conclave 2025 - Delhi</div>
+  <!-- ========== GALLERY GRID ========== -->
+  <section class="gallery container" id="gallery">
+    <div class="gallery-item" data-category="events" onclick="openLightbox(this)">
+      <img src="job.jpg" alt="Annual Event 2024">
+      <div class="caption">Annual Event 2024</div>
+    </div>
+    <div class="gallery-item" data-category="office" onclick="openLightbox(this)">
+      <img src="barrely-job.jpg" alt="New Office Setup">
+      <div class="caption">New Office Setup</div>
+    </div>
+    <div class="gallery-item" data-category="team" onclick="openLightbox(this)">
+      <img src="job.jpg" alt="Team Outing">
+      <div class="caption">Team Outing</div>
+    </div>
+    <div class="gallery-item" data-category="events" onclick="openLightbox(this)">
+      <img src="techninaljobfair.jpg" alt="Conference Meet">
+      <div class="caption">Conference Meet</div>
+    </div>
+    <div class="gallery-item" data-category="office" onclick="openLightbox(this)">
+      <img src="trainingoffice.jpg" alt="Workstations">
+      <div class="caption">Workstations</div>
+    </div>
+    <div class="gallery-item" data-category="team" onclick="openLightbox(this)">
+      <img src="hrconcalve1.jpg" alt="Celebration">
+      <div class="caption">Celebration</div>
+    </div>
+  </section>
+
+  <!-- Load More Button -->
+  <div class="load-more-container">
+    <button id="loadMoreBtn" onclick="loadMore()">Load More</button>
   </div>
 
-  <!-- Training Images -->
-  <div class="gallery-item training">
-    <img src="images/training1.jpg" alt="Training Session">
-    <div class="caption">Corporate Training 2025</div>
-  </div>
-  <div class="gallery-item training">
-    <img src="images/trainingoffice.jpg" alt="Training Session">
-    <div class="caption">Corporate Training 2025</div>
-  </div>
-
-  <!-- Workshop Images -->
-  <div class="gallery-item workshop">
-    <img src="images/workshop-ncc.jpg" alt="Workshop Noida">
-    <div class="caption">Workshop 2025 - Noida</div>
-  </div>
-  <div class="gallery-item workshop">
-    <img src="images/sessionncc.jpg" alt="Workshop Noida">
-    <div class="caption">Workshop 2025 - Noida</div>
-  </div>
-</div>
-
-<!-- Slideshow for All -->
-<div class="slideshow-container" id="slideshow">
-  <div class="slide fade" data-filter="jobfair">
-    <img src="images/sessionncc.jpg" alt="Job Fair Prayagraj">
-    <div class="slide-caption">Job Fair 2025 - SDGI Delhi</div>
-  </div>
-  <div class="slide fade" data-filter="jobfair">
-    <img src="images/barrely-job.jpg" alt="Job Fair Uttar Pradesh">
-    <div class="slide-caption">Job Fair 2025 - Bareilly</div>
-  </div>
-  <div class="slide fade" data-filter="hr">
-    <img src="images/hr-convlace-grp.jpg" alt="HR Conclave Delhi">
-    <div class="slide-caption">HR Conclave 2025 - Delhi</div>
-  </div>
-  <div class="slide fade" data-filter="training">
-    <img src="images/training1.jpg" alt="Training Session">
-    <div class="slide-caption">Corporate Training 2025</div>
-  </div>
-  <div class="slide fade" data-filter="training">
-    <img src="images/trainingoffice.jpg" alt="Training Session">
-    <div class="slide-caption">Corporate Training 2025</div>
-  </div>
-  <div class="slide fade" data-filter="workshop">
-    <img src="images/workshop-ncc.jpg" alt="Workshop Noida">
-    <div class="slide-caption">Workshop 2025 - Noida</div>
-  </div>
-  <div class="slide fade" data-filter="workshop">
-    <img src="images/sessionncc.jpg" alt="Workshop Noida">
-    <div class="slide-caption">Workshop 2025 - Noida</div>
+  <!-- ========== LIGHTBOX ========== -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
   </div>
 
-  <!-- Navigation arrows -->
-  <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-  <a class="next" onclick="changeSlide(1)">&#10095;</a>
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <p>&copy; 2025 Siddhi Infonet. All rights reserved.</p>
+  </footer>
 
-  <!-- Dots -->
-  <div class="dots" id="dots-container">
-    <!-- Dots will be generated dynamically -->
-  </div>
-</div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Lightbox Modal -->
-<div id="lightbox" class="lightbox">
-  <span class="close">&times;</span>
-  <img class="lightbox-content" id="lightbox-img">
-  <div id="lightbox-caption"></div>
-</div>
-
-<script src="gallery.js"></script>
+  <!-- Custom JS -->
+  <script src="/siddhi/gallery.js"></script>
 </body>
 </html>
