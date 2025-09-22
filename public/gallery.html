@@ -9,7 +9,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-    /* General */
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f9f9f9;
@@ -20,24 +19,34 @@
       height: 70px;
     }
 
-    /* Section Titles */
+    /* Section Title */
     .section-title {
       font-size: 2rem;
       font-weight: 700;
       color: #800000;
-      position: relative;
-      display: inline-block;
-      padding-bottom: 8px;
+      margin-bottom: 20px;
     }
-    .section-title::after {
-      content: "";
-      position: absolute;
-      width: 60%;
-      height: 3px;
+
+    /* Filter Buttons */
+    .filter-buttons {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .filter-btn {
+      background: #fff;
+      border: 2px solid #800000;
+      color: #800000;
+      padding: 8px 20px;
+      margin: 5px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
       background: #800000;
-      left: 20%;
-      bottom: 0;
-      border-radius: 2px;
+      color: #fff;
     }
 
     /* Gallery Items */
@@ -47,7 +56,15 @@
       border-radius: 12px;
       cursor: pointer;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      display: none; /* hidden until filter activates */
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .gallery-item.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
     .gallery-item img {
       width: 100%;
@@ -117,6 +134,13 @@
     }
     .lightbox .prev { left: 20px; }
     .lightbox .next { right: 20px; }
+
+    /* Footer */
+    footer {
+      background: #e0e0e0;
+      color: #333;
+      padding: 20px 0;
+    }
   </style>
 </head>
 <body>
@@ -142,70 +166,58 @@
     </nav>
   </header>
 
+  <!-- FILTER BUTTONS -->
+  <div class="filter-buttons">
+    <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+    <button class="filter-btn" onclick="filterGallery('jobfair', this)">Job Fairs</button>
+    <button class="filter-btn" onclick="filterGallery('hr', this)">HR Conclave</button>
+    <button class="filter-btn" onclick="filterGallery('training', this)">Training Sessions</button>
+    <button class="filter-btn" onclick="filterGallery('award', this)">Awards</button>
+  </div>
+
   <!-- GALLERY -->
   <section class="gallery container my-5" id="gallery">
-
-    <!-- Job Fairs -->
-    <h2 class="section-title text-center mb-4">Job Fairs</h2>
     <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="job.jpg" alt="Technical Job Fair">
-          <div class="caption">
-            <h5>Technical Job Fair</h5>
-            <p>Connecting talented candidates with top companies at our annual job fair.</p>
-          </div>
+      <!-- Job Fairs -->
+      <div class="col-md-6 col-lg-4 gallery-item" data-category="jobfair" onclick="openLightbox(this)">
+        <img src="job.jpg" alt="Technical Job Fair">
+        <div class="caption">
+          <h5>Technical Job Fair</h5>
+          <p>Connecting talented candidates with top companies at our annual job fair.</p>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="techninaljobfair.jpg" alt="Career Expo">
-          <div class="caption">
-            <h5>Career Expo 2024</h5>
-            <p>Over 100+ recruiters participated in our career expo, helping thousands of students.</p>
-          </div>
+      <div class="col-md-6 col-lg-4 gallery-item" data-category="jobfair" onclick="openLightbox(this)">
+        <img src="techninaljobfair.jpg" alt="Career Expo">
+        <div class="caption">
+          <h5>Career Expo 2024</h5>
+          <p>Over 100+ recruiters participated in our career expo, helping thousands of students.</p>
         </div>
       </div>
-    </div>
 
-    <!-- HR Conclave -->
-    <h2 class="section-title text-center my-5">HR Conclave</h2>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="hrconcalve1.jpg" alt="HR Meet">
-          <div class="caption">
-            <h5>Leadership Meet</h5>
-            <p>Top HR leaders shared insights on talent acquisition and employee engagement.</p>
-          </div>
+      <!-- HR Conclave -->
+      <div class="col-md-6 col-lg-4 gallery-item" data-category="hr" onclick="openLightbox(this)">
+        <img src="hrconcalve1.jpg" alt="HR Meet">
+        <div class="caption">
+          <h5>Leadership Meet</h5>
+          <p>Top HR leaders shared insights on talent acquisition and employee engagement.</p>
         </div>
       </div>
-    </div>
 
-    <!-- Training Sessions -->
-    <h2 class="section-title text-center my-5">Training Sessions</h2>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="trainingoffice.jpg" alt="Workshops">
-          <div class="caption">
-            <h5>Corporate Training</h5>
-            <p>Upskilling programs designed to prepare students for the corporate world.</p>
-          </div>
+      <!-- Training -->
+      <div class="col-md-6 col-lg-4 gallery-item" data-category="training" onclick="openLightbox(this)">
+        <img src="trainingoffice.jpg" alt="Corporate Training">
+        <div class="caption">
+          <h5>Corporate Training</h5>
+          <p>Upskilling programs designed to prepare students for the corporate world.</p>
         </div>
       </div>
-    </div>
 
-    <!-- Awards -->
-    <h2 class="section-title text-center my-5">Awards</h2>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="award1.jpg" alt="Excellence Award">
-          <div class="caption">
-            <h5>Excellence Award</h5>
-            <p>Recognized for excellence in HR innovation and large-scale hiring solutions.</p>
-          </div>
+      <!-- Awards -->
+      <div class="col-md-6 col-lg-4 gallery-item" data-category="award" onclick="openLightbox(this)">
+        <img src="/award erd.jpeg" alt="Excellence Award">
+        <div class="caption">
+          <h5>Excellence Award</h5>
+          <p>Recognized for excellence in HR innovation and large-scale hiring solutions.</p>
         </div>
       </div>
     </div>
@@ -221,7 +233,7 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="text-center py-4 bg-light mt-5">
+  <footer class="text-center mt-5">
     <p>&copy; 2025 Siddhi Infonet. All rights reserved.</p>
   </footer>
 
@@ -229,11 +241,35 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    // Filter system with animation
+    function filterGallery(category, btn) {
+      const items = document.querySelectorAll('.gallery-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      items.forEach(item => {
+        item.classList.remove('show');
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          setTimeout(() => item.classList.add('show'), 50);
+        } else {
+          item.classList.remove('show');
+        }
+      });
+    }
+
+    // Show all on load
+    window.onload = () => filterGallery('all', document.querySelector('.filter-btn.active'));
+
+    // Lightbox
     let currentIndex = 0;
     let galleryItems = [];
 
     function openLightbox(element) {
-      galleryItems = document.querySelectorAll('.gallery-item img');
+      galleryItems = Array.from(document.querySelectorAll('.gallery-item img'))
+        .filter(img => img.closest('.gallery-item').classList.contains('show'));
+
       const img = element.querySelector('img');
       const caption = element.querySelector('.caption').innerHTML;
 
@@ -241,7 +277,7 @@
       document.getElementById('lightbox-img').src = img.src;
       document.getElementById('lightbox-caption').innerHTML = caption;
 
-      currentIndex = Array.from(galleryItems).indexOf(img);
+      currentIndex = galleryItems.indexOf(img);
     }
 
     function closeLightbox() {
