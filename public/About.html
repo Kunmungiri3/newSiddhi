@@ -355,7 +355,7 @@
       <div>
         <i class="fa-regular fa-envelope"></i>
         <a href="mailto:hr@siddhiinfonet.com">hr@siddhiinfonet.com</a>
-        <a href="tel:+918512022481"><i class="fa-solid fa-phone"></i> +91 85120 22481</a>
+        <a href="tel:+918512022481"><i class="fa-solid fa-phone"></i> +91 8512022481</a>
       </div>
     </div>
   </div>
@@ -376,11 +376,11 @@
       <!-- Menu -->
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="services.html">What We Do</a></li>
-          <li class="nav-item"><a class="nav-link" href="leadership.html">Leadership</a></li>
-          <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
-          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">What We Do</a></li>
+          <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
+          <li class="nav-item"><a class="nav-link" href="#clients">Clients</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
           <li class="nav-item ms-lg-2">
             <a class="btn btn-red" href="/contact">Contact</a>
           </li>
@@ -509,15 +509,94 @@
   </section>
 
   <!-- ======= Footprint ======= -->
-  <section class="footprint">
-    <h2>Our Footprint</h2>
-    <div class="footprint-grid">
-      <div class="footprint-item"><h3 class="counter" data-target="15">0+</h3><p>States Covered</p></div>
-      <div class="footprint-item"><h3 class="counter" data-target="5000">0+</h3><p>Candidates Placed</p></div>
-      <div class="footprint-item"><h3 class="counter" data-target="100">0+</h3><p>Corporate Clients</p></div>
-      <div class="footprint-item"><h3 class="counter" data-target="10">0+</h3><p>Government Projects</p></div>
+  <!-- ======= Footprint ======= -->
+<section class="footprint py-5 bg-light text-center">
+  <div class="container">
+    <h2 class="mb-5 fw-bold text-dark">Our Footprint</h2>
+    <div class="row g-4">
+      
+      <!-- States Covered -->
+      <div class="col-6 col-md-3">
+        <div class="p-4 shadow-sm bg-white rounded h-100">
+          <h3 class="display-5 fw-bold text-danger">
+            <span class="counter" data-target="15">0</span>+
+          </h3>
+          <p class="fw-semibold mt-2 text-dark">States Covered</p>
+        </div>
+      </div>
+
+      <!-- Candidates Placed -->
+      <div class="col-6 col-md-3">
+        <div class="p-4 shadow-sm bg-white rounded h-100">
+          <h3 class="display-5 fw-bold text-danger">
+            <span class="counter" data-target="5000">0</span>+
+          </h3>
+          <p class="fw-semibold mt-2 text-dark">Candidates Placed</p>
+        </div>
+      </div>
+
+      <!-- Corporate Clients -->
+      <div class="col-6 col-md-3">
+        <div class="p-4 shadow-sm bg-white rounded h-100">
+          <h3 class="display-5 fw-bold text-danger">
+            <span class="counter" data-target="100">0</span>+
+          </h3>
+          <p class="fw-semibold mt-2 text-dark">Corporate Clients</p>
+        </div>
+      </div>
+
+      <!-- Government Projects -->
+      <div class="col-6 col-md-3">
+        <div class="p-4 shadow-sm bg-white rounded h-100">
+          <h3 class="display-5 fw-bold text-danger">
+            <span class="counter" data-target="10">0</span>+
+          </h3>
+          <p class="fw-semibold mt-2 text-dark">Government Projects</p>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Counter Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+    const speed = 150;
+
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        counter.innerText = "0";
+        const target = +counter.getAttribute("data-target");
+        const increment = Math.ceil(target / speed);
+
+        const updateCount = () => {
+          let count = +counter.innerText;
+          if (count < target) {
+            counter.innerText = count + increment;
+            setTimeout(updateCount, 20);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(document.querySelector(".footprint"));
+  });
+</script>
+
 
  <!-- ======= Leadership Modals ======= -->
 
@@ -1152,46 +1231,7 @@ s
       .social-sidebar { flex-direction:row; bottom:0; top:auto; left:50%; transform:translateX(-50%); border-radius:8px 8px 0 0; padding:8px 16px; }
     }
   </style>
-  <!-- ======= Features / What We Do ======= -->
-  <section id="features" class="features" aria-label="What We Do">
-    <h2>What We Do</h2>
-    <div class="sub">Comprehensive solutions for recruitment, skilling, and workforce management.</div>
-    <div class="grid">
-      <div class="card" data-aos="fade-up">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <h3>Recruitment Services</h3>
-        <p>End-to-end hiring solutions from candidate sourcing to onboarding across sectors.</p>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="40">
-        <i class="fa-solid fa-chalkboard-user"></i>
-        <h3>Skilling & Training</h3>
-        <p>Customized training programs aligned with industry needs to enhance employability.</p>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="80">
-        <i class="fa-solid fa-briefcase"></i>
-        <h3>Workforce Management</h3>
-        <p>Comprehensive management of temporary and permanent workforce with compliance.</p>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="120">
-        <i class="fa-solid fa-chart-line"></i>
-        <h3>Analytics & Reporting</h3>
-        <p>Real-time dashboards and reports for data-driven decision making.</p>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="160">
-        <i class="fa-solid fa-handshake"></i>
-        <h3>Employer Partnerships</h3>
-        <p>Strong relationships with leading employers for quality placements.</p>
-      </div>
-      <div class="card" data-aos="fade-up" data-aos-delay="200">
-        <i class="fa-solid fa-globe"></i>
-        <h3>PAN-India Reach</h3>
-        <p>Extensive field network enabling projects across multiple states.</p>
-      </div>
-    </div>
-    
-
-    
-
+ 
 
 
 
