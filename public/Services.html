@@ -3,20 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <title>Services - Siddhi Infonet</title>
-  <link rel="stylesheet" href="body.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Animate.css -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
+      background-color: #fff;
       margin: 0;
       padding: 0;
       color: #333;
       line-height: 1.6;
     }
 
+    /* Navbar */
+    .navbar {
+      background-color: #ffffff;
+      transition: all 0.3s ease;
+    }
+    .navbar.scrolled {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 0.6rem 1rem;
+    }
+    .navbar-brand img {
+      max-height: 60px;
+      transition: 0.3s;
+    }
+    .navbar.scrolled .navbar-brand img {
+      max-height: 45px;
+    }
+    .navbar-nav .nav-link {
+      color: #333 !important;
+      margin-left: 15px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #800000 !important;
+    }
+
     h1 {
       text-align: center;
-      color: #004080;
+      color: #800000;
       margin: 40px 0 15px;
       font-size: 2.5rem;
     }
@@ -30,6 +64,7 @@
       padding: 0 20px;
     }
 
+    /* Services */
     .services-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -48,11 +83,18 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.6s ease;
     }
 
     .service-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 8px 20px rgba(128, 0, 0, 0.2);
     }
 
     .service-card img {
@@ -71,7 +113,7 @@
     .service-content h2 {
       font-size: 1.4rem;
       margin-bottom: 12px;
-      color: #004080;
+      color: #800000;
     }
 
     .service-content p {
@@ -98,7 +140,7 @@
       content: "✔";
       position: absolute;
       left: 0;
-      color: #004080;
+      color: #800000;
       font-size: 0.9rem;
     }
 
@@ -110,30 +152,72 @@
     .learn-more a {
       display: inline-block;
       padding: 8px 16px;
-      background: #004080;
+      background: #800000;
       color: #fff;
       border-radius: 6px;
       text-decoration: none;
       font-size: 0.9rem;
       transition: background 0.3s ease;
     }
-
     .learn-more a:hover {
-      background: #0066cc;
+      background: #a00000;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 30px;
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
       h1 {
         font-size: 2rem;
+      }
+      .navbar-nav .nav-link {
+        margin-left: 0;
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 1.7rem;
+      }
+      .intro {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <main>
-    <h1>Our Services</h1>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="newlogo.png" alt="Logo">
+      </a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main style="padding-top:90px;">
+    <h1 class="animate__animated animate__fadeInDown">Our Services</h1>
     <p class="intro">
       At <strong>Siddhi Infonet</strong>, we provide end-to-end solutions in recruitment, training,
       and career advancement. We believe in nurturing talent and enabling organizations to thrive
@@ -141,132 +225,167 @@
     </p>
 
     <div class="services-container">
+      
+    </div><div class="services-container">
 
-      <!-- Service 1 -->
-      <div class="service-card">
-        <img src="images/job.jpg" alt="Job Recruitment Services">
-        <div class="service-content">
-          <h2>Job Recruitment</h2>
-          <p>We connect top talent with leading organizations across industries, ensuring the perfect fit for both employers and employees.</p>
-          <ul class="service-features">
-            <li>End-to-end recruitment process outsourcing</li>
-            <li>Government & private sector hiring support</li>
-            <li>Access to diverse and verified candidate pools</li>
-            <li>Quick turnaround time & scalable hiring solutions</li>
-          </ul>
-          <div class="learn-more"><a href="recruitment.html">Learn More</a></div>
-        </div>
-      </div>
-
-      <!-- Service 2 -->
-      <div class="service-card">
-        <img src="images/services1.jpg" alt="Skill Development Training">
-        <div class="service-content">
-          <h2>Skill Development Programs</h2>
-          <p>Our training programs are crafted to meet the demands of modern workplaces and help candidates stay competitive.</p>
-          <ul class="service-features">
-            <li>Industry-relevant certified courses</li>
-            <li>Soft skills, technical, and vocational training</li>
-            <li>Placement-linked training modules</li>
-            <li>Workshops, internships & mentorship support</li>
-          </ul>
-          <div class="learn-more"><a href="skill-development.html">Learn More</a></div>
-        </div>
-      </div>
-
-      <!-- Service 3 -->
-      <div class="service-card">
-        <img src="images/coorporate training.jpg" alt="Career Counseling">
-        <div class="service-content">
-          <h2>Career Counseling</h2>
-          <p>Our experts guide individuals at every stage of their careers, helping them discover the right opportunities.</p>
-          <ul class="service-features">
-            <li>Psychometric & aptitude-based assessments</li>
-            <li>Personalized one-on-one career guidance</li>
-            <li>Job market insights & career mapping</li>
-            <li>Student & professional mentorship programs</li>
-          </ul>
-          <div class="learn-more"><a href="career-counseling.html">Learn More</a></div>
-        </div>
-      </div>
-
-      <!-- Service 4 -->
-      <div class="service-card">
-        <img src="images/services4.jpg" alt="Corporate Training">
-        <div class="service-content">
-          <h2>Corporate Training</h2>
-          <p>We help organizations enhance workforce capabilities through custom-designed training sessions.</p>
-          <ul class="service-features">
-            <li>Leadership & management development</li>
-            <li>Sales, customer service, and communication skills</li>
-            <li>Customized technical upskilling workshops</li>
-            <li>Onsite & virtual training solutions</li>
-          </ul>
-          <div class="learn-more"><a href="corporate-training.html">Learn More</a></div>
-        </div>
-      </div>
-
-      <!-- Service 5 -->
-      <div class="service-card">
-        <img src="images/services5.jpg" alt="Industry Verticals">
-        <div class="service-content">
-          <h2>Industry Verticals</h2>
-          <p>We work with multiple sectors, providing specialized hiring and training tailored to industry needs.</p>
-          <ul class="service-features">
-            <li>IT & Telecom recruitment solutions</li>
-            <li>Banking, Finance & Insurance sector expertise</li>
-            <li>Healthcare, Education & Retail partnerships</li>
-            <li>Customized services for SMEs & startups</li>
-          </ul>
-          <div class="learn-more"><a href="industry-verticals.html">Learn More</a></div>
-        </div>
-      </div>
-
-      <!-- Service 6 (New One Added) -->
-      <div class="service-card">
-        <img src="images/payrol.jpg" alt="HR & Payroll Outsourcing">
-        <div class="service-content">
-          <h2>HR & Payroll Outsourcing</h2>
-          <p>We streamline HR operations, ensuring compliance and efficiency while organizations focus on their core business.</p>
-          <ul class="service-features">
-            <li>End-to-end payroll management</li>
-            <li>Compliance with statutory regulations</li>
-            <li>Employee data & attendance tracking</li>
-            <li>Seamless HR technology integration</li>
-          </ul>
-          <div class="learn-more"><a href="hr-payroll.html">Learn More</a></div>
-        </div>
-      </div>
-      <!-- Service 7 -->
-<div class="service-card">
-  <img src="images/web d.jpg" alt="Web Development Services">
-  <div class="service-content">
-    <h2>Web Development</h2>
-    <p>We create modern, responsive, and user-friendly websites tailored to your business needs, ensuring a strong digital presence.</p>
-    <ul class="service-features">
-      <li>Custom website design & development</li>
-      <li>Responsive and mobile-friendly layouts</li>
-      <li>E-commerce and CMS integration</li>
-      <li>SEO optimization and performance tuning</li>
-    </ul>
-    <div class="learn-more"><a href="web-development.html">Learn More</a></div>
+  <!-- Service 1: Recruitment Solutions -->
+  <div class="service-card">
+    <img src="recruitment.jpeg" alt="Recruitment Service">
+    <div class="service-content">
+      <h2>Recruitment Solutions</h2>
+      <p>We connect top talent with leading organizations through tailored recruitment strategies.</p>
+      <ul class="service-features">
+        <li>Executive Search</li>
+        <li>Temporary Staffing</li>
+        <li>Permanent Placement</li>
+        <li>Industry-Specific Hiring</li>
+      </ul>
+      <div class="learn-more"><a href="recruitment.html">Learn More</a></div>
+    </div>
   </div>
+
+  <!-- Service 2: Skill Development Programs -->
+  <div class="service-card">
+    <img src="services1.jpg" alt="Skill Development Training">
+    <div class="service-content">
+      <h2>Skill Development Programs</h2>
+      <p>Our training programs are crafted to meet the demands of modern workplaces and help candidates stay competitive.</p>
+      <ul class="service-features">
+        <li>Industry-relevant certified courses</li>
+        <li>Soft skills, technical, and vocational training</li>
+        <li>Placement-linked training modules</li>
+        <li>Workshops, internships & mentorship support</li>
+      </ul>
+      <div class="learn-more"><a href="skill-development.html">Learn More</a></div>
+    </div>
+  </div>
+
+  <!-- Service 3: Career Counseling -->
+  <div class="service-card">
+    <img src="coorporate training.jpg" alt="Career Counseling">
+    <div class="service-content">
+      <h2>Career Counseling</h2>
+      <p>Our experts guide individuals at every stage of their careers, helping them discover the right opportunities.</p>
+      <ul class="service-features">
+        <li>Psychometric & aptitude-based assessments</li>
+        <li>Personalized one-on-one career guidance</li>
+        <li>Job market insights & career mapping</li>
+        <li>Student & professional mentorship programs</li>
+      </ul>
+      <div class="learn-more"><a href="career-counseling.html">Learn More</a></div>
+    </div>
+  </div>
+
+  <!-- Service 4: Corporate Training -->
+  <div class="service-card">
+    <img src="services4.jpg" alt="Corporate Training">
+    <div class="service-content">
+      <h2>Corporate Training</h2>
+      <p>We help organizations enhance workforce capabilities through custom-designed training sessions.</p>
+      <ul class="service-features">
+        <li>Leadership & management development</li>
+        <li>Sales, customer service, and communication skills</li>
+        <li>Customized technical upskilling workshops</li>
+        <li>Onsite & virtual training solutions</li>
+      </ul>
+      <div class="learn-more"><a href="corporate-training.html">Learn More</a></div>
+    </div>
+  </div>
+
+  <!-- Service 5: Industry Verticals -->
+  <div class="service-card">
+    <img src="services5.jpg" alt="Industry Verticals">
+    <div class="service-content">
+      <h2>Industry Verticals</h2>
+      <p>We work with multiple sectors, providing specialized hiring and training tailored to industry needs.</p>
+      <ul class="service-features">
+        <li>IT & Telecom recruitment solutions</li>
+        <li>Banking, Finance & Insurance sector expertise</li>
+        <li>Healthcare, Education & Retail partnerships</li>
+        <li>Customized services for SMEs & startups</li>
+      </ul>
+      <div class="learn-more"><a href="industry-verticals.html">Learn More</a></div>
+    </div>
+  </div>
+
+  <!-- Service 6: HR & Payroll Outsourcing -->
+  <div class="service-card">
+    <img src="payrol.jpg" alt="HR & Payroll Outsourcing">
+    <div class="service-content">
+      <h2>HR & Payroll Outsourcing</h2>
+      <p>We streamline HR operations, ensuring compliance and efficiency while organizations focus on their core business.</p>
+      <ul class="service-features">
+        <li>End-to-end payroll management</li>
+        <li>Compliance with statutory regulations</li>
+        <li>Employee data & attendance tracking</li>
+        <li>Seamless HR technology integration</li>
+      </ul>
+      <div class="learn-more"><a href="hr-payroll.html">Learn More</a></div>
+    </div>
+  </div>
+
+  <!-- Service 7: Web Development -->
+  <div class="service-card">
+    <img src="web d.jpg" alt="Web Development Services">
+    <div class="service-content">
+      <h2>Web Development</h2>
+      <p>We create modern, responsive, and user-friendly websites tailored to your business needs, ensuring a strong digital presence.</p>
+      <ul class="service-features">
+        <li>Custom website design & development</li>
+        <li>Responsive and mobile-friendly layouts</li>
+        <li>E-commerce and CMS integration</li>
+        <li>SEO optimization and performance tuning</li>
+      </ul>
+      <div class="learn-more"><a href="web-development.html">Learn More</a></div>
+    </div>
+  </div>
+
+  <!-- Service 8: Digital Marketing -->
+  <div class="service-card">
+    <img src="digital m.jpg" alt="Digital Marketing Services">
+    <div class="service-content">
+      <h2>Digital Marketing</h2>
+      <p>Boost your brand’s visibility with our tailored digital marketing strategies designed to drive traffic and engagement.</p>
+      <ul class="service-features">
+        <li>Search Engine Optimization (SEO)</li>
+        <li>Social Media Marketing (SMM)</li>
+        <li>Pay-Per-Click (PPC) Campaigns</li>
+        <li>Content Marketing & Brand Strategy</li>
+      </ul>
+      <div class="learn-more"><a href="digital-marketing.html">Learn More</a></div>
+    </div>
+  </div>
+
 </div>
- <div class="service-card">
-        <img src="images/digital m.jpg" alt="Digital Marketing Services">
-        <div class="service-content">
-          <h2>Digital Marketing</h2>
-          <p>Boost your brand’s visibility with our tailored digital marketing strategies designed to drive traffic and engagement.</p>
-          <ul class="service-features">
-            <li>Search Engine Optimization (SEO)</li>
-            <li>Social Media Marketing (SMM)</li>
-            <li>Pay-Per-Click (PPC) Campaigns</li>
-            <li>Content Marketing & Brand Strategy</li>
-          </ul>
-          <div class="learn-more"><a href="digital-marketing.html">Learn More</a></div>
-        </div>
-      </div>
-     </div>
+
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Siddhi Infonet. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Scroll Animations -->
+  <script>
+    // Navbar shrink on scroll
+    window.addEventListener("scroll", function() {
+      const navbar = document.querySelector(".navbar");
+      navbar.classList.toggle("scrolled", window.scrollY > 50);
+    });
+
+    // Animate services on scroll
+    const cards = document.querySelectorAll(".service-card");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.2 });
+    cards.forEach(card => observer.observe(card));
+  </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ const vendorSchema= new Schema({
     phone:{type:String,required:true},
     date:{type:Date,required:true},
     location:{type:String,required:true}, 
+
     created_At:Date,
     update_At:Date
 
