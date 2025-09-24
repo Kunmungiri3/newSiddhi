@@ -3,50 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <title>Skill Development - Siddhi Infonet</title>
-  <link rel="stylesheet" href="body.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
   <style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; color: #333; }
-    header { background: #004080; color: #fff; padding: 30px 20px; text-align: center; }
-    header h1 { margin: 0; font-size: 2.2rem; }
-    .content { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-    h2 { color: #004080; margin-top: 25px; }
-    ul { padding-left: 20px; }
-    .cta { text-align: center; margin: 40px 0; }
-    .cta a { background: #004080; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 6px; }
-    .cta a:hover { background: #0066cc; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #ffffff;
+      transition: all 0.3s ease;
+    }
+    .navbar.scrolled {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 0.6rem 1rem;
+    }
+    .navbar-brand img {
+      max-height: 60px;
+      transition: 0.3s;
+    }
+    .navbar.scrolled .navbar-brand img {
+      max-height: 45px;
+    }
+    .navbar-nav .nav-link {
+      color: #333 !important;
+      margin-left: 15px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #800000 !important;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-text h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      animation: animate__fadeInDown 1s;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      animation: animate__fadeInUp 1s;
+    }
+
+    /* Main Content */
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      color: #800000;
+      margin-top: 25px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+
+    .cta {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .cta a {
+      background: #800000;
+      color: #fff;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .cta a:hover {
+      background: #a00000;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 30px;
+    }
+
+    /* Floating Circles */
+    .circle {
+      position: absolute;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(45deg); }
+    }
+
+    /* Responsive Hero Section */
+    @media (max-width: 992px) {
+      .hero-text h1 { font-size: 2.5rem; }
+      .hero-text p { font-size: 1.1rem; }
+    }
+    @media (max-width: 576px) {
+      .hero-text h1 { font-size: 2rem; }
+      .hero-text p { font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Skill Development Programs</h1>
-  <p>Empowering individuals with future-ready skills</p>
-</header>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="newlogo.png" alt="Siddhi Infonet Logo">
+      </a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-<div class="content">
-  <p>
-    Our training programs are built to meet industry requirements and enhance employability. 
-    We bridge the gap between academic knowledge and real-world skills.
-  </p>
+  <!-- Hero Section -->
+  <section class="hero position-relative" style="height: 400px; overflow:hidden;">
+    <div class="hero-bg position-absolute top-0 start-0 w-100 h-100" 
+         style="background: linear-gradient(135deg, #800000, #ffc0cb); z-index:0;">
+    </div>
 
-  <h2>Key Training Areas</h2>
-  <ul>
-    <li>Technical upskilling – IT, Telecom, Digital Marketing, Data Analytics</li>
-    <li>Soft skills – communication, leadership, teamwork</li>
-    <li>Vocational training for government skill development schemes</li>
-    <li>Placement-linked courses with real job opportunities</li>
-  </ul>
+    <!-- Floating Circles -->
+    <div class="floating-shapes position-absolute w-100 h-100" style="z-index:0;">
+      <span class="circle animate__animated animate__fadeIn" style="top:20%; left:10%; width:80px; height:80px;"></span>
+      <span class="circle animate__animated animate__fadeIn" style="top:50%; left:70%; width:120px; height:120px;"></span>
+      <span class="circle animate__animated animate__fadeIn" style="top:75%; left:30%; width:60px; height:60px;"></span>
+    </div>
 
-  <h2>Impact</h2>
-  <p>
-    Thousands of candidates have successfully completed our programs and secured employment in reputed organizations. 
-    Our mentorship-driven approach ensures long-term career growth.
-  </p>
+    <!-- Hero Text -->
+    <div class="hero-text position-absolute top-50 start-50 translate-middle text-center text-white" style="z-index:1;">
+      <h1 class="animate__animated animate__fadeInDown">Skill Development Programs</h1>
+      <p class="animate__animated animate__fadeInUp">Empowering individuals with future-ready skills</p>
+    </div>
+  </section>
 
-  <div class="cta">
-    <a href="/contact.html">Join Our Programs</a>
+  <!-- Main Content -->
+  <div class="content">
+    <p>
+      Our training programs are built to meet industry requirements and enhance employability. 
+      We bridge the gap between academic knowledge and real-world skills.
+    </p>
+
+    <h2>Key Training Areas</h2>
+    <ul>
+      <li>Technical upskilling – IT, Telecom, Digital Marketing, Data Analytics</li>
+      <li>Soft skills – communication, leadership, teamwork</li>
+      <li>Vocational training for government skill development schemes</li>
+      <li>Placement-linked courses with real job opportunities</li>
+    </ul>
+
+    <h2>Impact</h2>
+    <p>
+      Thousands of candidates have successfully completed our programs and secured employment in reputed organizations. 
+      Our mentorship-driven approach ensures long-term career growth.
+    </p>
+
+    <div class="cta">
+      <a href="/contact.html">Join Our Programs</a>
+    </div>
   </div>
-</div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Siddhi Infonet. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Navbar Scroll Script -->
+  <script>
+    window.addEventListener("scroll", function() {
+      const navbar = document.querySelector(".navbar");
+      navbar.classList.toggle("scrolled", window.scrollY > 50);
+    });
+  </script>
 
 </body>
 </html>

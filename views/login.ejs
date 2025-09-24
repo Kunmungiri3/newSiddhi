@@ -62,10 +62,9 @@
     .toggle-password {
       position: absolute;
       top: 50%;
-      right: 12px;
+      right: 10px;
       transform: translateY(-50%);
       cursor: pointer;
-      font-size: 18px;
       color: #800000;
     }
   </style>
@@ -81,7 +80,7 @@
     <h3>Admin Login</h3>
 
     <!-- Login Form -->
-    <form action="/welcome/admin" method="post" autocomplete="off">
+    <form action="/welcome/admin" method="post">
       <!-- Username -->
       <div class="mb-3 text-start">
         <label for="username" class="form-label">Username</label>
@@ -106,7 +105,7 @@
           placeholder="Enter your password" 
           autocomplete="new-password"
           required>
-        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        <span class="toggle-password" onclick="togglePassword()">👁</span>
       </div>
 
       <!-- Submit -->
