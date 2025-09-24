@@ -3,75 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <title>Vendor Registration - Siddhi Infonet</title>
-  <link rel="stylesheet" href="body.css">
-  <link rel="stylesheet" href="/css/responsive.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body { 
-      font-family: Arial, sans-serif; 
-      background: #fdf2f2; 
+      font-family: 'Poppins', Arial, sans-serif; 
+      background: #f9f9f9; 
       margin: 0; 
       padding: 0; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
+
     .container { 
       max-width: 500px; 
-      margin: 80px auto; 
+      width: 90%;
       background: #fff; 
-      padding: 30px; 
-      border-radius: 12px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+      padding: 35px 25px; 
+      border-radius: 14px; 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12); 
+      animation: fadeIn 0.8s ease-in-out;
+      text-align: center;
     }
+
+    /* Logo */
+    .logo {
+      margin-bottom: 20px;
+    }
+    .logo img {
+      max-width: 140px;
+      height: auto;
+    }
+
     h1 { 
-      text-align: center; 
-      color: #ff6f61; 
+      color: #800000; 
       margin-bottom: 25px; 
+      font-size: 1.8rem;
+      font-weight: 600;
     }
+
     label { 
-      font-weight: bold; 
+      font-weight: 500; 
       display: block; 
       margin-top: 15px; 
+      color: #333;
+      font-size: 0.95rem;
+      text-align: left;
     }
+
     input { 
       width: 100%; 
       padding: 12px; 
       border: 1px solid #ccc; 
       border-radius: 8px; 
       margin-top: 8px; 
-      transition: border-color 0.3s; 
+      transition: all 0.3s; 
+      font-size: 0.95rem;
     }
+
     input:focus { 
-      border-color: #ff6f61; 
+      border-color: #800000; 
       outline: none; 
-      box-shadow: 0 0 5px rgba(255,111,97,0.3); 
+      box-shadow: 0 0 6px rgba(128,0,0,0.3); 
     }
+
     button { 
-      margin-top: 20px; 
-      padding: 12px 20px; 
-      background: #ff6f61; 
+      margin-top: 25px; 
+      padding: 14px; 
+      background: #800000; 
       border: none; 
       color: #fff; 
       font-weight: 600; 
       border-radius: 8px; 
       cursor: pointer; 
-      transition: background 0.3s; 
+      transition: all 0.3s ease; 
       width: 100%; 
+      font-size: 1rem;
     }
+
     button:hover { 
-      background: #e35347; 
+      background: #a00000; 
+      transform: translateY(-2px);
     }
+
     .note { 
-      text-align: center; 
       margin-top: 20px; 
-      font-size: 14px; 
+      font-size: 0.9rem; 
       color: #666; 
     }
 
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 576px) {
+      .container {
+        padding: 25px 18px;
+      }
+      .logo img {
+        max-width: 100px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (min-width: 577px) and (max-width: 992px) {
+      .logo img {
+        max-width: 120px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (min-width: 993px) {
+      .logo img {
+        max-width: 160px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="/newlogo.png" alt="Siddhi Infonet Logo">
+    </div>
+
     <h1>Vendor Registration</h1>
 
-    <form action="/save/vendor" method="post" >
+    <form action="/save/vendor" method="post">
       <label for="name">Name</label>
       <input id="name" name="name" type="text" placeholder="Enter your full name" autocomplete="name" required>
       
@@ -83,11 +153,14 @@
       
       <label for="location">Location</label>
       <input id="location" name="location" type="text" placeholder="Enter event location" autocomplete="address-line1" required>
+
+      <label for="message">Message (Optional)</label>
+      <input id="message" name="message" type="text" placeholder="Any additional details?" autocomplete="off">
       
       <button type="submit">Save</button>
     </form>
-    <p class="note">Please ensure all details are correct before submitting.</p>
 
+    <p class="note">Please ensure all details are correct before submitting.</p>
   </div>
 </body>
 </html>

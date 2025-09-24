@@ -29,13 +29,14 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Connect DB first, then start server
 
-  app.listen(3000, (err) => {
-    if (err) {
-      console.error("Server failed:", err);
-    } else {
-      console.log("✅ Server is running on port 3000");
-    }
-  })
+ app.listen(3000, "0.0.0.0", (err) => {
+  if (err) {
+    console.error("Server failed:", err);
+  } else {
+    console.log("✅ Server is running on http://0.0.0.0:3000");
+  }
+});
+
   connect();
   makeAdmin.makeAdmin();
   // Home

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Register - Siddhi Infonet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,8 +16,6 @@
     body {
       font-family: 'Poppins', sans-serif;
       background: #f9f9f9;
-      margin: 0;
-      padding: 0;
     }
 
     /* Navbar */
@@ -24,7 +23,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     .navbar-brand img {
-      height: 60px;
+      height: 50px;
     }
 
     /* Hero Section */
@@ -33,104 +32,70 @@
         url("https://images.unsplash.com/photo-1531297484001-80022131f5a1") center/cover no-repeat;
       color: #fff;
       text-align: center;
-      padding: 120px 20px;
-      margin-top: 70px; /* offset for fixed navbar */
-      position: relative;
+      padding: 100px 20px;
+      margin-top: 70px;
     }
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 600;
-      animation: fadeInDown 1s ease;
     }
     .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      animation: fadeInUp 1.2s ease;
+      font-size: 1rem;
+      margin-bottom: 20px;
     }
     .hero .btn-red {
       background: #d91c1c;
       color: #fff;
-      font-weight: 600;
       padding: 12px 28px;
       border-radius: 8px;
-      transition: all 0.3s;
+      font-weight: 600;
+      transition: 0.3s;
     }
     .hero .btn-red:hover {
       background: #a81616;
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
 
-    /* Form Section */
-    .form-section {
-      margin-top: -40px;
-      margin-bottom: 60px;
+    /* Register Section */
+    #register {
+      padding: 80px 0;
     }
     .form-container {
       background: #fff;
-      border-radius: 16px;
+      border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      padding: 40px;
-      animation: fadeIn 1s ease-in-out;
+      padding: 30px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .form-container h2 {
-      color: #d91c1c;
-      margin-bottom: 20px;
-      font-size: 1.8rem;
+      color: #800000;
+      font-size: 1.6rem;
       font-weight: 600;
-      position: relative;
-    }
-    .form-container h2::after {
-      content: "";
-      width: 60px;
-      height: 3px;
-      background: #d91c1c;
-      display: block;
-      margin-top: 8px;
-      border-radius: 2px;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
-    /* Inputs */
-    .form-control {
-      transition: all 0.3s ease;
-    }
-    .form-control:hover,
     .form-control:focus {
-      transform: scale(1.02);
       border-color: #d91c1c;
-      box-shadow: 0 0 10px rgba(217,28,28,0.2);
+      box-shadow: 0 0 5px rgba(217,28,28,0.4);
     }
-
-    /* Animations for form fields */
-    .form-container .row > div {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s forwards;
-    }
-    .form-container .row > div:nth-child(1) { animation-delay: 0.1s; }
-    .form-container .row > div:nth-child(2) { animation-delay: 0.2s; }
-    .form-container .row > div:nth-child(3) { animation-delay: 0.3s; }
-    .form-container .row > div:nth-child(4) { animation-delay: 0.4s; }
-    .form-container .row > div:nth-child(5) { animation-delay: 0.5s; }
-    .form-container .row > div:nth-child(6) { animation-delay: 0.6s; }
-    .form-container .row > div:nth-child(7) { animation-delay: 0.7s; }
-    .form-container .row > div:nth-child(8) { animation-delay: 0.8s; }
-    .form-container .row > div:nth-child(9) { animation-delay: 0.9s; }
 
     /* Submit Button */
     .btn-submit {
       background: linear-gradient(135deg, #d91c1c, #a81616);
       color: #fff;
       font-weight: 600;
-      padding: 14px;
+      padding: 12px;
       border: none;
       border-radius: 8px;
       width: 100%;
-      transition: all 0.3s;
+      transition: 0.3s;
     }
     .btn-submit:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
     }
 
     /* Footer */
@@ -140,12 +105,18 @@
       background: #111;
       color: #fff;
       font-size: 0.9em;
+      margin-top: 40px;
     }
 
-    /* Keyframes */
-    @keyframes fadeIn { from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
-    @keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
-    @keyframes fadeInDown { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
+    /* Responsive */
+    @media (max-width: 991px) {
+      #register .row {
+        flex-direction: column;
+      }
+      .form-container {
+        margin-top: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -170,84 +141,74 @@
   </section>
 
   <!-- Register Form -->
-  <section class="form-section container" id="register">
-    <div class="col-lg-5 text-center">
-  <lottie-player 
-    src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json"  
-    background="transparent"  
-    speed="1"  
-    style="width:100%;height:350px;"  
-    loop autoplay>
-  </lottie-player>
-</div>
+  <section class="container" id="register">
+    <div class="row align-items-stretch g-4">
+      <!-- Animation -->
+      <div class="col-lg-5 col-md-6 col-12 text-center d-flex align-items-center">
+        <lottie-player 
+          src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json"  
+          background="transparent"  
+          speed="1"  
+          style="width:100%;height:350px;"  
+          loop autoplay>
+        </lottie-player>
+      </div>
 
-<!-- Lottie Script -->
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-
-      <!-- Right Form -->
-      <div class="col-lg-7">
+      <!-- Form -->
+      <div class="col-lg-7 col-md-6 col-12">
         <div class="form-container">
           <h2>Required Details</h2>
           <form id="regForm" action="/saveJobseeker" method="post" enctype="multipart/form-data">
-            
             <div class="row g-3">
               <div class="col-md-6">
-                <label class="form-label" for="name">Full Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" name="name" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="father">Father's Name</label>
-                <input type="text" class="form-control" id="father" name="father" required>
+                <label class="form-label">Father's Name</label>
+                <input type="text" class="form-control" name="father" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="phone">Phone Number</label>
-                <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{10}" required>
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" name="phone" pattern="[0-9]{10}" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="email">Email ID</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <label class="form-label">Email ID</label>
+                <input type="email" class="form-control" name="email" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="dob">Date of Birth</label>
+                <label class="form-label">Date of Birth</label>
                 <input type="text" class="form-control" id="dob" name="dob" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="qualification">Qualification</label>
-                <input type="text" class="form-control" id="qualification" name="qualification" required>
+                <label class="form-label">Qualification</label>
+                <input type="text" class="form-control" name="qualification" required>
               </div>
-              
               <div class="col-md-6">
-               <label class="form-label" for="state">State</label>
-              <select class="form-control" id="state" name="state" required>
-                 <option value="" disabled selected>Select State</option>
+                <label class="form-label">State</label>
+                <select class="form-control" id="state" name="state" required>
+                  <option value="" disabled selected>Select State</option>
                 </select>
               </div>
-
-<div class="col-md-6">
-  <label class="form-label" for="district">District</label>
-  <input list="districtList" class="form-control" id="district" name="district" placeholder="Select or type district" required>
-  <datalist id="districtList"></datalist>
-</div>
-
-
               <div class="col-md-6">
-                <label class="form-label" for="aadhaar">Aadhaar Card No</label>
-                <input type="text" class="form-control" id="aadhaar" name="aadhar" pattern="\d{12}" placeholder="12-digit number" required>
+                <label class="form-label">District</label>
+                <input list="districtList" class="form-control" id="district" name="district" placeholder="Select or type district" required>
+                <datalist id="districtList"></datalist>
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="cv">Upload CV</label>
-                <input type="file" class="form-control" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                <label class="form-label">Aadhaar Card No</label>
+                <input type="text" class="form-control" name="aadhar" pattern="\d{12}" placeholder="12-digit number" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Upload CV</label>
+                <input type="file" class="form-control" name="cv" accept=".pdf,.doc,.docx" required>
               </div>
             </div>
-
-            <!-- Submit Button with Spinner -->
             <button type="submit" class="btn-submit mt-3" id="submitBtn">
               <span class="spinner-border spinner-border-sm d-none" id="spinner"></span>
               <span id="btnText">Submit</span>
             </button>
           </form>
-          <!-- Success Message -->
           <div class="alert alert-success mt-3 d-none" id="successMsg">
             🎉 Registration Successful!
           </div>
@@ -263,154 +224,45 @@
 
   <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<script>
-  // Date picker
-  flatpickr("#dob", {
-    dateFormat: "d-m-Y",
-    maxDate: "today"
-  });
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-  // Optional: Animate form elements when they enter viewport
-  const elements = document.querySelectorAll(".form-container .row > div");
-  elements.forEach((el, i) => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(20px)";
-    setTimeout(() => {
-      el.style.transition = "all 0.6s ease";
-      el.style.opacity = "1";
-      el.style.transform = "translateY(0)";
-    }, i * 150); // stagger animation
-  });
-</script>
-<script>
-  // State & District Data
-  const stateDistricts = {
-    "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati", "Kurnool"],
-    "Arunachal Pradesh": ["Itanagar", "Tawang", "Ziro", "Pasighat"],
-    "Assam": ["Guwahati", "Dibrugarh", "Jorhat", "Silchar", "Tezpur"],
-    "Bihar": ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Darbhanga"],
-    "Chhattisgarh": ["Raipur", "Bilaspur", "Korba", "Durg"],
-    "Delhi": ["New Delhi", "North Delhi", "South Delhi", "East Delhi", "West Delhi"],
-    "Goa": ["North Goa", "South Goa"],
-    "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar"],
-    "Haryana": ["Gurugram", "Faridabad", "Panipat", "Ambala", "Hisar"],
-    "Himachal Pradesh": ["Shimla", "Mandi", "Kullu", "Kangra", "Solan"],
-    "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Hazaribagh"],
-    "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubli", "Belagavi"],
-    "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Kannur"],
-    "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain"],
-    "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
-    "Manipur": ["Imphal East", "Imphal West", "Churachandpur"],
-    "Meghalaya": ["Shillong", "Jowai", "Tura"],
-    "Mizoram": ["Aizawl", "Lunglei", "Champhai"],
-    "Nagaland": ["Kohima", "Dimapur", "Mokokchung"],
-    "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela", "Puri"],
-    "Punjab": ["Amritsar", "Ludhiana", "Jalandhar", "Patiala", "Bathinda"],
-    "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Ajmer", "Bikaner"],
-    "Sikkim": ["Gangtok", "Namchi", "Gyalshing"],
-    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Salem", "Tiruchirappalli"],
-    "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar"],
-    "Tripura": ["Agartala", "Dharmanagar", "Udaipur"],
-    "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra", "Noida", "Ghaziabad", "Prayagraj", "Gorakhpur"],
-    "Uttarakhand": ["Dehradun", "Haridwar", "Nainital", "Rudrapur"],
-    "West Bengal": ["Kolkata", "Siliguri", "Durgapur", "Asansol", "Howrah"],
-    "Jammu and Kashmir": ["Srinagar", "Jammu", "Anantnag", "Baramulla"],
-    "Ladakh": ["Leh", "Kargil"]
-  };
+  <script>
+    flatpickr("#dob", {
+      dateFormat: "d-m-Y",
+      maxDate: "today"
+    });
 
-  // Populate states
-  const stateSelect = document.getElementById("state");
-  for (let state in stateDistricts) {
-    let option = document.createElement("option");
-    option.value = state;
-    option.textContent = state;
-    stateSelect.appendChild(option);
-  }
+    // States & Districts
+    const stateDistricts = {
+      "Andhra Pradesh": ["Visakhapatnam", "Vijayawada"],
+      "Delhi": ["New Delhi", "South Delhi"],
+      "Maharashtra": ["Mumbai", "Pune", "Nagpur"],
+      "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi"],
+      "West Bengal": ["Kolkata", "Howrah"]
+    };
 
-  // Update districts when state changes
-  stateSelect.addEventListener("change", function() {
-    const districtInput = document.getElementById("district");
-    const districtList = document.getElementById("districtList");
-    districtList.innerHTML = ""; // clear old options
-    districtInput.value = ""; // reset input
-
-    if (stateDistricts[this.value]) {
-      stateDistricts[this.value].forEach(district => {
-        let option = document.createElement("option");
-        option.value = district;
-        districtList.appendChild(option);
-      });
+    const stateSelect = document.getElementById("state");
+    for (let state in stateDistricts) {
+      let option = document.createElement("option");
+      option.value = state;
+      option.textContent = state;
+      stateSelect.appendChild(option);
     }
-  });
-</script>
 
+    stateSelect.addEventListener("change", function() {
+      const districtList = document.getElementById("districtList");
+      districtList.innerHTML = "";
+      if (stateDistricts[this.value]) {
+        stateDistricts[this.value].forEach(d => {
+          let option = document.createElement("option");
+          option.value = d;
+          districtList.appendChild(option);
+        });
+      }
+    });
 
-<script>
-  // State & District Data
-  const stateDistricts = {
-    "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati", "Kurnool"],
-    "Arunachal Pradesh": ["Itanagar", "Tawang", "Ziro", "Pasighat"],
-    "Assam": ["Guwahati", "Dibrugarh", "Jorhat", "Silchar", "Tezpur"],
-    "Bihar": ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Darbhanga"],
-    "Chhattisgarh": ["Raipur", "Bilaspur", "Korba", "Durg"],
-    "Delhi": ["New Delhi", "North Delhi", "South Delhi", "East Delhi", "West Delhi"],
-    "Goa": ["North Goa", "South Goa"],
-    "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar"],
-    "Haryana": ["Gurugram", "Faridabad", "Panipat", "Ambala", "Hisar"],
-    "Himachal Pradesh": ["Shimla", "Mandi", "Kullu", "Kangra", "Solan"],
-    "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Hazaribagh"],
-    "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubli", "Belagavi"],
-    "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Kannur"],
-    "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain"],
-    "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
-    "Manipur": ["Imphal East", "Imphal West", "Churachandpur"],
-    "Meghalaya": ["Shillong", "Jowai", "Tura"],
-    "Mizoram": ["Aizawl", "Lunglei", "Champhai"],
-    "Nagaland": ["Kohima", "Dimapur", "Mokokchung"],
-    "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela", "Puri"],
-    "Punjab": ["Amritsar", "Ludhiana", "Jalandhar", "Patiala", "Bathinda"],
-    "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Ajmer", "Bikaner"],
-    "Sikkim": ["Gangtok", "Namchi", "Gyalshing"],
-    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Salem", "Tiruchirappalli"],
-    "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar"],
-    "Tripura": ["Agartala", "Dharmanagar", "Udaipur"],
-    "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra", "Noida", "Ghaziabad", "Prayagraj", "Gorakhpur"],
-    "Uttarakhand": ["Dehradun", "Haridwar", "Nainital", "Rudrapur"],
-    "West Bengal": ["Kolkata", "Siliguri", "Durgapur", "Asansol", "Howrah"],
-    "Jammu and Kashmir": ["Srinagar", "Jammu", "Anantnag", "Baramulla"],
-    "Ladakh": ["Leh", "Kargil"]
-  };
-
-  // Populate states
-  const stateSelect = document.getElementById("state");
-  for (let state in stateDistricts) {
-    let option = document.createElement("option");
-    option.value = state;
-    option.textContent = state;
-    stateSelect.appendChild(option);
-  }
-
-  // Update districts when state changes
-  stateSelect.addEventListener("change", function() {
-    const districtInput = document.getElementById("district");
-    const districtList = document.getElementById("districtList");
-    districtList.innerHTML = ""; // clear old options
-    districtInput.value = ""; // reset input
-
-    if (stateDistricts[this.value]) {
-      stateDistricts[this.value].forEach(district => {
-        let option = document.createElement("option");
-        option.value = district;
-        districtList.appendChild(option);
-      });
-    }
-  });
-</script>
-
-     <!-- Submit with loader + success -->
-    <script>
+    // Submit simulation
     const form = document.getElementById("regForm");
     const btn = document.getElementById("submitBtn");
     const spinner = document.getElementById("spinner");
@@ -429,7 +281,7 @@
         btn.disabled = false;
         successMsg.classList.remove("d-none");
         form.reset();
-      }, 2000); // simulate backend
+      }, 2000);
     });
   </script>
 </body>
