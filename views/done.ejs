@@ -22,7 +22,8 @@
       border: 2px solid #800000;
       border-radius: 12px;
       padding: 40px 30px;
-      max-width: 500px;
+      max-width: 550px;
+      width: 100%;
       box-shadow: 0 8px 25px rgba(0,0,0,0.1);
       animation: fadeIn 1s ease-in-out;
     }
@@ -35,10 +36,26 @@
 
     p {
       font-size: 1rem;
-      margin-bottom: 25px;
+      margin: 8px 0;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: #a00000;
+    }
+
+    a.cv-link {
+      color: #800000;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a.cv-link:hover {
+      text-decoration: underline;
     }
 
     button {
+      margin-top: 20px;
       background: #800000;
       color: #fff;
       border: none;
@@ -64,7 +81,16 @@
 <body>
   <div class="container">
     <h1>🎉 Registration Successful!</h1>
-    <p>Thank you for registering. We will contact you soon.</p>
+    <p>Thank you, <span class="highlight"><%= jobseeker.name %></span>, for registering.</p>
+    <p>📧 Email: <span class="highlight"><%= jobseeker.email %></span></p>
+    <p>📞 Phone: <span class="highlight"><%= jobseeker.phone %></span></p>
+
+    <% if (jobseeker.cv) { %>
+      <p>📄 CV Uploaded: <a href="<%= jobseeker.cv %>" target="_blank" class="cv-link">View CV</a></p>
+    <% } else { %>
+      <p>📄 No CV uploaded.</p>
+    <% } %>
+
     <form action="/" method="get">
       <button type="submit">Go to Home Page</button>
     </form>

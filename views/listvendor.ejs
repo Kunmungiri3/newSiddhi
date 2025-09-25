@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendors</title>
+  <style>
     table {
       width: 100%;
       border-collapse: collapse;
@@ -35,17 +35,28 @@
   </style>
 </head>
 <body>
-    <div class="section" id="vendors">
+  <h2>Vendors (Total: <%= vendors.length %>)</h2>
+
+  <form method="GET" action="/vendor/list">
+    <input type="text" name="search" placeholder="Search by company or contact" value="<%= search || '' %>">
+    <button type="submit">Search</button>
+  </form>
+
+  <a href="/vendor/export">Export to Excel</a>
+
+  <div class="section" id="vendors">
     <h2>Vendors</h2>
     <% if (vendors && vendors.length > 0) { %>
       <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Contact Person</th>
+              <th>Email</th>
+              <th>Company Name</th>
               <th>Phone</th>
-              <th>Date</th>
-              <th>Location</th>
+              <th>Address</th>
+              <th>Services</th>
               <th>Created At</th>
               <th>Actions</th>
             </tr>
@@ -53,17 +64,19 @@
           <tbody>
             <% vendors.forEach(vendor => { %>
               <tr>
-                <td><%= vendor.name %></td>
+                <td><%= vendor.contactPerson %></td>
+                <td><%= vendor.email %></td>
+                <td><%= vendor.companyName %></td>
                 <td><%= vendor.phone %></td>
-                <td><%= vendor.date ? new Date(vendor.date).toLocaleDateString() : 'N/A' %></td>
-                <td><%= vendor.location %></td>
+                <td><%= vendor.address %></td>
+                <td><%= vendor.services.join(', ') %></td>
                 <td><%= vendor.createdAt ? new Date(vendor.createdAt).toLocaleDateString() : 'N/A' %></td>
                 <td>
                   <a href="/vendors/edit/<%= vendor._id %>">
                     <button class="action-btn edit-btn">Edit</button>
                   </a>
                   <form action="/vendors/delete/<%= vendor._id %>" method="POST" style="display:inline;">
-                    <button type="submit" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this jobseeker?');">Delete</button>
+                    <button type="submit" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this vendor?');">Delete</button>
                   </form>
                 </td>
               </tr>

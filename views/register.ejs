@@ -158,7 +158,7 @@
       <div class="col-lg-7 col-md-6 col-12">
         <div class="form-container">
           <h2>Required Details</h2>
-          <form id="regForm" action="/saveJobseeker" method="post" enctype="multipart/form-data">
+          <form id="regForm" action="/saveJobseeker" method="POST" enctype="multipart/form-data">
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label">Full Name</label>
@@ -204,14 +204,8 @@
                 <input type="file" class="form-control" name="cv" accept=".pdf,.doc,.docx" required>
               </div>
             </div>
-            <button type="submit" class="btn-submit mt-3" id="submitBtn">
-              <span class="spinner-border spinner-border-sm d-none" id="spinner"></span>
-              <span id="btnText">Submit</span>
-            </button>
+            <button type="submit" class="btn-submit mt-3">Submit</button>
           </form>
-          <div class="alert alert-success mt-3 d-none" id="successMsg">
-            🎉 Registration Successful!
-          </div>
         </div>
       </div>
     </div>
@@ -227,62 +221,53 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-  <script>
-    flatpickr("#dob", {
-      dateFormat: "d-m-Y",
-      maxDate: "today"
-    });
+<script>
+  // Date Picker
+  flatpickr("#dob", {
+    dateFormat: "Y-m-d",   
+    maxDate: "today"
+  });
 
-    // States & Districts
-    const stateDistricts = {
-      "Andhra Pradesh": ["Visakhapatnam", "Vijayawada"],
-      "Delhi": ["New Delhi", "South Delhi"],
-      "Maharashtra": ["Mumbai", "Pune", "Nagpur"],
-      "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi"],
-      "West Bengal": ["Kolkata", "Howrah"]
-    };
+  // ✅ Embed states & districts directly (no JSON file)
+  const stateDistricts = {
+    "Andhra Pradesh": ["Anantapur", "Chittoor", "Guntur", "Krishna", "Nellore", "Visakhapatnam"],
+    "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur"],
+    "Delhi": ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "South Delhi", "West Delhi"],
+    "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+    "Karnataka": ["Bengaluru Urban", "Mysuru", "Mangaluru", "Belagavi"],
+    "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
+    "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota"],
+    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli"],
+    "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra"],
+    "West Bengal": ["Kolkata", "Darjeeling", "Howrah", "Siliguri"]
+    // 👉 Add more states & districts here as needed
+  };
 
-    const stateSelect = document.getElementById("state");
-    for (let state in stateDistricts) {
-      let option = document.createElement("option");
-      option.value = state;
-      option.textContent = state;
-      stateSelect.appendChild(option);
+  const stateSelect = document.getElementById("state");
+  const districtList = document.getElementById("districtList");
+
+  // Populate States
+  for (let state in stateDistricts) {
+    let option = document.createElement("option");
+    option.value = state;
+    option.textContent = state;
+    stateSelect.appendChild(option);
+  }
+
+  // On State Change → Populate Districts
+  stateSelect.addEventListener("change", function() {
+    districtList.innerHTML = "";
+    if (stateDistricts[this.value]) {
+      stateDistricts[this.value].forEach(d => {
+        let option = document.createElement("option");
+        option.value = d;
+        districtList.appendChild(option);
+      });
     }
+  });
+</script>
 
-    stateSelect.addEventListener("change", function() {
-      const districtList = document.getElementById("districtList");
-      districtList.innerHTML = "";
-      if (stateDistricts[this.value]) {
-        stateDistricts[this.value].forEach(d => {
-          let option = document.createElement("option");
-          option.value = d;
-          districtList.appendChild(option);
-        });
-      }
-    });
 
-    // Submit simulation
-    const form = document.getElementById("regForm");
-    const btn = document.getElementById("submitBtn");
-    const spinner = document.getElementById("spinner");
-    const btnText = document.getElementById("btnText");
-    const successMsg = document.getElementById("successMsg");
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      spinner.classList.remove("d-none");
-      btnText.textContent = "Submitting...";
-      btn.disabled = true;
-
-      setTimeout(() => {
-        spinner.classList.add("d-none");
-        btnText.textContent = "Submit";
-        btn.disabled = false;
-        successMsg.classList.remove("d-none");
-        form.reset();
-      }, 2000);
-    });
-  </script>
+  
 </body>
 </html>

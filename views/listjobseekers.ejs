@@ -59,9 +59,18 @@
     .dt-buttons .btn:hover {
       background: #a00000 !important;
     }
+    /* Maroon theme for Edit/Delete */
+    .btn-success, .btn-danger {
+      background: #800000 !important;
+      border: none !important;
+    }
+    .btn-success:hover, .btn-danger:hover {
+      background: #a00000 !important;
+    }
   </style>
 </head>
 <body>
+<h2>Jobseekers (Total: <%= jobseekers.length %>)</h2>
 
   <!-- Navbar with Logo -->
   <nav class="navbar navbar-expand-lg">
@@ -73,6 +82,13 @@
   </nav>
 
   <div class="container">
+    <form method="GET" action="/jobseekers/jobseekers">
+      <input type="text" name="search" placeholder="Search by name or email" value="<%= search || '' %>">
+      <button type="submit">Search</button>
+    </form>
+
+    <a href="/jobseekers/export">Export to Excel</a>
+
     <h2>Jobseekers</h2>
 
     <% if (jobseekers && jobseekers.length > 0) { %>
@@ -112,7 +128,14 @@
                     N/A
                   <% } %>
                 </td>
-                <td><%= jobseeker.createdAt ? new Date(jobseeker.createdAt).toLocaleDateString() : 'N/A' %></td>
+                <td>
+                  <%= jobseeker.createdAt 
+                      ? new Date(jobseeker.createdAt).toLocaleString('en-IN', {
+                          day: '2-digit', month: 'short', year: 'numeric',
+                          hour: '2-digit', minute: '2-digit'
+                        }) 
+                      : 'N/A' %>
+                </td>
                 <td>
                   <a href="/jobseekers/edit/<%= jobseeker._id %>" class="btn btn-success btn-sm">Edit</a>
                   <form action="/jobseekers/delete/<%= jobseeker._id %>" method="POST" style="display:inline;">
@@ -125,7 +148,9 @@
         </table>
       </div>
     <% } else { %>
-      <p class="text-center text-muted">No jobseekers registered yet.</p>
+      <div class="alert alert-warning text-center shadow-sm">
+        No jobseekers registered yet.
+      </div>
     <% } %>
   </div>
 
@@ -150,14 +175,14 @@
           { 
             extend: 'excelHtml5', 
             text: 'Export Excel',
+            filename: 'Jobseekers_List_' + new Date().toISOString().split('T')[0],
             exportOptions: {
               columns: ':visible',
               format: {
                 body: function (data, row, column, node) {
-                  // If column is CV column, export as link
+                  // CV column
                   if (column === 8) {
-                    var link = $(data).filter('a').attr('href');
-                    return link ? link : 'N/A';
+                    return data.includes("href") ? "Available" : "N/A";
                   }
                   return data;
                 }
@@ -167,13 +192,13 @@
           { 
             extend: 'pdfHtml5', 
             text: 'Export PDF',
+            filename: 'Jobseekers_List_' + new Date().toISOString().split('T')[0],
             exportOptions: {
               columns: ':visible',
               format: {
                 body: function (data, row, column, node) {
                   if (column === 8) {
-                    var link = $(data).filter('a').attr('href');
-                    return link ? link : 'N/A';
+                    return data.includes("href") ? "Available" : "N/A";
                   }
                   return data;
                 }

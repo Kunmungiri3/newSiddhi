@@ -1,0 +1,4 @@
+- [ ] Fix vendor registration form field names to match controller expectations
+- [ ] Change 'company name' to 'companyName'
+- [ ] Change 'location' to 'address'
+- [ ] Change 'message' input to 'services' textarea with comma-separated instruction

@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
-const timeStamps = require("mongoose-timestamps");
-const Schema = mongoose.Schema;
 
+const vendorSchema = new mongoose.Schema({
+  contactPerson: { type: String, required: true }, // ✅ instead of "name"
+  email: { type: String },
+  companyName: { type: String },
+  phone: { type: String },
+  address: { type: String },
+  services: [{ type: String }],
+}, { timestamps: true });
 
-const vendorSchema= new Schema({
-    name:{type:String,required:true},
-    phone:{type:String,required:true},
-    date:{type:Date,required:true},
-    location:{type:String,required:true}, 
-
-    created_At:Date,
-    update_At:Date
-
-})
-vendorSchema.plugin(timeStamps,{index:true});
-module.exports=mongoose.model('vendor',vendorSchema);
+// ✅ Prevent OverwriteModelError
+module.exports = mongoose.models.Vendor || mongoose.model("Vendor", vendorSchema);

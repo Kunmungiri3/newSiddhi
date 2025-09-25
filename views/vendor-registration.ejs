@@ -53,20 +53,20 @@
       text-align: left;
     }
 
-    input { 
-      width: 100%; 
-      padding: 12px; 
-      border: 1px solid #ccc; 
-      border-radius: 8px; 
-      margin-top: 8px; 
-      transition: all 0.3s; 
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 8px;
+      transition: all 0.3s;
       font-size: 0.95rem;
     }
 
-    input:focus { 
-      border-color: #800000; 
-      outline: none; 
-      box-shadow: 0 0 6px rgba(128,0,0,0.3); 
+    input:focus, textarea:focus {
+      border-color: #800000;
+      outline: none;
+      box-shadow: 0 0 6px rgba(128,0,0,0.3);
     }
 
     button { 
@@ -142,8 +142,9 @@
     <h1>Vendor Registration</h1>
 
     <form action="/save/vendor" method="post">
-      <label for="name">Name</label>
-      <input id="name" name="name" type="text" placeholder="Enter your full name" autocomplete="name" required>
+      <label>Contact Person</label>
+    <input type="text" class="form-control" name="contactPerson"  placeholder=" Enter your Name " required>
+  
       
       <label for="phone">Contact Number</label>
       <input id="phone" name="phone" type="tel" placeholder="Enter your contact number" autocomplete="tel" required>
@@ -151,11 +152,15 @@
       <label for="email">Vendor's Email</label>
       <input id="email" name="email" type="email" placeholder="enter your email" required>
 
-       <label for="company name">Company Name</label>
-      <input id="company name" name="company name" type="company name" placeholder="enter your company name"  required>
-      
-      <label for="location">Location</label>
-      <input id="location" name="location" type="text" placeholder="Enter your location" autocomplete="address-line1" required>
+       <label for="companyName">Company Name</label>
+      <input id="companyName" name="companyName" type="text" placeholder="enter your company name"  required>
+
+      <label for="address">Location</label>
+      <input id="address" name="address" type="text" placeholder="Enter your location" autocomplete="address-line1" required>
+
+      <label for="message">Message</label>
+      <input id="message" name="message" type="text" placeholder="Enter your message" required>
+
       
       <button type="submit">Save</button>
     </form>

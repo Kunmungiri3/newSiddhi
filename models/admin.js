@@ -1,11 +1,9 @@
-const mongoose = require('mongoose');
-const timeStamps = require('mongoose-timestamps');
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
 
-const adminSchema=new Schema({
-    username:{type:String,required:true},
-    password:{type:String,required:true},
+const adminSchema = new mongoose.Schema({
+  username: { type: String, required: true },
+  password: { type: String, required: true },
+}, { timestamps: true });
 
-})
-
-module.exports=mongoose.model('admin',adminSchema)
+// ✅ Prevent OverwriteModelError
+module.exports = mongoose.models.Admin || mongoose.model("Admin", adminSchema);

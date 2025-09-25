@@ -1,17 +1,26 @@
 const express = require("express");
-const path = require("path");
 const adminController = require("../controller/adminController");
-const Admin = require("../models/admin");
 
 const router = express.Router();
 
-router.post("/welcome/admin", (req, res) => {
-    adminController.doLogin(req, res);
+// ========== Admin Login ==========
+router.post("/welcome/admin", adminController.doLogin);
+
+// ========== Vendors ==========
+router.get("/listvendors", adminController.listVendors);
+
+// ========== Jobseekers ==========
+router.get("/listjobseekers", adminController.listJobseekers);
+
+// ========== Logout (optional) ==========
+router.get("/logout", (req, res) => {
+  // If using sessions:
+  // req.session.destroy(() => {
+  //   res.redirect("/");
+  // });
+  
+  // For now, just redirect to login page
+  res.redirect("/");
 });
-router.get("/listvendors", async (req, res) => {
-    adminController.listVendors(req, res);
-});
-router.get("/listjobseekers", async (req, res) => {
-    adminController.listJobseekers(req, res);
-});
+
 module.exports = router;

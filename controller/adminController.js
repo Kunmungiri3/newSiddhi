@@ -1,77 +1,94 @@
-const express = require('express')
-const Admin = require('../models/admin')
+const Admin = require('../models/admin');
 const bcrypt = require('bcrypt');
 const Jobseeker = require('../models/jobseeker');
 const Vendor = require('../models/vendor');
-async function makeAdmin() {
-    try {
-        let admin = await Admin.findOne({ email: "kunmungiri1@gmail.com" });
-        if (admin) {
-            console.log("user updated....")
-        } else {
-            let admin = new Admin();
-            admin.username = "kunmungiri1@gmail.com";
-            let encryptedPassword = bcrypt.hashSync("12345", 10)
-            admin.password = encryptedPassword;
 
-            await admin.save();
-            console.log("Admin created Successfully..................");
-        }
-
-    } catch (err) {
-        console.log(err)
-    }
-}
+// ========== Admin Login ==========
 async function doLogin(req, res) {
-    try {
-        console.log(req.body, 'req.body')
-        let admin = await Admin.findOne({ username: req.body.username })
-        console.log(admin)
-        if (admin) {
-            let validPassword = await bcrypt.compare(req.body.password, admin.password)
-            if (validPassword) {
-                    let jobseekers = await Jobseeker.find({})
-                    let vendors = await Vendor.find({})
-                    res.render('admin', {
-                         jobseekers: jobseekers,
-                         vendors: vendors
+  try {
+    const { username, password } = req.body;
+    const admin = await Admin.findOne({ username });
 
-                    })
-                }else{
-                    res.json('Invalid login/Password...')
-                }
-
-            } else {
-                res.end("invalid login/Password...")
-            }
-    } catch (err) {
-        console.log(err)
+    if (!admin) {
+      return res.render("admin", {
+        vendorCount: 0,
+        jobseekerCount: 0,
+        message: "Invalid Username or Password"
+      });
     }
-}
-async function listVendors(req, res) {
-    try {
-        let vendors = await Vendor.find({})
-        res.render('listvendor', { vendors: vendors })
-    }       
-catch (err) {   
-        console.log(err)
-}
-}
-async function listJobseekers(req,res) {
-    try {
-        let jobseekers = await Jobseeker.find({})
-        res.render('listjobseekers', { jobseekers: jobseekers })
 
-     }
-     catch (err) {
-        console.log(err)
-    }   
-    
+    const validPassword = await bcrypt.compare(password, admin.password);
+    if (!validPassword) {
+      return res.render("admin", {
+        vendorCount: 0,
+        jobseekerCount: 0,
+        message: "Invalid Username or Password"
+      });
+    }
+
+    // ✅ Get counts for dashboard
+    const vendors = await Vendor.find().sort({ createdAt: -1 });
+    const jobseekers = await Jobseeker.find().sort({ createdAt: -1 });
+
+    res.render("admin", {
+      vendors,
+      jobseekers,
+      message: "Welcome Admin!"
+    });
+  } catch (err) {
+    console.error("Login error:", err);
+    res.status(500).send("Something went wrong during login");
+  }
+}
+
+// ========== Vendors ==========
+async function listVendors(req, res) {
+  try {
+    const vendors = await Vendor.find({});
+    const vendorCount = await Vendor.countDocuments({});
+    res.render("listvendor", { vendors, vendorCount, message: null });
+  } catch (err) {
+    console.error("List vendors error:", err);
+    res.status(500).send("Error fetching vendors");
+  }
+}
+
+// ========== Jobseekers ==========
+async function listJobseekers(req, res) {
+  try {
+    const jobseekers = await Jobseeker.find({});
+    const jobseekerCount = await Jobseeker.countDocuments({});
+    res.render("listjobseekers", { jobseekers, jobseekerCount, message: null });
+  } catch (err) {
+    console.error("List jobseekers error:", err);
+    res.status(500).send("Error fetching jobseekers");
+  }
+}
+
+// ========== Create Default Admin ==========
+async function makeAdmin() {
+  try {
+    // ⚡️ DO NOT redeclare Admin and bcrypt here, use already imported ones
+    const existingAdmin = await Admin.findOne({ username: "kunmungiri1@gmail.com" });
+
+    if (!existingAdmin) {
+      const hashedPassword = await bcrypt.hash("12345", 10); // default password
+      await Admin.create({
+        username: "admin",
+        password: hashedPassword,
+      });
+      console.log("✅ Default admin created (username: admin, password: admin123)");
+    } else {
+      console.log("ℹ️ Admin already exists");
+    }
+  } catch (err) {
+    console.error("Error creating default admin:", err);
+  }
 }
 
 module.exports = {
-    makeAdmin,
-    listVendors,
-    listJobseekers,
-    doLogin,
-}
+  doLogin,
+  listVendors,
+  listJobseekers,
+  makeAdmin,   // ✅ properly exported
+};

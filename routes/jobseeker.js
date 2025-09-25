@@ -3,15 +3,29 @@ const path = require("path");
 const jobseekerController = require("../controller/jobseekerController");
 const Jobseeker = require("../models/jobseeker");
 const multer = require("multer");
+const xlsx = require("xlsx");
 
 const router = express.Router();
 
-// Multer setup for file uploads
+// ✅ Multer setup for CV uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "../public/uploads")); // save inside /public/uploads
+  },
+  filename: function (req, file, cb) {
+    const uniqueName = Date.now() + "-" + file.originalname;
+    cb(null, uniqueName);
+  }
+});
+
 const upload = multer({
-    storage: multer.diskStorage({}),
-    limits: {fileSize: 2*1024*1024},
-})
-// GET route for admin to view data
+  storage,
+  limits: { fileSize: 2 * 1024 * 1024 }, // 2 MB max
+});
+
+// ================= Routes =================
+
+// GET all jobseekers (for admin, raw JSON)
 router.get("/all", async (req, res) => {
   try {
     const jobSeekers = await Jobseeker.find();
@@ -21,21 +35,36 @@ router.get("/all", async (req, res) => {
   }
 });
 
-// Render pages
+// Render Register Page
 router.get("/register", (req, res) => {
   res.render("register");
 });
 
+// Render Login Page (if needed)
 router.get("/login", (req, res) => {
   res.render("login");
 });
 
-// Save jobseeker with CV upload
-router.post("/saveJobseeker", upload.single("cv"), (req, res) => {
-  jobseekerController.saveJobseeker(req, res);
+// ✅ Save Jobseeker (with CV upload)
+router.post("/saveJobseeker", upload.single("cv"), jobseekerController.saveJobseeker);
+
+// ✅ List Jobseekers (admin dashboard)
+router.get("/jobseekers", jobseekerController.listJobseekers);
+
+// Export Jobseekers to Excel
+router.get("/export", async (req, res) => {
+  try {
+    const jobseekers = await Jobseeker.find().lean();
+    const worksheet = xlsx.utils.json_to_sheet(jobseekers);
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook, worksheet, "Jobseekers");
+    const buffer = xlsx.write(workbook, { type: "buffer", bookType: "xlsx" });
+    res.setHeader("Content-Disposition", "attachment; filename=jobseekers.xlsx");
+    res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    res.send(buffer);
+  } catch (error) {
+    res.status(500).send("Error exporting jobseekers to Excel");
+  }
 });
-router.get('/contact',(req,res)=>{
-    res.render('contact')
-})
 
 module.exports = router;

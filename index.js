@@ -1,23 +1,21 @@
-
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const connect = require("./connection");
-const user = require("./routes/jobseeker");
-const vendor = require("./routes/vendor");
-const admin = require("./routes/admin");
-const makeAdmin=require("./controller/adminController");
+const mongoose = require("mongoose");
+
+// Routes
+const userRoutes = require("./routes/jobseeker");
+const vendorRoutes = require("./routes/vendor");
+const adminRoutes = require("./routes/admin");
+
+// Controller
+const adminController = require("./controller/adminController");
 
 const app = express();
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// Routes
-app.get("/", (req, res) => res.render("index"));
-app.use("/", user);          // ✅ fixed typo
-app.use("/", admin);
-app.use("/", vendor);
 
 // View engine setup
 app.set("view engine", "ejs");
@@ -26,31 +24,36 @@ app.set("views", path.resolve("./views"));
 // Static files
 app.use("/css", express.static(path.join(__dirname, "css")));
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
-// Connect DB first, then start server
 
- app.listen(3000, "0.0.0.0", (err) => {
+// Routes
+app.get("/", (req, res) => res.render("index"));
+app.get("/gallery", (req, res) => res.render("gallery"));
+app.get("/contact", (req, res) => res.render("contact"));
+
+app.use("/", userRoutes);
+app.use("/", vendorRoutes);
+app.use("/", adminRoutes);
+
+// ===== MongoDB connection =====
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("✅ MongoDB Connected");
+
+    // ✅ Create default admin if not exists
+    if (typeof adminController.makeAdmin === "function") {
+      adminController.makeAdmin();
+    }
+  })
+  .catch(err => console.error("❌ MongoDB Error:", err));
+
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, "0.0.0.0", (err) => {
   if (err) {
-    console.error("Server failed:", err);
+    console.error("❌ Server failed:", err);
   } else {
-    console.log("✅ Server is running on http://0.0.0.0:3000");
+    console.log(`✅ Server running on http://0.0.0.0:${PORT}`);
   }
 });
-
-  connect();
-  makeAdmin.makeAdmin();
-  // Home
-app.get("/", (req, res) => {
-  res.render("index");   // renders views/index.ejs
-});
-
-// Gallery
-app.get("/gallery", (req, res) => {
-  res.render("gallery"); // renders views/gallery.ejs
-});
-
-// Contact
-app.get("/contact", (req, res) => {
-  res.render("contact"); // renders views/contact.ejs
-});
-
