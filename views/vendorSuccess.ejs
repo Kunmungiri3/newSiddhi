@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Registration Success</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #800000; /* Maroon */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background: #fff;
+      border: 2px solid #800000;
+      border-radius: 12px;
+      padding: 40px 30px;
+      max-width: 550px;
+      width: 100%;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 { font-size: 1.8rem; font-weight: 600; margin-bottom: 15px; }
+    p { font-size: 1rem; margin: 8px 0; }
+    .highlight { font-weight: 600; color: #a00000; }
+    button {
+      margin-top: 20px;
+      background: #800000;
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover { background: #a00000; transform: translateY(-2px); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Vendor Registered Successfully!</h1>
+    <p>Thank you, <span class="highlight"><%= vendor.contactPerson %></span>, for registering your company <span class="highlight"><%= vendor.companyName %></span>.</p>
+    <p>📧 Email: <span class="highlight"><%= vendor.email %></span></p>
+    <p>📞 Phone: <span class="highlight"><%= vendor.phone %></span></p>
+    <p>🏢 Address: <span class="highlight"><%= vendor.address %></span></p>
+    <p>We will contact you soon!</p>
+
+    <form action="/" method="get">
+      <button type="submit">Go to Home Page</button>
+    </form>
+  </div>
+</body>
+</html>

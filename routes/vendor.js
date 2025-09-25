@@ -10,7 +10,8 @@ router.post('/save/vendor',(req,res)=>{
 })
 
 // List Vendors
-router.get('/list', vendorController.listVendors);
+ router.get('/list', vendorController.listVendors);
+
 
 // Export Vendors to Excel
 router.get('/export', async (req, res) => {

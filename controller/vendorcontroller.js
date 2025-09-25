@@ -9,12 +9,15 @@ async function saveVendor(req, res) {
       phone: req.body.phone,
       email: req.body.email,
       address: req.body.address,
-      services: req.body.message ? [req.body.message] : [],
+      message: req.body.message ? [req.body.message] : [],
     });
 
     await vendor.save();
     console.log("✅ Vendor saved successfully...");
-    res.redirect("/vendor/list");
+
+    // Render the success page instead of redirect
+    res.render("vendorSuccess", { vendor });
+
   } catch (err) {
     console.error("❌ Error saving vendor:", err);
     res.status(500).send("Error saving vendor");
