@@ -18,7 +18,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // for form submissions
-app.use("/uploads", express.static("uploads"));  // serve CV files
+// app.use("/uploads", express.static("uploads"));  // Commented out: CVs now stored in Cloudinary
 app.use("/css", express.static("css"));          // serve static css
 app.use(express.static("public"));               // serve public files
 

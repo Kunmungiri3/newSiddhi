@@ -12,6 +12,7 @@ const adminRoutes = require("./routes/admin");
 const adminController = require("./controller/adminController");
 
 const app = express();
+console.log("here...")
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +25,7 @@ app.set("views", path.resolve("./views"));
 // Static files
 app.use("/css", express.static(path.join(__dirname, "css")));
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+// app.use("/uploads", express.static(path.join(__dirname, "public/uploads"))); // Commented out: CVs now stored in Cloudinary
 
 
 // Routes
@@ -52,7 +53,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error("❌ MongoDB Error:", err));
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, "0.0.0.0", (err) => {
   if (err) {
     console.error("❌ Server failed:", err);

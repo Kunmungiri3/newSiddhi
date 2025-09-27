@@ -4,20 +4,23 @@ const jobseekerController = require("../controller/jobseekerController");
 const Jobseeker = require("../models/jobseeker");
 const multer = require("multer");
 const xlsx = require("xlsx");
+const cloudinary = require("cloudinary").v2;
 
-const router = express.Router();
-
-// ✅ Multer setup for CV uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "../public/uploads")); // save inside /public/uploads
-  },
-  filename: function (req, file, cb) {
-    const uniqueName = Date.now() + "-" + file.originalname;
-    cb(null, uniqueName);
-  }
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+console.log(process.env.CLOUDINARY_CLOUD_NAME, 'process.env.CLOUDINARY_CLOUD_NAME')
+console.log(process.env.CLOUDINARY_API_KEY,'process.env.CLOUDINARY_API_KEY,')
+console.log(process.env.CLOUDINARY_API_SECRET,'process.env');
+const router = express.Router();
+
+// ✅ Multer setup for CV uploads to memory (for Cloudinary)
+//const storage = multer.memoryStorage();
+const storage = multer.diskStorage({});
 const upload = multer({
   storage,
   limits: { fileSize: 2 * 1024 * 1024 }, // 2 MB max

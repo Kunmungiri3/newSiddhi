@@ -5,3 +5,4 @@
 - [x] Update views/login.ejs to change form action to "/admin/login"
 - [x] Update routes/admin.js to change login route to "/login"
 - [x] Test the connections
+- [x] Store CV files in Cloudinary instead of local public/uploads
