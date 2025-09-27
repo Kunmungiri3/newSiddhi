@@ -3,14 +3,16 @@ const adminController = require("../controller/adminController");
 
 const router = express.Router();
 
+console.log("Admin routes loaded: POST /login, GET /vendors, GET /jobseekers"); // Debug log for route loading
+
 // ========== Admin Login ==========
-router.post("/welcome/admin", adminController.doLogin);
+router.post("/login", adminController.doLogin);
 
 // ========== Vendors ==========
-router.get("/listvendors", adminController.listVendors);
+router.get("/vendors", adminController.listVendors);
 
 // ========== Jobseekers ==========
-router.get("/listjobseekers", adminController.listJobseekers);
+router.get("/jobseekers", adminController.listJobseekers);
 
 // ========== Logout (optional) ==========
 router.get("/logout", (req, res) => {

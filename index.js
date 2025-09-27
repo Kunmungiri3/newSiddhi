@@ -32,9 +32,12 @@ app.get("/", (req, res) => res.render("index"));
 app.get("/gallery", (req, res) => res.render("gallery"));
 app.get("/contact", (req, res) => res.render("contact"));
 
+// Admin login page
+app.get("/admin", (req, res) => res.render("login"));
+
 app.use("/", userRoutes);
 app.use("/", vendorRoutes);
-app.use("/", adminRoutes);
+app.use("/admin", adminRoutes);
 
 // ===== MongoDB connection =====
 mongoose.connect(process.env.MONGO_URI)

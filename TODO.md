@@ -1,4 +1,7 @@
-- [ ] Fix vendor registration form field names to match controller expectations
-- [ ] Change 'company name' to 'companyName'
-- [ ] Change 'location' to 'address'
-- [ ] Change 'message' input to 'services' textarea with comma-separated instruction
+# TODO: Connect listjobseekers.ejs and listvendor.ejs to admin.ejs
+
+- [x] Update server.js to mount adminRoutes at "/admin"
+- [x] Update routes/admin.js to change route paths to "/vendors" and "/jobseekers"
+- [x] Update views/login.ejs to change form action to "/admin/login"
+- [x] Update routes/admin.js to change login route to "/login"
+- [x] Test the connections

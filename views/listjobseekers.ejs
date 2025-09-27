@@ -14,7 +14,7 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: #fdfdfd;
+      background: #f9f9f9;
       color: #333;
     }
     .navbar {
@@ -67,29 +67,29 @@
     .btn-success:hover, .btn-danger:hover {
       background: #a00000 !important;
     }
+    /* Container styling */
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
-<h2>Jobseekers (Total: <%= jobseekers.length %>)</h2>
 
   <!-- Navbar with Logo -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="/admin">
         <img src="/newlogo.png" alt="Siddhi Infonet Logo">
       </a>
     </div>
   </nav>
 
   <div class="container">
-    <form method="GET" action="/jobseekers/jobseekers">
-      <input type="text" name="search" placeholder="Search by name or email" value="<%= search || '' %>">
-      <button type="submit">Search</button>
-    </form>
-
-    <a href="/jobseekers/export">Export to Excel</a>
-
-    <h2>Jobseekers</h2>
+    <h2>Jobseekers (Total: <%= jobseekers.length %>)</h2>
 
     <% if (jobseekers && jobseekers.length > 0) { %>
       <div class="table-responsive">
@@ -180,10 +180,7 @@
               columns: ':visible',
               format: {
                 body: function (data, row, column, node) {
-                  // CV column
-                  if (column === 8) {
-                    return data.includes("href") ? "Available" : "N/A";
-                  }
+                  if (column === 8) return data.includes("href") ? "Available" : "N/A";
                   return data;
                 }
               }
@@ -197,9 +194,7 @@
               columns: ':visible',
               format: {
                 body: function (data, row, column, node) {
-                  if (column === 8) {
-                    return data.includes("href") ? "Available" : "N/A";
-                  }
+                  if (column === 8) return data.includes("href") ? "Available" : "N/A";
                   return data;
                 }
               }

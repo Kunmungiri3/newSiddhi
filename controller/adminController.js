@@ -5,36 +5,26 @@ const Vendor = require('../models/vendor');
 
 // ========== Admin Login ==========
 async function doLogin(req, res) {
+  console.log("POST /admin/login hit - attempting login for username:", req.body.username); // Debug log
   try {
     const { username, password } = req.body;
     const admin = await Admin.findOne({ username });
 
     if (!admin) {
-      return res.render("admin", {
-        vendorCount: 0,
-        jobseekerCount: 0,
-        message: "Invalid Username or Password"
-      });
+      console.log("Invalid username");
+      return res.render("login", { message: "Invalid Username or Password" });
     }
 
     const validPassword = await bcrypt.compare(password, admin.password);
     if (!validPassword) {
-      return res.render("admin", {
-        vendorCount: 0,
-        jobseekerCount: 0,
-        message: "Invalid Username or Password"
-      });
+      console.log("Invalid password");
+      return res.render("login", { message: "Invalid Username or Password" });
     }
 
-    // ✅ Get counts for dashboard
-    const vendors = await Vendor.find().sort({ createdAt: -1 });
-    const jobseekers = await Jobseeker.find().sort({ createdAt: -1 });
+    console.log("Login successful");
+    // ✅ On successful login → render dashboard with menu
+    res.render("admin", { message: "Welcome Admin!" });
 
-    res.render("admin", {
-      vendors,
-      jobseekers,
-      message: "Welcome Admin!"
-    });
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).send("Something went wrong during login");
@@ -44,8 +34,8 @@ async function doLogin(req, res) {
 // ========== Vendors ==========
 async function listVendors(req, res) {
   try {
-    const vendors = await Vendor.find({});
-    const vendorCount = await Vendor.countDocuments({});
+    const vendors = await Vendor.find().sort({ createdAt: -1 });
+    const vendorCount = await Vendor.countDocuments();
     res.render("listvendor", { vendors, vendorCount, message: null });
   } catch (err) {
     console.error("List vendors error:", err);
@@ -56,8 +46,8 @@ async function listVendors(req, res) {
 // ========== Jobseekers ==========
 async function listJobseekers(req, res) {
   try {
-    const jobseekers = await Jobseeker.find({});
-    const jobseekerCount = await Jobseeker.countDocuments({});
+    const jobseekers = await Jobseeker.find().sort({ createdAt: -1 });
+    const jobseekerCount = await Jobseeker.countDocuments();
     res.render("listjobseekers", { jobseekers, jobseekerCount, message: null });
   } catch (err) {
     console.error("List jobseekers error:", err);
@@ -68,19 +58,15 @@ async function listJobseekers(req, res) {
 // ========== Create Default Admin ==========
 async function makeAdmin() {
   try {
-    // ⚡️ DO NOT redeclare Admin and bcrypt here, use already imported ones
-    const existingAdmin = await Admin.findOne({ username: "kunmungiri1@gmail.com" });
-
-    if (!existingAdmin) {
-      const hashedPassword = await bcrypt.hash("12345", 10); // default password
-      await Admin.create({
-        username: "admin",
-        password: hashedPassword,
-      });
-      console.log("✅ Default admin created (username: admin, password: admin123)");
-    } else {
-      console.log("ℹ️ Admin already exists");
-    }
+    // Delete existing admin to recreate with new credentials
+    await Admin.deleteMany({});
+    
+    const hashedPassword = await bcrypt.hash("12345", 10); // default password
+    await Admin.create({
+      username: "kunmungiri1@gmail.com",
+      password: hashedPassword,
+    });
+    console.log("✅ Default admin created: ");
   } catch (err) {
     console.error("Error creating default admin:", err);
   }
@@ -90,5 +76,5 @@ module.exports = {
   doLogin,
   listVendors,
   listJobseekers,
-  makeAdmin,   // ✅ properly exported
+  makeAdmin,
 };

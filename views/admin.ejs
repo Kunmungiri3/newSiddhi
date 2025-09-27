@@ -16,133 +16,40 @@
     h1 {
       color: #800000;
       text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .section {
       margin-bottom: 40px;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    h2 {
-      margin-bottom: 15px;
-      color: #800000;
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background: #800000;
-      color: #fff;
-    }
-
-    tr:nth-child(even) {
-      background: #f4f4f4;
-    }
-
-    a.cv-link {
-      color: #800000;
-      text-decoration: none;
+    .menu a {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
       font-weight: 600;
+      color: #fff;
+      background: #800000;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
     }
-    a.cv-link:hover {
-      text-decoration: underline;
+
+    .menu a:hover {
+      background: #a00000;
+      transform: translateY(-3px);
     }
   </style>
 </head>
 <body>
   <h1>Admin Dashboard</h1>
 
-  <!-- ✅ Jobseekers Section -->
-  <div class="section">
-    <h2>Jobseekers (Total: <%= jobseekers.length %>)</h2>
-    <% if (jobseekers.length > 0) { %>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Father</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>DOB</th>
-            <th>Qualification</th>
-            <th>Aadhar</th>
-            <th>CV</th>
-            <th>Registered At</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% jobseekers.forEach(js => { %>
-            <tr>
-              <td><%= js.name %></td>
-              <td><%= js.father %></td>
-              <td><%= js.phone %></td>
-              <td><%= js.email %></td>
-              <td><%= js.dob ? new Date(js.dob).toLocaleDateString() : '—' %></td>
-              <td><%= js.qualification %></td>
-              <td><%= js.aadhar %></td>
-              <td>
-                <% if (js.cv) { %>
-                  <a href="<%= js.cv %>" class="cv-link" target="_blank">View CV</a>
-                <% } else { %>
-                  —
-                <% } %>
-              </td>
-              <td><%= new Date(js.createdAt).toLocaleString() %></td>
-            </tr>
-          <% }) %>
-        </tbody>
-      </table>
-    <% } else { %>
-      <p>No jobseekers registered yet.</p>
-    <% } %>
-  </div>
-
-  <!-- ✅ Vendors Section -->
-  <div class="section">
-    <h2>Vendors (Total: <%= vendors.length %>)</h2>
-    <% if (vendors.length > 0) { %>
-      <table>
-        <thead>
-          <tr>
-            <th>Company Name</th>
-            <th>Contact Person</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Message</th>
-            <th>Registered At</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% vendors.forEach(vendor => { %>
-            <tr>
-              <td><%= vendor.companyName %></td>
-              <td><%= vendor.contactPerson %></td>
-              <td><%= vendor.phone %></td>
-              <td><%= vendor.email %></td>
-              <td><%= vendor.address %></td>
-              <td><%= vendor.message || '—' %></td>
-              <td><%= new Date(vendor.createdAt).toLocaleString() %></td>
-            </tr>
-          <% }) %>
-        </tbody>
-      </table>
-    <% } else { %>
-      <p>No vendors registered yet.</p>
-    <% } %>
+  <div class="menu">
+    <a href="/admin/jobseekers">List Jobseekers</a>
+    <a href="/admin/vendors">List Vendors</a>
   </div>
 </body>
 </html>
