@@ -117,25 +117,7 @@
     .card { border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s; }
     .card:hover { transform: translateY(-6px); }
 
-    /* Contact form */
-    .contact-form input, .contact-form textarea {
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      transition: 0.2s;
-      padding: 10px;
-    }
-    .contact-form input:focus, .contact-form textarea:focus {
-      border-color: var(--maroon);
-      box-shadow: 0 0 8px rgba(128,0,0,0.4);
-    }
-    .contact-form button {
-      background: var(--maroon);
-      color: white;
-      border-radius: 8px;
-      padding: 10px;
-      transition: transform 0.2s, background 0.2s;
-    }
-    .contact-form button:hover { background: #a00000; transform: scale(1.05); }
+    
 
     /* Social icons */
     .icon-row a {
@@ -180,8 +162,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link text-maroon fw-semibold" href="#social">Social</a></li>
-          <li class="nav-item"><a class="nav-link text-maroon fw-semibold" href="#contact-form">Contact</a></li>
+          <li class="nav-item"><a class="nav-link text-maroon fw-semibold" href="#social">Social</a></li> 
           <li class="nav-item"><a class="nav-link text-maroon fw-semibold" href="#vendor">Vendor</a></li>
           <li class="nav-item"><a class="nav-link text-maroon fw-semibold" href="#map">Map</a></li>
         </ul>
@@ -237,25 +218,7 @@
   </section>
 
  
-  <!-- Contact Form -->
-<section id="contact-form" class="contact-form container" data-aos="fade-up">
-  <div class="card shadow-lg p-4 mx-auto" style="max-width: 800px; border-radius: 12px;">
-    <h2 class="text-center text-maroon mb-3">We’d Love To Hear From You</h2>
-    <p class="text-center mb-4">Fill out the form below and we’ll get back to you as soon as possible.</p>
-    <form action="savemessage" method="post" class="row g-3">
-      <div class="col-md-6"><input type="text" name="name" placeholder="Your Name" class="form-control" required></div>
-      <div class="col-md-6"><input type="email" name="email" placeholder="Your Email" class="form-control" required></div>
-      <div class="col-md-6"><input type="tel" name="phone" placeholder="Phone (optional)" class="form-control"></div>
-      <div class="col-md-6"><input type="text" name="subject" placeholder="Subject" class="form-control"></div>
-      <div class="col-12"><textarea name="message" placeholder="Your Message" rows="5" class="form-control" required></textarea></div>
-      <div class="col-12">
-        <button type="submit" class="btn w-100 position-relative overflow-hidden">
-          <span>Send Message</span>
-        </button>
-      </div>
-    </form>
-  </div>
-</section>
+  
 
 
   <!-- Vendor -->

@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 
 const vendorSchema = new mongoose.Schema({
-  contactPerson: { type: String, required: true }, // required field
-  email: { type: String },
-  companyName: { type: String },
-  phone: { type: String },
-  address: { type: String },
-  message: [{ type: String }], // array of messages
+  companyName: { type: String, required: true },
+  contactPerson: { type: String, required: true },
+  phone: { type: String, required: true },
+  email: { type: String, required: true },
+  address: { type: String, required: true },
+  teamSize: { type: Number, required: true },
+  message: { type: String, required: true },
 }, { timestamps: true });
 
 // Prevent OverwriteModelError

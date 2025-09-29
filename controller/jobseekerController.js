@@ -1,42 +1,23 @@
 const Jobseeker = require("../models/jobseeker");
-const path = require("path");
-const cloudinary = require("cloudinary").v2;
-const streamifier = require("streamifier");
-
-// Configure Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+const { uploadToCloudinary } = require("../utils/cloudinary");
 
 // Save Jobseeker
 async function saveJobseeker(req, res) {
   try {
-    let cvUrl = null;
+    let cvPath = null;
     console.log("Received file:", req.file);
     if (req.file) {
-      // Upload CV to Cloudinary
-      const uploadStream = cloudinary.uploader.upload_stream(
-        { resource_type: "raw", folder: "cv_uploads" },
-        (error, result) => {
-          if (error) {
-            console.error("❌ Cloudinary upload error:", error);
-            return res.status(500).send("Error uploading CV");
-          }
-          cvUrl = result.secure_url;
-        }
-      );
-      
-      streamifier.createReadStream(req.file.buffer).pipe(uploadStream);
-      // Wait for upload to complete
-      await new Promise((resolve, reject) => {
-        uploadStream.on("finish", resolve);
-        uploadStream.on("error", reject);
-      });
+      try {
+        // Upload to Cloudinary
+        cvPath = await uploadToCloudinary(req.file.buffer);
+        console.log("CV URL from Cloudinary:", cvPath);
+      } catch (uploadError) {
+        console.error("❌ Cloudinary upload failed:", uploadError);
+        cvPath = null; // Fallback to no CV if upload fails
+      }
     }
 
-    console.log("CV URL:", cvUrl);
+    console.log("CV Path/URL:", cvPath);
     const jobseeker = new Jobseeker({
       name: req.body.name,
       father: req.body.father,
@@ -46,7 +27,7 @@ async function saveJobseeker(req, res) {
       qualification: req.body.qualification,
       address: req.body.address,
       aadhar: req.body.aadhar,
-      cv: cvUrl  // Cloudinary URL
+      cv: cvPath  // Cloudinary URL or null
     });
 
     await jobseeker.save();

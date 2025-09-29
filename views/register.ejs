@@ -158,7 +158,7 @@
       <div class="col-lg-7 col-md-6 col-12">
         <div class="form-container">
           <h2>Required Details</h2>
-          <form id="regForm" action="/saveJobseeker" method="POST" enctype="multipart/form-data">
+          <form method="POST" action="/api/jobseekers/saveJobseeker" enctype="multipart/form-data">
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label">Full Name</label>
@@ -184,16 +184,9 @@
                 <label class="form-label">Qualification</label>
                 <input type="text" class="form-control" name="qualification" required>
               </div>
-              <div class="col-md-6">
-                <label class="form-label">State</label>
-                <select class="form-control" id="state" name="state" required>
-                  <option value="" disabled selected>Select State</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">District</label>
-                <input list="districtList" class="form-control" id="district" name="district" placeholder="Select or type district" required>
-                <datalist id="districtList"></datalist>
+              <div class="col-12">
+                <label class="form-label">Full Address</label>
+                <textarea class="form-control" name="address" placeholder="Enter your complete address" rows="3" required></textarea>
               </div>
               <div class="col-md-6">
                 <label class="form-label">Aadhaar Card No</label>
@@ -229,70 +222,70 @@
   });
 
   // ✅ Embed states & districts directly (no JSON file)
-  const stateDistricts = {
+  // const stateDistricts = {
     
-  "Andhra Pradesh": ["Anantapur", "Chittoor", "Guntur", "Krishna", "Nellore", "Visakhapatnam"],
-  "Arunachal Pradesh": ["Itanagar", "Tawang", "Pasighat", "Ziro"],
-  "Assam": ["Guwahati", "Silchar", "Dibrugarh", "Jorhat"],
-  "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur"],
-  "Chhattisgarh": ["Raipur", "Bilaspur", "Durg", "Korba"],
-  "Goa": ["North Goa", "South Goa", "Panaji", "Margao"],
-  "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
-  "Haryana": ["Gurugram", "Faridabad", "Panipat", "Ambala"],
-  "Himachal Pradesh": ["Shimla", "Kullu", "Manali", "Dharamshala"],
-  "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Hazaribagh"],
-  "Karnataka": ["Bengaluru Urban", "Mysuru", "Mangaluru", "Belagavi"],
-  "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur"],
-  "Madhya Pradesh": ["Bhopal", "Indore", "Jabalpur", "Gwalior"],
-  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
-  "Manipur": ["Imphal East", "Imphal West", "Churachandpur", "Thoubal"],
-  "Meghalaya": ["Shillong", "Tura", "Jowai", "Nongpoh"],
-  "Mizoram": ["Aizawl", "Lunglei", "Champhai", "Kolasib"],
-  "Nagaland": ["Kohima", "Dimapur", "Mokokchung", "Wokha"],
-  "Odisha": ["Bhubaneswar", "Cuttack", "Puri", "Sambalpur"],
-  "Punjab": ["Amritsar", "Ludhiana", "Jalandhar", "Patiala"],
-  "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota"],
-  "Sikkim": ["Gangtok", "Namchi", "Mangan", "Geyzing"],
-  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli"],
-  "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Khammam"],
-  "Tripura": ["Agartala", "Udaipur", "Dharmanagar", "Kailashahar"],
-  "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra"],
-  "Uttarakhand": ["Dehradun", "Haridwar", "Nainital", "Haldwani"],
-  "West Bengal": ["Kolkata", "Darjeeling", "Howrah", "Siliguri"],
+  // "Andhra Pradesh": ["Anantapur", "Chittoor", "Guntur", "Krishna", "Nellore", "Visakhapatnam"],
+  // "Arunachal Pradesh": ["Itanagar", "Tawang", "Pasighat", "Ziro"],
+  // "Assam": ["Guwahati", "Silchar", "Dibrugarh", "Jorhat"],
+  // "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur"],
+  // "Chhattisgarh": ["Raipur", "Bilaspur", "Durg", "Korba"],
+  // "Goa": ["North Goa", "South Goa", "Panaji", "Margao"],
+  // "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+  // "Haryana": ["Gurugram", "Faridabad", "Panipat", "Ambala"],
+  // "Himachal Pradesh": ["Shimla", "Kullu", "Manali", "Dharamshala"],
+  // "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Hazaribagh"],
+  // "Karnataka": ["Bengaluru Urban", "Mysuru", "Mangaluru", "Belagavi"],
+  // "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur"],
+  // "Madhya Pradesh": ["Bhopal", "Indore", "Jabalpur", "Gwalior"],
+  // "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
+  // "Manipur": ["Imphal East", "Imphal West", "Churachandpur", "Thoubal"],
+  // "Meghalaya": ["Shillong", "Tura", "Jowai", "Nongpoh"],
+  // "Mizoram": ["Aizawl", "Lunglei", "Champhai", "Kolasib"],
+  // "Nagaland": ["Kohima", "Dimapur", "Mokokchung", "Wokha"],
+  // "Odisha": ["Bhubaneswar", "Cuttack", "Puri", "Sambalpur"],
+  // "Punjab": ["Amritsar", "Ludhiana", "Jalandhar", "Patiala"],
+  // "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota"],
+  // "Sikkim": ["Gangtok", "Namchi", "Mangan", "Geyzing"],
+  // "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli"],
+  // "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Khammam"],
+  // "Tripura": ["Agartala", "Udaipur", "Dharmanagar", "Kailashahar"],
+  // "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra"],
+  // "Uttarakhand": ["Dehradun", "Haridwar", "Nainital", "Haldwani"],
+  // "West Bengal": ["Kolkata", "Darjeeling", "Howrah", "Siliguri"],
 
-  "Andaman and Nicobar Islands": ["Port Blair", "Car Nicobar", "Havelock Island", "Little Andaman"],
-  "Chandigarh": ["Chandigarh"],
-  "Dadra and Nagar Haveli and Daman and Diu": ["Silvassa", "Daman", "Diu"],
-  "Delhi": ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "South Delhi", "West Delhi"],
-  "Jammu and Kashmir": ["Srinagar", "Jammu", "Anantnag", "Baramulla"],
-  "Ladakh": ["Leh", "Kargil"],
-  "Lakshadweep": ["Kavaratti", "Agatti", "Minicoy", "Amini"],
-  "Puducherry": ["Puducherry", "Karaikal", "Mahe", "Yanam"]
-  };
+  // "Andaman and Nicobar Islands": ["Port Blair", "Car Nicobar", "Havelock Island", "Little Andaman"],
+  // "Chandigarh": ["Chandigarh"],
+  // "Dadra and Nagar Haveli and Daman and Diu": ["Silvassa", "Daman", "Diu"],
+  // "Delhi": ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "South Delhi", "West Delhi"],
+  // "Jammu and Kashmir": ["Srinagar", "Jammu", "Anantnag", "Baramulla"],
+  // "Ladakh": ["Leh", "Kargil"],
+  // "Lakshadweep": ["Kavaratti", "Agatti", "Minicoy", "Amini"],
+  // "Puducherry": ["Puducherry", "Karaikal", "Mahe", "Yanam"]
+  // };
 
-  const stateSelect = document.getElementById("state");
-  const districtList = document.getElementById("districtList");
+  // const stateSelect = document.getElementById("state");
+  // const districtList = document.getElementById("districtList");
 
   // Populate States
-  for (let state in stateDistricts) {
-    let option = document.createElement("option");
-    option.value = state;
-    option.textContent = state;
-    stateSelect.appendChild(option);
-  }
+//   for (let state in stateDistricts) {
+//     let option = document.createElement("option");
+//     option.value = state;
+//     option.textContent = state;
+//     stateSelect.appendChild(option);
+//   }
 
-  // On State Change → Populate Districts
-  stateSelect.addEventListener("change", function() {
-    districtList.innerHTML = "";
-    if (stateDistricts[this.value]) {
-      stateDistricts[this.value].forEach(d => {
-        let option = document.createElement("option");
-        option.value = d;
-        districtList.appendChild(option);
-      });
-    }
-  });
-</script>
+//   // On State Change → Populate Districts
+//   stateSelect.addEventListener("change", function() {
+//     districtList.innerHTML = "";
+//     if (stateDistricts[this.value]) {
+//       stateDistricts[this.value].forEach(d => {
+//         let option = document.createElement("option");
+//         option.value = d;
+//         districtList.appendChild(option);
+//       });
+//     }
+//   });
+// </script>
 
 
   

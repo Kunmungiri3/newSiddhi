@@ -5,11 +5,12 @@ async function saveVendor(req, res) {
   try {
     const vendor = new Vendor({
       companyName: req.body.companyName,
-      contactPerson: req.body.contactPerson, // ✅ required field
+      contactPerson: req.body.contactPerson,
       phone: req.body.phone,
       email: req.body.email,
       address: req.body.address,
-      message: req.body.message ? [req.body.message] : [],
+      teamSize: req.body.teamSize,
+      message: req.body.message,
     });
 
     await vendor.save();

@@ -36,8 +36,12 @@ app.get("/contact", (req, res) => res.render("contact"));
 // Admin login page
 app.get("/admin", (req, res) => res.render("login"));
 
-app.use("/", userRoutes);
-app.use("/", vendorRoutes);
+// ===== Redirects for user-friendly URLs =====
+app.get("/register", (req, res) => res.redirect("/api/jobseekers/register"));
+app.get("/vendor-registration", (req, res) => res.redirect("/api/vendors/vendor-registration"));
+
+app.use("/api/jobseekers", userRoutes);
+app.use("/api/vendors", vendorRoutes);
 app.use("/admin", adminRoutes);
 
 // ===== MongoDB connection =====
