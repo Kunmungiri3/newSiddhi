@@ -9,10 +9,10 @@ const vendorRoutes = require("./routes/vendor");
 const adminRoutes = require("./routes/admin");
 
 // Controller
-const adminController = require("./controller/adminController");
+const { makeAdmin } = require("./controller/adminController");
 
 const app = express();
-console.log("here...")
+console.log("here...");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -25,8 +25,6 @@ app.set("views", path.resolve("./views"));
 // Static files
 app.use("/css", express.static(path.join(__dirname, "css")));
 app.use(express.static(path.join(__dirname, "public")));
-// app.use("/uploads", express.static(path.join(__dirname, "public/uploads"))); // Commented out: CVs now stored in Cloudinary
-
 
 // Routes
 app.get("/", (req, res) => res.render("index"));
@@ -44,19 +42,20 @@ app.use("/api/jobseekers", userRoutes);
 app.use("/api/vendors", vendorRoutes);
 app.use("/admin", adminRoutes);
 
+
+
+
 // ===== MongoDB connection =====
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("✅ MongoDB Connected");
+    console.log("✅ MongoDB Atlas Connected");
 
-    // ✅ Create default admin if not exists
-    if (typeof adminController.makeAdmin === "function") {
-      adminController.makeAdmin();
-    }
+    // ✅ Ensure default admin exists
+    makeAdmin();
   })
-  .catch(err => console.error("❌ MongoDB Error:", err));
+  .catch(err => console.error("❌ DB connection error:", err));
 
-// Start server
+// ===== Start server =====
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, "0.0.0.0", (err) => {
   if (err) {

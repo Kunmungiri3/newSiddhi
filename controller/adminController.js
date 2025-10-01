@@ -5,9 +5,14 @@ const Vendor = require('../models/vendor');
 
 // ========== Admin Login ==========
 async function doLogin(req, res) {
-  console.log("POST /admin/login hit - attempting login for username:", req.body.username); // Debug log
+  console.log("POST /admin/login hit - attempting login for username:", req.body.username);
+
   try {
-    const { username, password } = req.body;
+    let { username, password } = req.body;
+
+    // normalize input
+    username = username.trim().toLowerCase();
+
     const admin = await Admin.findOne({ username });
 
     if (!admin) {
@@ -22,7 +27,6 @@ async function doLogin(req, res) {
     }
 
     console.log("Login successful");
-    // ✅ On successful login → render dashboard with menu
     res.render("admin", { message: "Welcome Admin!" });
 
   } catch (err) {
@@ -58,15 +62,20 @@ async function listJobseekers(req, res) {
 // ========== Create Default Admin ==========
 async function makeAdmin() {
   try {
-    // Delete existing admin to recreate with new credentials
-    await Admin.deleteMany({});
-    
-    const hashedPassword = await bcrypt.hash("12345", 10); // default password
+    const existingAdmin = await Admin.findOne({ username: "kunmungiri1@gmail.com" });
+
+    if (existingAdmin) {
+      console.log("ℹ️ Admin already exists:", existingAdmin.username);
+      return;
+    }
+
+    const hashedPassword = await bcrypt.hash("12345", 10);
     await Admin.create({
       username: "kunmungiri1@gmail.com",
       password: hashedPassword,
     });
-    console.log("✅ Default admin created: ");
+
+    console.log("✅ Default admin created: kunmungiri1@gmail.com (password: 12345)");
   } catch (err) {
     console.error("Error creating default admin:", err);
   }

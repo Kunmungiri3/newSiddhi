@@ -9,7 +9,7 @@ const jobseekerSchema = new mongoose.Schema({
   qualification: { type: String , required: true },
   address: { type: String , required: true },
   aadhar: { type: String, required: true },
-  cv: { type: String , } // CV file path
+  cv: { type: String  } // CV file path
 }, { timestamps: true });
 
 // ✅ Prevent OverwriteModelError
