@@ -163,10 +163,11 @@ h1,h2 { text-align:center; color:#800000; margin-top:30px; }
 function toggleMenu(){ document.getElementById('nav-menu').classList.toggle('active'); }
 
 // ===== Dynamic News =====
-const newsData = [
-  {title:"Upcoming HR Conclave", date:"22nd Aug 2025", desc:"Siddhi Infonet HR Conclave...", location:"📍 Greater Noida, UP"},
-  {title:"Mega Job Fair 2025", date:"Oct 2025", desc:"200+ companies with aspiring candidates...", location:"📍 Lucknow, UP"},
-  {title:"Skill Development Drive", date:"Jan 2026", desc:"Training programs on Digital Skills, IoT, AI", location:"📍 Online Nationwide"}
+  const newsData = [
+  {title:"Upcoming HR Conclave", date:"26th September 2025", desc:"Siddhi Infonet HR Conclave...", location:"📍 Greater Noida, UP"},
+  {title:"Pink Job Fair", date:"Oct 2025", desc:"200+ companies with aspiring candidates...", location:"📍 Prayagraj, UP"},
+  {title:"Skill Development Drive", date:"Jan 2026", desc:"Training programs on Digital Skills, IoT, AI", location:"📍 Online Nationwide"},
+  {title:"Upcoming Job Fairs", date:"September 2025", desc:"50+ companies with aspiring candidates", location:"📍 Patna, Bihar"},
 ];
 
 const newsSection = document.getElementById('news-section');
@@ -188,9 +189,9 @@ setInterval(()=>{ nextNews(); },5000);
 
 // ===== Dynamic Events =====
 const eventsData = [
-  {title:"Women Empowerment Workshop", date:"March 2026", desc:"Special workshop focused on leadership skills", btn:"Register"},
+  {title:"Pink job fair", date:"october 2025", desc:"200+ companies with aspiring candidates", btn:"Register"},
   {title:"Startup Hiring Meet", date:"May 2026", desc:"Connecting startups with fresh talent", btn:"Learn More"},
-  {title:"Technology Career Fair", date:"July 2026", desc:"Focused fair for IT, IoT, AI professionals", btn:"Join Now"}
+  {title:"Technology Career Fair", date:"July 2026", desc:"Focused fair for IT, IoT, AI professionals", btn:"Join Now"},
 ];
 
 const eventsSection = document.getElementById('events-section');
@@ -206,7 +207,7 @@ eventsData.forEach(e=>{
 
 // ===== Dynamic Hiring =====
 const hiringData = [
-  {title:"Field Sales", img:"/just dail hirring.jpeg"},
+  {title:"IRO,TMP,BD,CISF positions", img:"/field sales new.jpg"},
   {title:"Sales & Marketing Openings", img:"/sales offiers.jpeg"},
   {title:"HR Executive Positions", img:"/crc hiring.jpeg"}
 ];
