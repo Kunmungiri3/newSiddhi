@@ -47,7 +47,7 @@
     }
 
     .navbar-brand img {
-      height: 60px;
+      height: 80px;
     }
 
     .navbar-nav .nav-link {
@@ -183,29 +183,13 @@
   .hero-container {
     flex-direction: column;
     text-align: center;
-    gap: 0; /* ✅ fixed */
+    gap: 0;
   }
   .hero-text { padding: 20px 10px; }
   .hero-text h1 { font-size: 1.6rem; }
   .hero-image { order: -1; }
-
-  .hero-section {
-    padding-bottom: 20px; /* ✅ fixed */
-  }
-
-  .hero-text a.btn {
-    margin-bottom: 10px; /* ✅ fixed */
-  }
-}
-
-
-  .hero-section {
-    padding-bottom: 20px; /* ✅ fixed */
-  }
-
-  .hero-text a.btn {
-    margin-bottom: 10px; /* ✅ fixed */
-  }
+  .hero-section { padding-bottom: 20px; }
+  .hero-text a.btn { margin-bottom: 10px; }
 }
     /* Desktop Layout */
     @media (min-width: 993px) {
@@ -248,7 +232,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="/"><img src="/newlogo.png" alt="Siddhi Infonet official company logo" loading="lazy"></a>
+    <a class="navbar-brand" href="/"><img src="/newlogo.png" alt="Siddhi Infonet official company logo" class="logo" loading="lazy"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

@@ -8,7 +8,7 @@
 }
 .nav-container { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
 
-.logo img { max-height: 96px; width: auto; display: block; }
+img.logo { height: 80px; width: auto; display: block; }
 
 .main-nav { display: flex; gap: 18px; align-items: center; }
 .main-nav .nav-link {
