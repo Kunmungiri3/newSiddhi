@@ -7,8 +7,8 @@ const xlsx = require("xlsx");
 
 const router = express.Router();
 
-// ✅ Multer setup for CV uploads to memory (for Cloudinary)
-const storage = multer.memoryStorage(); // Store in buffer for Cloudinary upload
+// Multer setup for CV uploads
+const storage = multer.memoryStorage();
 const upload = multer({
   storage,
   limits: { fileSize: 2 * 1024 * 1024 }, // 2 MB max
@@ -16,7 +16,7 @@ const upload = multer({
 
 // ================= Routes =================
 
-// GET all jobseekers (for admin, raw JSON)
+// GET all jobseekers (JSON)
 router.get("/all", async (req, res) => {
   try {
     const jobSeekers = await Jobseeker.find();
@@ -31,16 +31,62 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
-// Render Login Page (if needed)
+// Render Login Page
 router.get("/login", (req, res) => {
   res.render("login");
 });
 
-// ✅ Save Jobseeker (with CV upload)
+// Save Jobseeker (with CV upload)
 router.post("/saveJobseeker", upload.single("cv"), jobseekerController.saveJobseeker);
 
-// ✅ List Jobseekers (admin dashboard)
+// List Jobseekers (admin dashboard)
 router.get("/jobseekers", jobseekerController.listJobseekers);
+
+// ================= Edit Jobseeker =================
+
+// Render Edit Page
+router.get("/edit/:id", async (req, res) => {
+  try {
+    const jobseeker = await Jobseeker.findById(req.params.id);
+    if (!jobseeker) return res.status(404).send("Jobseeker not found");
+    res.render("edit-jobseeker", { jobseeker });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+// Update Jobseeker
+// ================= Update Jobseeker =================
+router.post("/edit/:id", upload.single("cv"), async (req, res) => {
+  try {
+    const updateData = { ...req.body };
+
+    if (req.file) {
+      // Example: Save locally in /uploads folder
+      const fs = require('fs');
+      const uploadPath = path.join(__dirname, '../public/uploads', req.file.originalname);
+      fs.writeFileSync(uploadPath, req.file.buffer);
+      updateData.cv = '/uploads/' + req.file.originalname;
+    }
+
+    const updated = await Jobseeker.findByIdAndUpdate(req.params.id, updateData, { new: true });
+    res.json({ success: true, jobseeker: updated }); // <-- return JSON for AJAX
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+
+// ================= Delete Jobseeker =================
+router.post("/delete/:id", async (req, res) => {
+  try {
+    await Jobseeker.findByIdAndDelete(req.params.id);
+    res.redirect("/admin/jobseekers");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 // Export Jobseekers to Excel
 router.get("/export", async (req, res) => {

@@ -10,6 +10,9 @@ router.post("/login", adminController.doLogin);
 
 // ========== Vendors ==========
 router.get("/vendors", adminController.listVendors);
+router.get("/vendors/:id/edit", adminController.editVendor);
+router.post("/vendors/:id/edit", adminController.updateVendor);
+router.post("/vendors/:id/delete", adminController.deleteVendor);
 
 // ========== Jobseekers ==========
 router.get("/jobseekers", adminController.listJobseekers);

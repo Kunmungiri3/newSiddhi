@@ -46,7 +46,42 @@ async function listVendors(req, res) {
   }
 }
 
+async function editVendor(req, res) {
+  try {
+    const vendor = await require("../models/vendor").findById(req.params.id);
+    if (!vendor) return res.status(404).send("Vendor not found");
+    res.render("edit-vendor", { vendor });
+  } catch (err) {
+    console.error("❌ Error fetching vendor:", err);
+    res.status(500).send("Error fetching vendor");
+  }
+}
+
+async function updateVendor(req, res) {
+  try {
+    const updateData = { ...req.body };
+    const updated = await require("../models/vendor").findByIdAndUpdate(req.params.id, updateData, { new: true });
+    res.redirect("/admin/vendors");
+  } catch (err) {
+    console.error("❌ Error updating vendor:", err);
+    res.status(500).send("Error updating vendor");
+  }
+}
+
+async function deleteVendor(req, res) {
+  try {
+    await require("../models/vendor").findByIdAndDelete(req.params.id);
+    res.redirect("/admin/vendors");
+  } catch (err) {
+    console.error("❌ Error deleting vendor:", err);
+    res.status(500).send("Error deleting vendor");
+  }
+}
+
 module.exports = { 
   saveVendor,
-  listVendors
+  listVendors,
+  editVendor,
+  updateVendor,
+  deleteVendor
 };

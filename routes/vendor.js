@@ -20,6 +20,14 @@ router.post('/save/vendor',(req,res)=>{
 // List Vendors
  router.get('/list', vendorController.listVendors);
 
+// Edit Vendor - Render edit form
+router.get('/edit/:id', vendorController.editVendor);
+
+// Update Vendor
+router.post('/edit/:id', vendorController.updateVendor);
+
+// Delete Vendor
+router.post('/delete/:id', vendorController.deleteVendor);
 
 // Export Vendors to Excel
 router.get('/export', async (req, res) => {
