@@ -17,7 +17,7 @@ nav {
   position:sticky; top:0; z-index:1000; 
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
-nav img.logo { height:50px; }
+nav img.logo { height:80px; }
 nav ul { list-style:none; display:flex; gap:20px; }
 nav ul li a { color:#800000; font-weight:500; transition:0.3s; }
 nav ul li a:hover { color:#c0392b; }
@@ -245,9 +245,9 @@ setInterval(()=>{ nextNews(); },5000);
 
 // ===== Dynamic Events =====
 const eventsData = [
-  {title:"Pink job fair", date:"october 2025", desc:"200+ companies with aspiring candidates", btn:"Register"},
-  {title:"Startup Hiring Meet", date:"May 2026", desc:"Connecting startups with fresh talent", btn:"Learn More"},
-  {title:"Technology Career Fair", date:"July 2026", desc:"Focused fair for IT, IoT, AI professionals", btn:"Join Now"},
+  {title:"Pink job fair", date:"October 2025", desc:"200+ companies with aspiring candidates", btn:"Register", link:"register"},
+  {title:"Startup Hiring Meet", date:"May 2026", desc:"Connecting startups with fresh talent", btn:"Learn More", link:"startup.html"},
+  {title:"Technology Career Fair", date:"July 2026", desc:"Focused fair for IT, IoT, AI professionals", btn:"Join Now", link:"techfair.html"}
 ];
 
 const eventsSection = document.getElementById('events-section');
@@ -263,9 +263,9 @@ eventsData.forEach(e=>{
 
 // ===== Dynamic Hiring =====
 const hiringData = [
-  {title:"IRO,TMP,BD,CISF positions", img:"/field sales new.jpg"},
-  {title:"Sales & Marketing Openings", img:"/sales offiers.jpeg"},
-  {title:"HR Executive Positions", img:"/crc hiring.jpeg"}
+  {title:"Profile:- IRO/TME/BDE/CIC Officer Positions", img:"/field sales new.jpg"},
+  {title:"Profile:- Banking Sales Officer", img:"/sales offiers.jpeg"},
+  {title:"Profile:- Field sales/CIC Officer", img:"/crc hiring.jpeg"},
 ];
 
 const hiringGrid = document.getElementById('hiring-grid');
