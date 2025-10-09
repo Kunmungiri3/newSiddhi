@@ -103,7 +103,7 @@ async function listJobseekers(req, res) {
 // ========== Create Default Admin ==========
 async function makeAdmin() {
   try {
-    const existingAdmin = await Admin.findOne({ username: "kunmungiri1@gmail.com" });
+    const existingAdmin = await Admin.findOne({ username: "siddhi" });
 
     if (existingAdmin) {
       console.log("ℹ️ Admin already exists:", existingAdmin.username);
@@ -112,11 +112,11 @@ async function makeAdmin() {
 
     const hashedPassword = await bcrypt.hash("12345", 10);
     await Admin.create({
-      username: "kunmungiri1@gmail.com",
+      username: "siddhi@",
       password: hashedPassword,
     });
 
-    console.log("✅ Default admin created: kunmungiri1@gmail.com (password: 12345)");
+    console.log("✅ Default admin created ");
   } catch (err) {
     console.error("Error creating default admin:", err);
   }
