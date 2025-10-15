@@ -6,149 +6,228 @@
   <link rel="stylesheet" href="body.css">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 0;
-      color: #333;
-      line-height: 1.6;
-    }
-     /* Header with logo */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
 .header {
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  background-color: #ffffff; /* White background */
-  border-bottom: 3px solid #800000; /* Maroon underline for theme */
+  background-color: #ffffff;
+  border-bottom: 3px solid #800000;
 }
 
 .header img {
-  height: 60px;
+  height: 80px;
   width: auto;
   cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-left: 85px;
 }
 
-    .header img {
-      height: 60px;
-      width: auto;
-      cursor: pointer;
-    }
+h1 {
+  text-align: center;
+  color: #800000;
+  margin: 40px 0 15px;
+  font-size: 2.5rem;
+}
 
-    h1 {
-      text-align: center;
-      color: #800000; /* maroon */
-      margin: 40px 0 15px;
-      font-size: 2.5rem;
-    }
+.intro {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  padding: 0 20px;
+}
 
-    .intro {
-      max-width: 900px;
-      margin: 0 auto 40px;
-      text-align: center;
-      font-size: 1.1rem;
-      color: #555;
-      padding: 0 20px;
-    }
+/* Base Grid (Laptop layout) */
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+  padding: 0 20px;
+}
 
-    .services-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto 60px auto;
-      padding: 0 20px;
-    }
+/* Card styling */
+.service-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
-    .service-card {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
 
-    .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
+.service-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
 
-    .service-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
+.service-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
-    .service-content {
-      padding: 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+.service-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: #800000;
+}
 
-    .service-content h2 {
-      font-size: 1.4rem;
-      margin-bottom: 12px;
-      color: #800000; /* maroon */
-    }
+.service-content p {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  color: #555;
+}
 
-    .service-content p {
-      font-size: 0.95rem;
-      margin-bottom: 12px;
-      color: #555;
-    }
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
 
-    .service-features {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 15px 0;
-    }
+.service-features li {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #444;
+}
 
-    .service-features li {
-      padding-left: 20px;
-      position: relative;
-      margin-bottom: 8px;
-      font-size: 0.9rem;
-      color: #444;
-    }
+.service-features li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #800000;
+  font-size: 0.9rem;
+}
 
-    .service-features li::before {
-      content: "✔";
-      position: absolute;
-      left: 0;
-      color: #800000; /* maroon */
-      font-size: 0.9rem;
-    }
+.learn-more {
+  margin-top: auto;
+  text-align: center;
+}
 
-    .learn-more {
-      margin-top: auto;
-      text-align: center;
-    }
+.learn-more a {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #800000;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
 
-    .learn-more a {
-      display: inline-block;
-      padding: 8px 16px;
-      background: #800000; /* maroon */
-      color: #fff;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: background 0.3s ease;
-    }
+.learn-more a:hover {
+  background: #a52a2a;
+}
 
-    .learn-more a:hover {
-      background: #a52a2a; /* lighter maroon */
-    }
+/* ============================= */
+/* 📱 MOBILE VIEW (Below 768px) */
+/* ============================= */
+@media (max-width: 767px) {
+  .services-container {
+    grid-template-columns: 1fr; /* single column */
+    gap: 20px;
+  }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-    }
+  h1 {
+    font-size: 1.8rem;
+    margin: 25px 0 10px;
+  }
+
+  .intro {
+    font-size: 1rem;
+    padding: 0 15px;
+  }
+
+  .service-card {
+    border-radius: 10px;
+  }
+
+  .service-card img {
+    height: 200px;
+  }
+
+  .service-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .header img {
+    margin-left: 30px;
+    height: 65px;
+  }
+}
+
+/* ============================= */
+/* 💻 LAPTOP VIEW (Above 1025px) */
+/* ============================= */
+@media (min-width: 1025px) {
+  .services-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  }
+
+  .service-card {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .service-card:hover {
+    transform: scale(1.03) translateY(-5px);
+  }
+}
+
+/* ============================= */
+/* 📲 TABLET VIEW (768px - 1024px) */
+/* ============================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .services-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 25px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .intro {
+    font-size: 1.05rem;
+  }
+
+  .service-card img {
+    height: 240px;
+  }
+
+  .service-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .header img {
+    margin-left: 60px;
+    height: 75px;
+  }
+}
   </style>
+  <link rel="stylesheet" href="services.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
 

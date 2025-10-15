@@ -34,6 +34,13 @@
   box-shadow: 0 0 12px rgba(128,0,0,0.6);
   transition: 0.3s;
 }
+    img.logo { height: 75px; width: auto; display: block; margin-left: 85px; }
+
+    @media (max-width: 768px) {
+  img.logo {
+    margin-left: 30px;
+  }
+}
 
 /* Button ripple effect */
 .contact-form button {
@@ -116,7 +123,6 @@
     /* Cards */
     .card { border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s; }
     .card:hover { transform: translateY(-6px); }
-
     
 
     /* Social icons */
@@ -154,7 +160,7 @@
   <nav class="navbar navbar-expand-lg bg-white sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="/newlogo.png" alt="Logo" style="height: 80px;">
+        <img src="/newlogo.png" alt="Logo" class="logo">
     
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

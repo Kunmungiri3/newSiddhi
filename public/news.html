@@ -17,7 +17,8 @@ nav {
   position:sticky; top:0; z-index:1000; 
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
-nav img.logo { height:80px; }
+nav img.logo { height:80px; margin-left: 80px;
+  width:auto; display:block; transition:transform 0.3s; }
 nav ul { list-style:none; display:flex; gap:20px; }
 nav ul li a { color:#800000; font-weight:500; transition:0.3s; }
 nav ul li a:hover { color:#c0392b; }
@@ -264,8 +265,8 @@ eventsData.forEach(e=>{
 // ===== Dynamic Hiring =====
 const hiringData = [
   {title:"Profile:- IRO/TME/BDE/CIC Officer Positions", img:"/field sales new.jpg"},
-  {title:"Profile:- Banking Sales Officer", img:"/sales offiers.jpeg"},
-  {title:"Profile:- Field sales/CIC Officer", img:"/crc hiring.jpeg"},
+  {title:"Profile:-HR Officer", img:"/hiring hr.jpeg"},
+  {title:"Profile:- Field sales/CIC Officer", img:"/fields sales new.jpeg"},
 ];
 
 const hiringGrid = document.getElementById('hiring-grid');
