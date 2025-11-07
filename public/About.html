@@ -719,7 +719,6 @@
 
 
  
-
 <!-- ======= Leadership Section ======= -->
 <section id="leadership" class="py-5 bg-light">
   <div class="container text-center">
@@ -731,7 +730,7 @@
         <div class="card h-100 shadow leader-card" data-bs-toggle="modal" data-bs-target="#founderModal">
           <img src="riteshf.jpg" class="card-img-top" alt="Founder - Ritesh Goel">
           <div class="card-body">
-            <h5 class="card-title">Mr. Ritesh Goyal </h5>
+            <h5 class="card-title">Mr. Ritesh Goyal</h5>
             <p class="card-text">Founder</p>
           </div>
         </div>
@@ -748,6 +747,18 @@
         </div>
       </div>
 
+      <!-- Business Head - BFSI -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100 shadow leader-card" data-bs-toggle="modal" data-bs-target="#parikshitModal">
+          <img src="Bh parii.jpeg
+          " class="card-img-top" alt="Business Head - BFSI Parikshit Shukla">
+          <div class="card-body">
+            <h5 class="card-title">Mr. Parikshit Shukla</h5>
+            <p class="card-text">Business Head - BFSI</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Business Head -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 shadow leader-card" data-bs-toggle="modal" data-bs-target="#businessModal">
@@ -758,6 +769,8 @@
           </div>
         </div>
       </div>
+
+      
 
       <!-- HR Recruiter -->
       <div class="col-md-3 col-sm-6">
@@ -808,6 +821,22 @@
   </div>
 </div>
 
+<!-- Business Head - BFSI Modal -->
+<div class="modal fade leader-modal" id="parikshitModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content animate__animated animate__fadeInDown">
+      <div class="modal-header">
+        <h5 class="modal-title">Mr. Parikshit Shukla - Business Head (BFSI)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="Bh parii.jpeg" class="rounded-circle mb-3" width="140" height="140" alt="Business Head - BFSI">
+        <p>Mr. Parikshit Shukla heads the BFSI vertical, leading strategic initiatives, partnerships, and innovations in the Banking, Financial Services, and Insurance domain to deliver high-impact solutions and client success.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Business Head Modal -->
 <div class="modal fade leader-modal" id="businessModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -818,11 +847,13 @@
       </div>
       <div class="modal-body text-center">
         <img src="rahul.jpg" class="rounded-circle mb-3" width="140" height="140" alt="Business Head">
-        <p> Rahul Gupta leads business development and partnerships, building strong client relationships and creating opportunities for scalable growth.</p>
+        <p>Rahul Gupta leads business development and partnerships, building strong client relationships and creating opportunities for scalable growth.</p>
       </div>
     </div>
   </div>
 </div>
+
+
 
 <!-- HR Recruiter Modal -->
 <div class="modal fade leader-modal" id="hrModal" tabindex="-1">
@@ -845,20 +876,77 @@
   .leader-card {
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 16px;
+    background: #fff;
   }
+
   .leader-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
+
   .leader-card img {
-    height: 280px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
+    border-radius: 50%;
+    margin: 20px auto 10px;
+    display: block;
   }
+
+  .leader-card .card-body {
+    padding-bottom: 25px;
+  }
+
+  /* Uniform height for all cards */
+  .leader-card {
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Grid alignment improvements */
+  #leadership .row {
+    justify-content: center;
+  }
+
+  /* Adjust responsiveness */
+  @media (min-width: 992px) {
+    #leadership .col-md-3 {
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
+  }
+
+  @media (max-width: 991px) and (min-width: 768px) {
+    #leadership .col-sm-6 {
+      flex: 0 0 33.3333%;
+      max-width: 33.3333%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    #leadership .col-sm-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+
   .leader-modal .modal-content {
     border-radius: 12px;
     padding: 20px;
   }
+
+  .card-title {
+    font-weight: 600;
+    margin-top: 10px;
+  }
 </style>
+
+
 
 <!-- ======= Add Animate.css for animations ======= -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
